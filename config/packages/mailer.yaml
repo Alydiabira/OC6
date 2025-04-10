@@ -1,0 +1,25 @@
+# Configuration générique (pour tous les environnements)
+framework:
+    mailer:
+        dsn: '%env(MAILER_DSN)%'  # Utilisation de la variable d'environnement MAILER_DSN
+
+# Configuration spécifique à l'environnement de développement
+when@dev:
+    framework:
+        mailer:
+            # Désactive l'envoi des emails en développement (utile pour éviter l'envoi de mails réels)
+            dsn: 'null://null'
+
+# Configuration spécifique à l'environnement de test
+when@test:
+    framework:
+        mailer:
+            # Désactive l'envoi des emails en test
+            dsn: 'null://null'
+
+# Configuration spécifique à l'environnement de production
+when@prod:
+    framework:
+        mailer:
+            # Utilisation du MAILER_DSN défini dans .env pour la production
+            dsn: '%env(MAILER_DSN)%'
