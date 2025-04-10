@@ -1,4 +1,4 @@
-Symfony Demo Application
+Symfony Demo Application développer par Aly Diabira
 ========================
 
 The "Symfony Demo Application" is a reference application created to show how
