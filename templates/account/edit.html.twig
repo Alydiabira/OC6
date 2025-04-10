@@ -1,0 +1,23 @@
+{# templates/account/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier l'Utilisateur{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Modifier l'Utilisateur</h1>
+
+        {{ form_start(form) }}
+            <div class="mb-3">
+                {{ form_row(form.email) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.password) }}
+            </div>
+            <div class="mb-3">
+                {{ form_row(form.roles) }}
+            </div>
+            <button type="submit" class="btn btn-primary">Mettre à jour</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
