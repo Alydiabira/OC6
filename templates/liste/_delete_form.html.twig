@@ -1,0 +1,72 @@
+{% if liste is defined %}
+    <!-- Formulaire pour supprimer la liste -->
+    <form method="post" 
+          action="{{ path('app_liste_delete', {'id': liste.id}) }}" 
+          onsubmit="return confirm('Êtes-vous sûr de vouloir supprimer cet élément ?');" 
+          class="d-inline-block">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ liste.id) }}">
+        <button type="submit" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash"></i> Supprimer la Liste
+        </button>
+    </form>
+{% endif %}
+
+{% if comment is defined %}
+    <!-- Formulaire pour supprimer un commentaire -->
+    <form method="post" 
+          action="{{ path('app_comment_delete', {'id': comment.id}) }}" 
+          onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');" 
+          class="d-inline-block">
+        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+        <button type="submit" class="btn btn-danger btn-sm">
+            <i class="bi bi-trash"></i> Supprimer le Commentaire
+        </button>
+    </form>
+{% endif %}
+
+<!-- Styles CSS -->
+<style>
+    /* Style général du bouton danger */
+    .btn-danger {
+        background-color: #dc3545;
+        border: none;
+        transition: background-color 0.2s ease, transform 0.2s ease;
+        font-size: 0.9rem;
+        padding: 0.5rem 1rem;
+        border-radius: 4px;
+    }
+
+    .btn-danger:hover {
+        background-color: #c82333;
+        transform: scale(1.05);
+        color: white;
+    }
+
+    .btn-danger i {
+        margin-right: 5px;
+    }
+
+    /* Style spécifique pour les écrans petits */
+    @media (max-width: 576px) {
+        .btn-danger {
+            font-size: 0.8rem;
+            padding: 0.4rem 0.8rem;
+        }
+    }
+
+    /* Style pour les écrans moyens */
+    @media (min-width: 576px) and (max-width: 768px) {
+        .btn-danger {
+            font-size: 0.85rem;
+            padding: 0.45rem 0.9rem;
+        }
+    }
+
+    /* Style pour les écrans grands */
+    @media (min-width: 768px) {
+        .btn-danger {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+    }
+</style>
