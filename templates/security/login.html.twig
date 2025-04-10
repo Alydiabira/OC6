@@ -1,0 +1,125 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'login' %}
+
+{% block main %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <!-- 📌 Formulaire de connexion -->
+        <div class="col-lg-5">
+            {% if error %}
+                <div class="alert alert-danger">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+            {% endif %}
+
+            <div class="card shadow-lg rounded-4 p-4" style="background: linear-gradient(to right, #f12711, #f5af19);">
+                <div class="card-header bg-primary text-white text-center rounded-4">
+                    <h4><twig:ux:icon name="tabler:lock" class="text-white"/> {{ 'title.login'|trans }}</h4>
+                </div>
+                <div class="card-body">
+                    <form action="{{ path('security_login') }}" method="post">
+                        <div class="mb-3">
+                            <label for="username" class="form-label text-white">{{ 'label.username'|trans }}</label>
+                            <input type="text" id="username" name="_username" value="{{ last_username }}" class="form-control rounded-4" required autofocus />
+                        </div>
+
+                        <div class="mb-3 position-relative">
+                            <label for="password" class="form-label text-white">{{ 'label.password'|trans }}</label>
+                            <div class="input-group">
+                                <input type="password" id="password" name="_password" class="form-control rounded-4" required />
+                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="password" aria-label="Toggle password visibility">
+                                    <twig:ux:icon name="tabler:eye" class="text-white" aria-hidden="true"/>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="mb-3 form-check text-white">
+                            <input type="checkbox" class="form-check-input" id="rememberMe" name="_remember_me" checked>
+                            <label class="form-check-label" for="rememberMe">{{ 'label.remember_me'|trans }}</label>
+                        </div>
+
+                        <input type="hidden" name="_target_path" value="{{ app.request.get('redirect_to') }}"/>
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
+
+                        <button type="submit" class="btn btn-lg btn-light w-100 py-2 rounded-4">
+                            <twig:ux:icon name="tabler:login" class="text-dark"/> {{ 'action.sign_in'|trans }}
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <!-- 📌 Aide à la connexion -->
+        <div class="col-lg-6 mt-4 mt-lg-0">
+            <div class="card shadow-sm p-4 rounded-4">
+                <div class="card-header bg-secondary text-white">
+                    <h5><twig:ux:icon name="tabler:info-circle" class="text-white"/> {{ 'help.login_users'|trans }}</h5>
+                </div>
+                <div class="card-body">
+                    <!-- Accordion for help content -->
+                    <div class="accordion" id="helpAccordion">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    {{ 'label.username'|trans }}
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#helpAccordion">
+                                <div class="accordion-body">
+                                    <strong>aly</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    {{ 'label.password'|trans }}
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#helpAccordion">
+                                <div class="accordion-body">
+                                    <strong>azerty</strong>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    {{ 'label.role'|trans }}
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#helpAccordion">
+                                <div class="accordion-body">
+                                    <code>ROLE_USER</code> ({{ 'help.role_user'|trans }})
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <div class="alert alert-info">
+                            <strong><twig:ux:icon name="tabler:bulb" class="text-dark"/> {{ 'note'|trans }}:</strong> {{ 'help.reload_fixtures'|trans }}
+                            <code class="console d-block mt-2">$ php bin/console doctrine:fixtures:load</code>
+                        </div>
+
+                        <div class="alert alert-warning">
+                            <strong><twig:ux:icon name="tabler:tool" class="text-dark"/> {{ 'tip'|trans }}:</strong> {{ 'help.add_user'|trans }}
+                            <code class="console d-block mt-2">$ php bin/console app:add-user</code>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block sidebar %}
+    {{ parent() }}
+    <div class="container mt-4 text-center">
+        {{ show_source_code(_self) }}
+    </div>
+{% endblock %}
