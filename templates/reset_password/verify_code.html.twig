@@ -1,0 +1,10 @@
+{# templates/reset_password/verify_code.html.twig #}
+
+<h2>Vérification du code de réinitialisation</h2>
+
+<form method="POST">
+    {{ form_start(form) }}
+        {{ form_row(form.code) }}
+        <button type="submit">Vérifier le code</button>
+    {{ form_end(form) }}
+</form>
