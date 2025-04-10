@@ -1,0 +1,51 @@
+# config/services.yaml
+
+# Parameters section
+parameters:
+    app.locale: 'fr'  # Default locale
+    app.notifications.email_sender: 'd-aly@outlook.fr'  # Email address for notifications
+    kernel.enabled_locales: ['en', 'fr', 'de', 'es', 'nl', 'it']  # List of enabled locales
+
+# Service definitions section
+services:
+    # Default configuration for services in this file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+        bind:
+            array $enabledLocales: '%kernel.enabled_locales%'  # Bind parameter to array of locales
+            string $defaultLocale: '%app.locale%'  # Bind default locale from app.locale parameter
+
+    # Service definition for the PaginatorInterface from KnpPaginatorBundle
+    Knp\Bundle\PaginatorBundle\Pagination\PaginatorInterface: '@knp_paginator'
+
+    # Makes classes in src/ available to be used as services
+    # This creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Kernel.php'
+
+    # Service definition for the MailController
+    App\Controller\MailController:
+        arguments:
+            $mailer: '@mailer'  # Inject the mailer service into the controller
+        tags: ['controller.service_arguments']
+
+    # Service definition for App\Twig\Extension\AppExtension
+    App\Twig\Extension\AppExtension:
+        arguments:
+            $enabledLocales: '%kernel.enabled_locales%'  # Use the parameter for enabled locales
+            $translator: '@translator.default'  # Inject the default translator service
+        tags: ['twig.extension']
+        public: true  # Force the service to be public
+
+    # Explicitly register the ResetPasswordRequestRepository service if necessary
+    App\Repository\ResetPasswordRequestRepository: ~
+
+    # Register the UserRepository service (if it isn't registered automatically)
+    App\Repository\UserRepository: ~
+
+    # You don't need to explicitly define PasswordHasherInterface
+    # Symfony automatically handles the autowiring of this interface via the `security.password_hasher` service.
