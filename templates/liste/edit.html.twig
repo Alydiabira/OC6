@@ -1,0 +1,370 @@
+{# templates/liste/edit.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Modifier la Liste{% endblock %}
+
+{% block body %}
+
+{# --------------------------------------------------------------------- #
+  SECTION : CONSEILS D'AMÉLIORATION
+  --------------------------------------------------------------------- #}
+<section id="conseils" style="background-color: #fafafa; padding: 20px; border-radius: 8px; margin-bottom: 20px;">
+    <h2 style="margin-bottom: 10px;">Conseils de Présentation & d’Amélioration</h2>
+    <ul style="padding-left: 20px; list-style-type: disc;">
+        <li>Utilisez un <strong>layout en colonnes (flexbox ou grid)</strong> pour rappeler la disposition « feed » d’Instagram.</li>
+        <li>Préférez des <strong>cartes minimalistes</strong> et des blocs aérés pour mettre en avant le contenu.</li>
+        <li>Choisissez une palette de couleurs cohérente et limitée pour éviter la surcharge visuelle.</li>
+        <li>Centralisez vos styles dans un fichier dédié pour faciliter la maintenance et la réutilisation.</li>
+        <li>Gérez les <strong>icônes</strong> via des symboles textuels ou un petit set SVG plutôt que d’utiliser tout un framework.</li>
+    </ul>
+</section>
+
+{# --------------------------------------------------------------------- #
+  SECTION : STYLE GLOBAL
+  --------------------------------------------------------------------- #}
+<style>
+/* ----- RESET OPTIONNEL ----- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ----- STYLE GÉNÉRAL ----- */
+body {
+    background-color: #f9f9f9;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* ----- CONTENEUR PRINCIPAL ----- */
+.page-container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-bottom: 40px;
+}
+
+/* ----- TITRE & TEXTE ----- */
+.title-section {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.title-section h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.title-section p {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+/* ----- FLASH MESSAGES ----- */
+.flash-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.flash-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 6px;
+    padding: 12px;
+    color: #fff;
+    min-width: 220px;
+}
+
+.flash-message.success {
+    background-color: #198754; /* Exemple de couleur verte */
+}
+
+.flash-message.error {
+    background-color: #dc3545; /* Exemple de couleur rouge */
+}
+
+.flash-message .close-btn {
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    font-size: 1.1rem;
+    line-height: 1;
+    margin-left: 10px;
+}
+
+/* ----- COLONNES ----- */
+.columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+/* Chaque bloc colonne a une largeur minimale et s'adapte (flex: 1) */
+.column {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    flex: 1 1 300px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.column:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+/* ----- ENTÊTE DE CHAQUE COLONNE ----- */
+.column-header {
+    padding: 12px;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Variation de couleurs (exemples) */
+.column-header.info {
+    background-color: #d1ecf1;
+    color: #0c5460;
+}
+.column-header.primary {
+    background-color: #0d6efd;
+    color: #fff;
+}
+.column-header.secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+/* ----- CONTENU DE CHAQUE COLONNE ----- */
+.column-content {
+    padding: 16px;
+    flex-grow: 1; /* Pour étirer le contenu */
+}
+
+/* ----- BOUTONS & FORMULAIRES ----- */
+.button {
+    display: inline-block;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    margin-top: 8px;
+}
+
+/* Variations de couleurs pour les boutons */
+.button-primary {
+    background-color: #0d6efd; 
+    color: #fff;
+}
+.button-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+.button-warning {
+    background-color: #ffc107;
+    color: #333;
+}
+.button-danger {
+    background-color: #dc3545;
+    color: #fff;
+}
+
+/* Effet hover générique */
+.button:hover {
+    opacity: 0.9;
+}
+
+/* Champs de formulaire */
+form label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 6px;
+    font-size: 0.9rem;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="file"],
+form textarea {
+    width: 100%;
+    padding: 8px;
+    font-size: 0.95rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    margin-bottom: 12px;
+}
+
+/* Contrainte de responsivité */
+@media (max-width: 768px) {
+    .title-section h1 {
+        font-size: 1.6rem;
+    }
+}
+</style>
+
+<div class="page-container">
+    
+    {# --------------------------------------------------------------------- #
+      SECTION : FLASH MESSAGES
+      --------------------------------------------------------------------- #}
+    <div class="flash-container">
+        {% for label, messages in app.flashes %}
+            {% for message in messages %}
+                {# Selon que le label est success, error, etc. #}
+                <div class="flash-message {{ label == 'success' ? 'success' : 'error' }}">
+                    <span>{{ message }}</span>
+                    <button class="close-btn" onclick="this.parentElement.style.display='none';">x</button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    {# --------------------------------------------------------------------- #
+      SECTION : TITRE
+      --------------------------------------------------------------------- #}
+    <div class="title-section">
+        <h1>Modifier la Liste</h1>
+        <p>Apportez des modifications à votre liste, ajoutez des commentaires ou assignez un projet</p>
+    </div>
+
+    {# --------------------------------------------------------------------- #
+      SECTION : COLONNES PRINCIPALES
+      (LISTE COMMENTAIRES, FORM ÉDITION, FORM COMMENT)
+      --------------------------------------------------------------------- #}
+    <div class="columns">
+
+        {# COLONNE GAUCHE : Liste des commentaires #}
+        <div class="column">
+            <div class="column-header info">
+                Commentaires
+            </div>
+            <div class="column-content">
+                {% if liste.comments|length > 0 %}
+                    {% for comment in liste.comments %}
+                        <div style="border: 1px solid #eee; border-radius: 6px; margin-bottom: 12px; padding: 12px;">
+                            <p><strong>{{ comment.author }}</strong></p>
+                            <p style="margin: 6px 0;">{{ comment.content }}</p>
+                            <small style="color: #777;">Posté le {{ comment.createdAt|date('d/m/Y H:i') }}</small>
+                            <form method="post"
+                                  action="{{ path('app_comment_delete', {'id': comment.id}) }}"
+                                  onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');"
+                                  style="margin-top: 8px;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                                <button type="submit" class="button button-danger" style="font-size: 0.8rem;">Supprimer</button>
+                            </form>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <p style="color: #777;">Aucun commentaire pour cette liste.</p>
+                {% endif %}
+            </div>
+        </div>
+
+        {# COLONNE CENTRALE : Formulaire d'édition (id="editForm") #}
+        <div class="column">
+            <div class="column-header primary">
+                Modifier la Liste
+            </div>
+            <div class="column-content">
+                {# On donne un id="editForm" pour que le bouton puisse le cibler #}
+                {{ form_start(form, {'attr': {'id': 'editForm'}}) }}
+                    <label for="liste_name">Nom</label>
+                    {{ form_widget(form.name, {'attr': {'id': 'liste_name'}}) }}
+
+                    <label for="liste_email">Adresse Email</label>
+                    {{ form_widget(form.email, {'attr': {'id': 'liste_email'}}) }}
+
+                    <label for="liste_imageFile">Image</label>
+                    {{ form_widget(form.imageFile, {'attr': {'id': 'liste_imageFile'}}) }}
+
+                    {% if form.projet is defined %}
+                        <label for="liste_projet">Projet</label>
+                        {{ form_widget(form.projet, {'attr': {'id': 'liste_projet'}}) }}
+                    {% else %}
+                        <p><strong>Projet associé :</strong> {{ liste.projet ?: 'Aucun projet associé' }}</p>
+                    {% endif %}
+                {{ form_end(form) }}
+            </div>
+        </div>
+
+        {# COLONNE DROITE : Formulaire d'ajout de commentaire (id="commentForm") #}
+        <div class="column">
+            <div class="column-header secondary">
+                Ajouter un Commentaire
+            </div>
+            <div class="column-content">
+                {# On donne un id="commentForm" pour que le bouton puisse le cibler #}
+                {{ form_start(commentForm, {'attr': {'id': 'commentForm'}}) }}
+                    <label for="comment_content">Votre commentaire</label>
+                    {{ form_widget(commentForm.content, {'attr': {'id': 'comment_content'}}) }}
+                {{ form_end(commentForm) }}
+            </div>
+        </div>
+
+    </div> {# Fin .columns #}
+
+
+    {# --------------------------------------------------------------------- #
+      SECTION : BOUTONS SUR UNE MÊME LIGNE (Retour / Mettre à jour / Ajouter)
+      --------------------------------------------------------------------- #}
+    <div style="display: flex; gap: 8px; margin-top: 20px;">
+        {# Bouton « Retour » #}
+        <a href="{{ path('app_liste_index') }}"
+           class="button button-secondary"
+           style="flex: 1; text-decoration: none; text-align: center;">
+           ← Retour
+        </a>
+
+        {# Bouton « Mettre à jour » qui soumet le formulaire id="editForm" #}
+        <button type="submit"
+                form="editForm"
+                class="button button-primary"
+                style="flex: 1;">
+            Mettre à jour
+        </button>
+
+        {# Bouton « Ajouter » qui soumet le formulaire id="commentForm" #}
+        <button type="submit"
+                form="commentForm"
+                class="button button-secondary"
+                style="flex: 1;">
+            Ajouter
+        </button>
+    </div>
+
+
+    {# --------------------------------------------------------------------- #
+      SECTION : FORMULAIRE POUR ASSIGNER UN PROJET À TOUS
+      --------------------------------------------------------------------- #}
+    <div style="background-color: #fff; border: 1px solid #ddd; border-radius: 8px; margin-top: 20px; padding: 16px; transition: transform 0.2s, box-shadow 0.2s;">
+        <div style="background-color: #fff3cd; padding: 10px; text-align: center; border-radius: 6px; margin-bottom: 10px;">
+            <h4 style="color: #856404; margin: 0;">Assigner un Projet à Tous les Utilisateurs</h4>
+        </div>
+        <form method="post" action="{{ path('app_liste_edit', {'id': liste.id}) }}">
+            <label for="project_name">Nom du Projet</label>
+            <input type="text" id="project_name" name="project_name" placeholder="Entrez le nom du projet" required>
+
+            <button type="submit" class="button button-warning" style="width: 100%; margin-top: 12px;">
+                Assigner à tous
+            </button>
+        </form>
+    </div>
+
+</div> {# Fin .page-container #}
+
+{% endblock %}
