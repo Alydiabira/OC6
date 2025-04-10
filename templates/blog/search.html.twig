@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Search Results for "{{ query }}"</h1>
+
+    {% if posts is empty %}
+        <p>No results found. Try refining your search.</p>
+    {% else %}
+        <div class="results-summary">
+            <p>{{ totalItems }} result{{ totalItems > 1 ? 's' : '' }} found, page {{ currentPage }} of {{ pageCount }}.</p>
+        </div>
+
+        <div class="search-pagination">
+            {# Display pagination links #}
+            {% if currentPage > 1 %}
+                <a href="{{ path('blog_search', { q: query, page: currentPage - 1 }) }}" class="pagination-link">Previous</a>
+            {% endif %}
+            
+            <span>Page {{ currentPage }} of {{ pageCount }}</span>
+
+            {% if currentPage < pageCount %}
+                <a href="{{ path('blog_search', { q: query, page: currentPage + 1 }) }}" class="pagination-link">Next</a>
+            {% endif %}
+        </div>
+
+        <div class="results-list">
+            {% for post in posts %}
+                <div class="result-card">
+                    <h2>
+                        <a href="{{ path('blog_post', { slug: post.slug }) }}">
+                            {{ post.title }}
+                        </a>
+                    </h2>
+                    <p class="post-metadata">
+                        <span><twig:ux:icon name="tabler:calendar-month"/> {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}</span>
+                        <span><twig:ux:icon name="tabler:user"/> {{ post.author.fullName }}</span>
+                    </p>
+
+                    <p>{{ post.summary|slice(0, 200) }}...</p> {# Show a snippet of the content #}
+
+                    <div class="result-meta">
+                        <span>Tags: 
+                            {% for tag in post.tags %}
+                                <a href="{{ path('blog_index_tag', { tagName: tag.name }) }}" class="tag">{{ tag.name }}</a>
+                            {% endfor %}
+                        </span>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <div class="search-pagination">
+            {# Display pagination links #}
+            {% if currentPage > 1 %}
+                <a href="{{ path('blog_search', { q: query, page: currentPage - 1 }) }}" class="pagination-link">Previous</a>
+            {% endif %}
+            
+            <span>Page {{ currentPage }} of {{ pageCount }}</span>
+
+            {% if currentPage < pageCount %}
+                <a href="{{ path('blog_search', { q: query, page: currentPage + 1 }) }}" class="pagination-link">Next</a>
+            {% endif %}
+        </div>
+    {% endif %}
+{% endblock %}
