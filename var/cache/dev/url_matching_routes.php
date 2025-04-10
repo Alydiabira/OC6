@@ -59,22 +59,25 @@ return [
                                 .'|age/(\\d+)(*:683)'
                                 .'|osts/([^/]++)(*:704)'
                             .')'
-                            .'|comment/([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)/new(*:757)'
-                            .'|search(*:771)'
+                            .'|comment/(?'
+                                .'|([A-Za-z0-9]+(?:-[A-Za-z0-9]+)*)/new(*:760)'
+                                .'|form/([^/]++)(*:781)'
+                            .')'
+                            .'|search(*:796)'
                         .')'
                     .')'
                     .'|contact(?'
-                        .'|/controller/test(*:807)'
-                        .'|(*:815)'
+                        .'|/controller/test(*:832)'
+                        .'|(*:840)'
                     .')'
-                    .'|login(*:829)'
+                    .'|login(*:854)'
                     .'|profile/(?'
-                        .'|edit(*:852)'
-                        .'|change\\-password(*:876)'
+                        .'|edit(*:877)'
+                        .'|change\\-password(*:901)'
                     .')'
                 .')'
-                .'|/(en|fr)/admin(*:900)'
-                .'|/blog/tag/(.*)(*:922)'
+                .'|/(en|fr)/admin(*:925)'
+                .'|/blog/tag/(.*)(*:947)'
             .')/?$}sDu',
     ],
     [ // $dynamicRoutes
@@ -101,15 +104,16 @@ return [
         662 => [[['_route' => 'blog_rss', 'page' => 1, '_format' => 'xml', '_controller' => 'App\\Controller\\BlogController::index', '_locale' => 'fr'], ['_locale'], ['GET' => 0], null, false, false, null]],
         683 => [[['_route' => 'blog_index_paginated', '_format' => 'html', '_controller' => 'App\\Controller\\BlogController::index', '_locale' => 'fr'], ['_locale', 'page'], ['GET' => 0], null, false, true, null]],
         704 => [[['_route' => 'blog_post', '_controller' => 'App\\Controller\\BlogController::postShow', '_locale' => 'fr'], ['_locale', 'slug'], ['GET' => 0], null, false, true, null]],
-        757 => [[['_route' => 'comment_new', '_controller' => 'App\\Controller\\BlogController::commentNew', '_locale' => 'fr'], ['_locale', 'postSlug'], ['POST' => 0], null, false, false, null]],
-        771 => [[['_route' => 'blog_search', '_controller' => 'App\\Controller\\BlogController::search', '_locale' => 'fr'], ['_locale'], ['GET' => 0], null, false, false, null]],
-        807 => [[['_route' => 'app_contact_controller_test', '_controller' => 'App\\Controller\\ContactControllerTestController::index', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
-        815 => [[['_route' => 'contact', '_controller' => 'App\\Controller\\MailController::send', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
-        829 => [[['_route' => 'security_login', '_controller' => 'App\\Controller\\SecurityController::login', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
-        852 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit', '_locale' => 'fr'], ['_locale'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        876 => [[['_route' => 'user_change_password', '_controller' => 'App\\Controller\\UserController::changePassword', '_locale' => 'fr'], ['_locale'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
-        900 => [[['_route' => 'admin_dashboard', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], ['_locale'], ['GET' => 0], null, false, false, null]],
-        922 => [
+        760 => [[['_route' => 'comment_new', '_controller' => 'App\\Controller\\BlogController::commentNew', '_locale' => 'fr'], ['_locale', 'postSlug'], ['POST' => 0], null, false, false, null]],
+        781 => [[['_route' => 'comment_form', '_controller' => 'App\\Controller\\BlogController::commentForm', '_locale' => 'fr'], ['_locale', 'slug'], ['GET' => 0], null, false, true, null]],
+        796 => [[['_route' => 'blog_search', '_controller' => 'App\\Controller\\BlogController::search', '_locale' => 'fr'], ['_locale'], ['GET' => 0], null, false, false, null]],
+        832 => [[['_route' => 'app_contact_controller_test', '_controller' => 'App\\Controller\\ContactControllerTestController::index', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
+        840 => [[['_route' => 'contact', '_controller' => 'App\\Controller\\MailController::send', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
+        854 => [[['_route' => 'security_login', '_controller' => 'App\\Controller\\SecurityController::login', '_locale' => 'fr'], ['_locale'], null, null, false, false, null]],
+        877 => [[['_route' => 'user_edit', '_controller' => 'App\\Controller\\UserController::edit', '_locale' => 'fr'], ['_locale'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        901 => [[['_route' => 'user_change_password', '_controller' => 'App\\Controller\\UserController::changePassword', '_locale' => 'fr'], ['_locale'], ['GET' => 0, 'POST' => 1], null, false, false, null]],
+        925 => [[['_route' => 'admin_dashboard', '_controller' => 'App\\Controller\\Admin\\DashboardController::index'], ['_locale'], ['GET' => 0], null, false, false, null]],
+        947 => [
             [['_route' => 'blog_index_tag', '_controller' => 'App\\Controller\\BlogController::indexByTag'], ['tagName'], null, null, false, true, null],
             [null, null, null, null, false, false, 0],
         ],
