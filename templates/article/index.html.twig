@@ -1,0 +1,100 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Articles{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row">
+        <!-- Barre latérale (Documentation) -->
+        <aside class="col-md-3">
+            <div class="sticky-top">
+                <div class="card sidebar-card">
+                    <div class="card-header bg-dark text-white">
+                        <h5 class="mb-0">📚 Documentations</h5>
+                    </div>
+                    <div class="list-group list-group-flush">
+                        {% for article in articles %}
+                            <a href="{{ path('app_article_show', {'id': article.id}) }}" class="list-group-item list-group-item-action">
+                                {{ article.title }}
+                            </a>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Contenu principal (Articles) -->
+        <main class="col-md-9">
+            <h1 class="text-center mb-4">🎬 Articles en Vedette</h1>
+
+            <!-- Grille de cartes (Style Netflix) -->
+            {% if articles|length == 0 %}
+                <p class="text-center">Aucun résultat trouvé.</p>
+            {% else %}
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    {% for article in articles %}
+                        <div class="col">
+                            <a href="{{ path('app_article_show', {'id': article.id}) }}" class="card article-card">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ article.title }}</h5>
+                                    <p class="card-text">{{ article.content|slice(0, 100) ~ '...' }}</p>
+                                    <p><small>📅 {{ article.getFormattedDateTime() ?: 'Date non valide' }}</small></p>
+                                    <div class="overlay">👀 Voir l'article</div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <!-- Pagination -->
+                <div class="pagination-container mt-4">
+                    {{ knp_pagination_render(articles) }}
+                </div>
+            {% endif %}
+        </main>
+    </div>
+</div>
+
+<!-- Styles personnalisés (Netflix-Inspired) -->
+<style>
+    body {
+        background-color: #141414;
+        color: white;
+    }
+    .sidebar-card {
+        background-color: #1f1f1f;
+        border-radius: 8px;
+    }
+    .article-card {
+        background-color: #222;
+        color: white;
+        border-radius: 10px;
+        text-decoration: none;
+        transition: transform 0.3s ease-in-out;
+        position: relative;
+    }
+    .article-card:hover {
+        transform: scale(1.05);
+        box-shadow: 0 8px 15px rgba(255, 255, 255, 0.1);
+    }
+    .overlay {
+        position: absolute;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0, 0, 0, 0.7);
+        padding: 8px 12px;
+        border-radius: 5px;
+        opacity: 0;
+        transition: opacity 0.3s;
+        color: #fff;
+    }
+    .article-card:hover .overlay {
+        opacity: 1;
+    }
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+    }
+</style>
+{% endblock %}
