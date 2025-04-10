@@ -50,15 +50,15 @@
                 <!-- Formulaire d'ajout de commentaire -->
                 <div id="post-add-comment" class="card shadow-sm rounded-4 p-4 mt-4">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {{ render(controller('App\\Controller\\BlogController::commentForm', {post})) }}
+                        {{ render(controller('App\\Controller\\BlogController::commentForm', {
+                            slug: post.slug
+                        })) }}
                     {% else %}
                         <p class="text-center">
                             <a class="btn btn-lg btn-primary" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">
                                 <twig:ux:icon name="tabler:login" class="text-white"/>
                                 {{ 'action.sign_in'|trans }}
                             </a>
-                            <br>
-                            {{ 'post.to_publish_a_comment'|trans }}
                         </p>
                     {% endif %}
                 </div>
