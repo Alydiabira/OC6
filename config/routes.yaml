@@ -1,0 +1,37 @@
+# Définir la route pour la page d'accueil avec la gestion des locales
+homepage:
+    path: /{_locale}
+    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+    defaults:
+        template: default/homepage.html.twig
+        _locale: '%app.locale%'
+    requirements:
+        _locale: en|fr  # Spécifiez les locales possibles (en, fr, etc.)
+
+# Définir les routes pour les contrôleurs personnalisés, avec un préfixe de locale
+controllers:
+    resource: '../src/Controller/'
+    type: attribute
+    prefix: /{_locale}
+    defaults:
+        _locale: '%app.locale%'  # Utilisation de la locale par défaut
+
+# Définir la route pour le tableau de bord admin avec la gestion des locales
+admin_dashboard:
+    path: /{_locale}/admin
+    controller: App\Controller\Admin\DashboardController::index
+    requirements:
+        _locale: en|fr  # Définir les locales autorisées (en, fr, etc.)
+    methods: [GET]
+
+blog_index_tag:
+    path: /blog/tag/{tagName}
+    controller: App\Controller\BlogController::indexByTag
+    requirements:
+        tagName: '.*'  # Allow any characters (this is less restrictive)
+
+
+# config/routes.yaml
+contact_test:
+    path: /contact/controller/test
+    controller: App\Controller\ContactController::test
