@@ -1,0 +1,4 @@
+# config/packages/test/mailer.yaml
+framework:
+    mailer:
+        dsn: 'smtp://b8e55fe39dffd9:aa515bd4dd8947@sandbox.smtp.mailtrap.io:2525'
