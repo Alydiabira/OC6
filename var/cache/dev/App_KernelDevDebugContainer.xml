@@ -741,7 +741,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.Ogma52Y"/>
+      <argument type="service" id=".service_locator.myrB.L7"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -4361,7 +4361,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.Ogma52Y"/>
+      <argument type="service" id=".service_locator.myrB.L7"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -10749,6 +10749,19 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jFa5KmS" method="withContext"/>
     </service>
+    <service id=".service_locator.80cKC8." class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="user" type="service_closure" id="App\Entity\User"/>
+        <argument key="post" type="service_closure" id="App\Entity\Post"/>
+      </argument>
+    </service>
+    <service id=".service_locator.80cKC8..App\Controller\BlogController::commentForm()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BlogController::commentForm()"/>
+      <argument>App\Controller\BlogController::commentForm()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.80cKC8." method="withContext"/>
+    </service>
     <service id=".service_locator.jcYtTcg" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -10795,7 +10808,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.g7oipAF" method="withContext"/>
     </service>
-    <service id=".service_locator.Ogma52Y" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.myrB.L7" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -10813,6 +10826,7 @@
         <argument key="App\Controller\BlogController::indexByTag" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::indexByTag()"/>
         <argument key="App\Controller\BlogController::postShow" type="service_closure" id=".service_locator.95r6gX0.App\Controller\BlogController::postShow()"/>
         <argument key="App\Controller\BlogController::commentNew" type="service_closure" id=".service_locator.jFa5KmS.App\Controller\BlogController::commentNew()"/>
+        <argument key="App\Controller\BlogController::commentForm" type="service_closure" id=".service_locator.80cKC8..App\Controller\BlogController::commentForm()"/>
         <argument key="App\Controller\BlogController::search" type="service_closure" id=".service_locator.jcYtTcg.App\Controller\BlogController::search()"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.l6i3pzs.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\UserController::edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\UserController::edit()"/>
@@ -10830,6 +10844,7 @@
         <argument key="App\Controller\BlogController:indexByTag" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::indexByTag()"/>
         <argument key="App\Controller\BlogController:postShow" type="service_closure" id=".service_locator.95r6gX0.App\Controller\BlogController::postShow()"/>
         <argument key="App\Controller\BlogController:commentNew" type="service_closure" id=".service_locator.jFa5KmS.App\Controller\BlogController::commentNew()"/>
+        <argument key="App\Controller\BlogController:commentForm" type="service_closure" id=".service_locator.80cKC8..App\Controller\BlogController::commentForm()"/>
         <argument key="App\Controller\BlogController:search" type="service_closure" id=".service_locator.jcYtTcg.App\Controller\BlogController::search()"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.l6i3pzs.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\UserController:edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\UserController::edit()"/>
@@ -13174,7 +13189,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.Ogma52Y"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.myrB.L7"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
@@ -13231,6 +13246,7 @@
     <service id=".service_locator.iYcWkcr" alias=".service_locator.5FanY8e"/>
     <service id=".service_locator.ZTitVbH" alias=".service_locator.mtjqjIT"/>
     <service id=".service_locator.heoLegD" alias=".service_locator.jFa5KmS"/>
+    <service id=".service_locator.l1ZtRxG" alias=".service_locator.80cKC8."/>
     <service id=".service_locator.gkWRRmJ" alias=".service_locator.jcYtTcg"/>
     <service id=".service_locator.OjCqSpk" alias=".service_locator.l6i3pzs"/>
     <service id=".service_locator.oQrhM8Z" alias=".service_locator.g7oipAF"/>
