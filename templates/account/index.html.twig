@@ -1,0 +1,83 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gestion des Utilisateurs{% endblock %}
+
+{% block body %}
+    <div class="container mt-4">
+        <h1 class="text-center mb-4">Gestion des Utilisateurs</h1>
+
+        <!-- Affichage des alertes de succès ou d'erreur -->
+        {% for type, messages in app.session.flashBag.all %}
+            {% for message in messages %}
+                <div class="alert alert-{{ type == 'success' ? 'success' : 'danger' }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+
+        <!-- Liste des utilisateurs -->
+        <h2>Liste des Utilisateurs</h2>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Email</th>
+                    <th>Rôles</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% for role in user.roles %}
+                                <span class="badge bg-primary">{{ role }}</span>
+                            {% endfor %}
+                        </td>
+                        <td>
+                            <a href="{{ path('edit', {'id': user.id}) }}" class="btn btn-warning btn-sm">Modifier</a>
+
+                            <!-- Formulaire de suppression -->
+                            <form action="{{ path('delete', {'id': user.id}) }}" method="POST" style="display:inline;">
+                                <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
+                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cet utilisateur ?')">Supprimer</button>
+                            </form>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="4" class="text-center">Aucun utilisateur trouvé.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <!-- Pagination -->
+        <div class="pagination-container mt-4">
+            {{ knp_pagination_render(users) }}
+        </div>
+
+        <!-- Formulaire d'édition d'utilisateur (si nécessaire) -->
+        {% if edit_form is defined %}
+            <div class="mt-4">
+                <h2>Modifier l'Utilisateur : {{ user.email }}</h2>
+                {{ form_start(edit_form) }}
+                    <div class="mb-3">
+                        {{ form_row(edit_form.email) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(edit_form.password) }}
+                    </div>
+                    <div class="mb-3">
+                        {{ form_row(edit_form.roles) }}
+                    </div>
+                    <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                {{ form_end(edit_form) }}
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
