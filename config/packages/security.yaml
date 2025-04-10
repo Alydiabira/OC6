@@ -1,0 +1,58 @@
+security:
+    password_hashers:
+        Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface: 'auto'
+
+    providers:
+        database_users:
+            entity: { class: App\Entity\User, property: username }
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        main:
+            lazy: true
+            provider: database_users
+
+            form_login:
+                check_path: security_login
+                login_path: security_login
+                enable_csrf: true
+                default_target_path: blog_index
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800
+                # always_remember_me: true
+
+            logout:
+                target: homepage
+                enable_csrf: true
+
+            entry_point: 'form_login'
+
+        admin:
+            # The firewall for the admin area
+            pattern: ^/admin
+            # No roles here, they are controlled via access control
+
+            form_login:
+                check_path: security_login
+                login_path: security_login
+                enable_csrf: true
+                default_target_path: admin_dashboard
+
+            logout:
+                target: homepage
+                enable_csrf: true
+
+            entry_point: 'form_login'
+
+    # Access control
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }  # Only admins can access the /admin paths
+        - { path: ^/admin, roles: ROLE_USER }   # Adjust for users who should have access to other routes
+
+    role_hierarchy:
+        ROLE_ADMIN: ROLE_USER  # Ensures that ROLE_ADMIN inherits ROLE_USER permissions
