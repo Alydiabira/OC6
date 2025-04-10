@@ -1,0 +1,80 @@
+{% extends 'admin/layout.html.twig' %}
+
+{% block body_id 'admin_post_edit' %}
+
+{% block main %}
+    <h1 class="mb-4">{{ 'title.edit_post'|trans({'id': post.id}) }}</h1>
+
+    <!-- Formulaire avec des classes Bootstrap 5 et espacement -->
+    {{ form_start(form, {'attr': {'class': 'needs-validation', 'novalidate': true}}) }}
+
+        <div class="mb-4">
+            {{ form_label(form.title, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.title, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.title) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.summary, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.summary, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.summary) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.content, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.content, {'attr': {'class': 'form-control', 'rows': '5'}}) }}
+            {{ form_errors(form.content) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.publishedAt, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.publishedAt, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.publishedAt) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.tags, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.tags, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.tags) }}
+        </div>
+
+        <div class="mb-4">
+            {{ form_label(form.imageFile, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
+            {{ form_errors(form.imageFile) }}
+        </div>
+
+        <div class="d-flex justify-content-between mt-4">
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-save"></i> {{ 'action.save'|trans }}
+            </button>
+            <a href="{{ path('admin_post_index') }}" class="btn btn-outline-secondary">
+                <i class="bi bi-arrow-left"></i> {{ 'action.back_to_list'|trans }}
+            </a>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}
+
+{% block sidebar %}
+    <div class="section mb-4">
+        <div class="card">
+            <div class="card-body">
+                <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-lg btn-block btn-success">
+                    <i class="bi bi-eye"></i> {{ 'action.show_post'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="section mb-4">
+        <div class="card">
+            <div class="card-body">
+                {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
+            </div>
+        </div>
+    </div>
+
+    {{ parent() }}
+
+    {{ show_source_code(_self) }}
+{% endblock %}
