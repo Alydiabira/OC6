@@ -1,0 +1,129 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listes{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4 text-primary">Listes</h1>
+
+    <!-- Notifications -->
+    <div aria-live="polite" aria-atomic="true" class="position-relative">
+        <div class="toast-container position-fixed top-0 end-0 p-3">
+            {% for type, messages in app.session.flashBag.all %}
+                {% for message in messages %}
+                    <div class="toast align-items-center text-bg-{{ type == 'success' ? 'success' : 'danger' }} border-0" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="3000">
+                        <div class="d-flex">
+                            <div class="toast-body">{{ message }}</div>
+                            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                        </div>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Bouton pour ajouter une nouvelle liste -->
+    <div class="text-center mb-4">
+        <a href="{{ path('app_liste_new') }}" class="btn btn-success btn-lg rounded-pill shadow-lg">
+            <i class="bi bi-plus-circle"></i> Ajouter une nouvelle liste
+        </a>
+    </div>
+
+    {% if listes|length == 0 %}
+        <p class="text-center">Aucun enregistrement trouvé.</p>
+    {% else %}
+        <div class="text-center mb-4">
+            <p class="lead">Total des articles : <strong>{{ listes|length }}</strong></p>
+        </div>
+
+        <!-- Grille de cartes -->
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+            {% for liste in listes %}
+                <div class="col">
+                    <div class="card shadow-lg h-100 border-0 rounded-3 bg-light">
+                        <a href="{{ path('app_liste_show', {'id': liste.id}) }}" class="image-link">
+                            {% if liste.image %}
+                                <img src="{{ asset('uploads/' ~ liste.image) }}" 
+                                     alt="Image de {{ liste.name }}" 
+                                     class="card-img-top img-fluid rounded-3">
+                            {% else %}
+                                <img src="{{ asset('images/default-placeholder.png') }}" 
+                                     alt="Image par défaut" 
+                                     class="card-img-top img-fluid rounded-3">
+                            {% endif %}
+                        </a>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endif %}
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const toastElList = [].slice.call(document.querySelectorAll('.toast'));
+        toastElList.map(function (toastEl) {
+            const toast = new bootstrap.Toast(toastEl);
+            toast.show();
+        });
+    });
+</script>
+
+<style>
+    /* Custom styles for better user experience */
+    .card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-link img {
+        transition: transform 0.3s ease;
+    }
+
+    .image-link img:hover {
+        transform: scale(1.05);
+    }
+
+    .btn {
+        font-size: 16px;
+        padding: 10px 20px;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border-color: #17a2b8;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+        border-color: #117a8b;
+    }
+
+    .btn-warning {
+        background-color: #ffc107;
+        border-color: #ffc107;
+    }
+
+    .btn-warning:hover {
+        background-color: #e0a800;
+        border-color: #d39e00;
+    }
+
+    .toast-body {
+        font-size: 14px;
+        font-weight: 500;
+    }
+
+    .btn-close-white {
+        background-color: transparent;
+    }
+
+    .d-grid .btn {
+        width: 100%;
+    }
+</style>
+{% endblock %}
