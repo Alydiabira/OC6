@@ -1,0 +1,104 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer une Nouvelle Liste{% endblock %}
+
+{% block body %}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-6 col-md-8 col-sm-12">
+            <!-- Notifications flash -->
+            {% for type, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }} alert-dismissible fade show" role="alert">
+                        {{ message|raw }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                {% endfor %}
+            {% endfor %}
+
+            <!-- Formulaire de création ou d'édition de liste -->
+            <div class="card shadow-sm border-0 rounded-3 mb-4">
+                <div class="card-header bg-primary text-white text-center">
+                    <h4>Créer une Nouvelle Liste</h4>
+                </div>
+                <div class="card-body">
+                    {{ form_start(form, {'attr': {'enctype': 'multipart/form-data'}}) }}
+                        {{ form_row(form.name, {
+                            'label': 'Nom',
+                            'attr': {'class': 'form-control', 'placeholder': 'Entrez un nom'}
+                        }) }}
+                        {{ form_row(form.email, {
+                            'label': 'Adresse Email',
+                            'attr': {'class': 'form-control', 'placeholder': 'Entrez un email valide'}
+                        }) }}
+                        {{ form_row(form.imageFile, {
+                            'label': 'Télécharger une Image',
+                            'attr': {'class': 'form-control'}
+                        }) }}
+                        <div class="d-flex justify-content-between align-items-center mt-4">
+                            <a href="{{ path('app_liste_index') }}" class="btn btn-secondary">Retour à la Liste</a>
+                            <button type="submit" class="btn btn-primary">Enregistrer</button>
+                        </div>
+                    {{ form_end(form) }}
+                </div>
+            </div>
+
+            <!-- Formulaire d'ajout de commentaire -->
+            {% if commentForm is defined %}
+                <div class="card shadow-sm border-0 rounded-3">
+                    <div class="card-header bg-info text-white text-center">
+                        <h4>Ajouter un Commentaire</h4>
+                    </div>
+                    <div class="card-body">
+                        {{ form_start(commentForm) }}
+                            {{ form_row(commentForm.content, {'label': 'Votre commentaire', 'attr': {'class': 'form-control', 'placeholder': 'Entrez votre commentaire'}}) }}
+                            <div class="text-end mt-3">
+                                <button type="submit" class="btn btn-info">Envoyer</button>
+                            </div>
+                        {{ form_end(commentForm) }}
+                    </div>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+<!-- Styles CSS -->
+<style>
+    .card {
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .btn-primary {
+        background-color: #007bff;
+        border: none;
+    }
+
+    .btn-primary:hover {
+        background-color: #0056b3;
+    }
+
+    .btn-secondary {
+        background-color: #6c757d;
+        border: none;
+    }
+
+    .btn-secondary:hover {
+        background-color: #5a6268;
+    }
+
+    .btn-info {
+        background-color: #17a2b8;
+        border: none;
+    }
+
+    .btn-info:hover {
+        background-color: #138496;
+    }
+</style>
+{% endblock %}
