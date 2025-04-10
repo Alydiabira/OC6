@@ -198,30 +198,27 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
         if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("IS_AUTHENTICATED_FULLY")) {
             // line 53
             yield "                        ";
-            yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\HttpKernelRuntime')->renderFragment(Symfony\Bridge\Twig\Extension\HttpKernelExtension::controller("App\\Controller\\BlogController::commentForm", ["post" => (isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 53, $this->source); })())]));
+            yield $this->env->getRuntime('Symfony\Bridge\Twig\Extension\HttpKernelRuntime')->renderFragment(Symfony\Bridge\Twig\Extension\HttpKernelExtension::controller("App\\Controller\\BlogController::commentForm", ["slug" => CoreExtension::getAttribute($this->env, $this->source,             // line 54
+(isset($context["post"]) || array_key_exists("post", $context) ? $context["post"] : (function () { throw new RuntimeError('Variable "post" does not exist.', 54, $this->source); })()), "slug", [], "any", false, false, false, 54)]));
+            // line 55
             yield "
                     ";
         } else {
-            // line 55
+            // line 57
             yield "                        <p class=\"text-center\">
                             <a class=\"btn btn-lg btn-primary\" href=\"";
-            // line 56
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_login", ["redirect_to" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 56, $this->source); })()), "request", [], "any", false, false, false, 56), "pathInfo", [], "any", false, false, false, 56)]), "html", null, true);
+            // line 58
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("security_login", ["redirect_to" => CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, (isset($context["app"]) || array_key_exists("app", $context) ? $context["app"] : (function () { throw new RuntimeError('Variable "app" does not exist.', 58, $this->source); })()), "request", [], "any", false, false, false, 58), "pathInfo", [], "any", false, false, false, 58)]), "html", null, true);
             yield "\">
                                 ";
-            // line 57
+            // line 59
             yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:login", "class" => "text-white"]);
             yield "
                                 ";
-            // line 58
+            // line 60
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.sign_in"), "html", null, true);
             yield "
                             </a>
-                            <br>
-                            ";
-            // line 61
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("post.to_publish_a_comment"), "html", null, true);
-            yield "
                         </p>
                     ";
         }
@@ -275,48 +272,47 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
                                 <!-- Contenu du commentaire -->
                                 <p>";
             // line 87
-            yield $this->extensions['Symfony\Bridge\Twig\Extension\HtmlSanitizerExtension']->sanitize($this->env->getRuntime('Twig\Extra\Markdown\MarkdownRuntime')->convert(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 87)));
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 87)) ? ($this->extensions['Symfony\Bridge\Twig\Extension\HtmlSanitizerExtension']->sanitize($this->env->getRuntime('Twig\Extra\Markdown\MarkdownRuntime')->convert(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "content", [], "any", false, false, false, 87)))) : (""));
             yield "</p>
-
                                 <!-- Bouton pour supprimer un commentaire (visible seulement pour les admins) -->
-                                ";
-            // line 90
-            if ($this->extensions['Symfony\Bridge\Twig\Extension\SecurityExtension']->isGranted("ROLE_ADMIN")) {
-                // line 91
-                yield "                                    <form action=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_comment_delete", ["commentId" => CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 91)]), "html", null, true);
+                               ";
+            // line 89
+            if ( !Twig\Extension\CoreExtension::testEmpty(CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 89))) {
+                // line 90
+                yield "                                <form action=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_comment_delete", ["commentId" => CoreExtension::getAttribute($this->env, $this->source, $context["comment"], "id", [], "any", false, false, false, 90)]), "html", null, true);
                 yield "\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to delete this comment?');\">
-                                        <input type=\"hidden\" name=\"token\" value=\"";
-                // line 92
+                                    <input type=\"hidden\" name=\"token\" value=\"";
+                // line 91
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Symfony\Component\Form\FormRenderer')->renderCsrfToken("delete_comment"), "html", null, true);
                 yield "\">
-                                        <button type=\"submit\" class=\"btn btn-danger btn-sm rounded-4\">
-                                            ";
-                // line 94
+                                    <button type=\"submit\" class=\"btn btn-danger btn-sm rounded-4\">
+                                        ";
+                // line 93
                 yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:trash"]);
                 yield "
-                                            ";
-                // line 95
+                                        ";
+                // line 94
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.delete_comment"), "html", null, true);
                 yield "
-                                        </button>
-                                    </form>
-                                ";
+                                    </button>
+                                </form>
+                            ";
             }
-            // line 99
+            // line 98
             yield "                            </div>
                         </div>
                     </div>
                 ";
             $context['_iterated'] = true;
         }
-        // line 107
+        // line 106
         if (!$context['_iterated']) {
-            // line 103
+            // line 102
             yield "                    <!-- Message si aucun commentaire n'est disponible -->
                     <div class=\"alert alert-info text-center mt-3\">
                         ";
-            // line 105
+            // line 104
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("post.no_comments"), "html", null, true);
             yield "
                     </div>
@@ -325,7 +321,7 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['comment'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 108
+        // line 107
         yield "            </div>
         </div>
     </div>
@@ -339,7 +335,7 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
         yield from [];
     }
 
-    // line 113
+    // line 112
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -352,20 +348,20 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "sidebar"));
 
-        // line 114
+        // line 113
         yield "    <div class=\"container\">
         <div class=\"row justify-content-center\">
             <div class=\"col-md-10\">
                 ";
-        // line 117
+        // line 116
         yield from $this->yieldParentBlock("sidebar", $context, $blocks);
         yield "
                 ";
-        // line 118
+        // line 117
         yield $this->extensions['App\Twig\SourceCodeExtension']->showSourceCode($this->env, $this->getTemplateName());
         yield "
                 ";
-        // line 119
+        // line 118
         yield Twig\Extension\CoreExtension::include($this->env, $context, "blog/_rss.html.twig");
         yield "
             </div>
@@ -402,7 +398,7 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  369 => 119,  365 => 118,  361 => 117,  356 => 114,  343 => 113,  329 => 108,  320 => 105,  316 => 103,  314 => 107,  307 => 99,  300 => 95,  296 => 94,  291 => 92,  286 => 91,  284 => 90,  278 => 87,  271 => 83,  267 => 82,  263 => 81,  256 => 77,  253 => 76,  248 => 75,  239 => 69,  235 => 68,  229 => 64,  223 => 61,  217 => 58,  213 => 57,  209 => 56,  206 => 55,  200 => 53,  198 => 52,  191 => 47,  187 => 45,  176 => 43,  172 => 42,  168 => 41,  165 => 40,  163 => 39,  156 => 35,  147 => 29,  143 => 28,  137 => 25,  133 => 24,  127 => 20,  119 => 18,  117 => 17,  111 => 14,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  365 => 118,  361 => 117,  357 => 116,  352 => 113,  339 => 112,  325 => 107,  316 => 104,  312 => 102,  310 => 106,  303 => 98,  296 => 94,  292 => 93,  287 => 91,  282 => 90,  280 => 89,  275 => 87,  268 => 83,  264 => 82,  260 => 81,  253 => 77,  250 => 76,  245 => 75,  236 => 69,  232 => 68,  226 => 64,  219 => 60,  215 => 59,  211 => 58,  208 => 57,  204 => 55,  202 => 54,  200 => 53,  198 => 52,  191 => 47,  187 => 45,  176 => 43,  172 => 42,  168 => 41,  165 => 40,  163 => 39,  156 => 35,  147 => 29,  143 => 28,  137 => 25,  133 => 24,  127 => 20,  119 => 18,  117 => 17,  111 => 14,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -459,15 +455,15 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
                 <!-- Formulaire d'ajout de commentaire -->
                 <div id=\"post-add-comment\" class=\"card shadow-sm rounded-4 p-4 mt-4\">
                     {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                        {{ render(controller('App\\\\Controller\\\\BlogController::commentForm', {post})) }}
+                        {{ render(controller('App\\\\Controller\\\\BlogController::commentForm', {
+                            slug: post.slug
+                        })) }}
                     {% else %}
                         <p class=\"text-center\">
                             <a class=\"btn btn-lg btn-primary\" href=\"{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}\">
                                 {{ component('ux:icon', { name: 'tabler:login', class: 'text-white' }) }}
                                 {{ 'action.sign_in'|trans }}
                             </a>
-                            <br>
-                            {{ 'post.to_publish_a_comment'|trans }}
                         </p>
                     {% endif %}
                 </div>
@@ -493,18 +489,17 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
                             </div>
                             <div class=\"col-md-9\">
                                 <!-- Contenu du commentaire -->
-                                <p>{{ comment.content|markdown_to_html|sanitize_html }}</p>
-
+                                <p>{{ comment.content ? comment.content|markdown_to_html|sanitize_html : '' }}</p>
                                 <!-- Bouton pour supprimer un commentaire (visible seulement pour les admins) -->
-                                {% if is_granted('ROLE_ADMIN') %}
-                                    <form action=\"{{ path('admin_comment_delete', {commentId: comment.id}) }}\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to delete this comment?');\">
-                                        <input type=\"hidden\" name=\"token\" value=\"{{ csrf_token('delete_comment') }}\">
-                                        <button type=\"submit\" class=\"btn btn-danger btn-sm rounded-4\">
-                                            {{ component('ux:icon', { name: 'tabler:trash' }) }}
-                                            {{ 'action.delete_comment'|trans }}
-                                        </button>
-                                    </form>
-                                {% endif %}
+                               {% if comment.id is not empty %}
+                                <form action=\"{{ path('admin_comment_delete', {commentId: comment.id}) }}\" method=\"POST\" onsubmit=\"return confirm('Are you sure you want to delete this comment?');\">
+                                    <input type=\"hidden\" name=\"token\" value=\"{{ csrf_token('delete_comment') }}\">
+                                    <button type=\"submit\" class=\"btn btn-danger btn-sm rounded-4\">
+                                        {{ component('ux:icon', { name: 'tabler:trash' }) }}
+                                        {{ 'action.delete_comment'|trans }}
+                                    </button>
+                                </form>
+                            {% endif %}
                             </div>
                         </div>
                     </div>
