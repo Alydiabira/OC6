@@ -1,0 +1,370 @@
+{# templates/liste/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails de la Liste{% endblock %}
+
+{% block body %}
+
+{# ------------------------------------ #
+  SECTION : CONSEILS D'AMÉLIORATION
+  ------------------------------------ #}
+<section id="conseils" style="background-color: #fafafa; padding: 20px; margin-bottom: 20px; border-radius: 10px;">
+    <h2 style="margin-bottom: 10px;">Conseils de présentation et d'amélioration</h2>
+    <ul style="list-style-type: disc; padding-left: 40px;">
+        <li>
+            Utilisez <strong>display: flex</strong> ou <strong>display: grid</strong> pour organiser les contenus en colonnes de façon responsive.
+        </li>
+        <li>
+            Inspirez-vous des réseaux sociaux pour un design épuré, avec des cartes minimalistes et beaucoup d'espacement.
+        </li>
+        <li>
+            Mettez en avant les éléments clés : titre, image, actions principales, afin d'améliorer l'expérience utilisateur.
+        </li>
+        <li>
+            Pour gérer les icônes, vous pouvez incorporer des SVG personnalisés ou un set d’icônes léger, plutôt que les classes Bootstrap.
+        </li>
+        <li>
+            Utilisez des classes réutilisables pour les boutons et les blocs de contenu, de manière à normaliser l’apparence.
+        </li>
+    </ul>
+</section>
+
+{# ------------------------------------ #
+  SECTION : STYLES
+  ------------------------------------ #}
+<style>
+/* ---- Structure Générale de la Page ---- */
+.page-container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+  color: #333;
+  padding-bottom: 40px;
+}
+
+/* ---- Flash messages ---- */
+.flash-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1050;
+}
+
+.flash-message {
+  background-color: #4caf50; /* Couleur de fond pour succès */
+  color: #fff;
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 220px;
+}
+
+.flash-message.error {
+  background-color: #f44336; /* Couleur de fond pour erreur */
+}
+
+.flash-message .close-btn {
+  background: transparent;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+/* ---- Disposition en colonnes ---- */
+.columns {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.column {
+  background-color: #fff;
+  flex: 1;
+  min-width: 280px; /* pour une meilleure réactivité sur les petits écrans */
+  max-width: 350px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- En-tête des colonnes ---- */
+.column-header {
+  background-color: #fafafa;
+  padding: 12px;
+  font-weight: bold;
+  text-align: center;
+  border-bottom: 1px solid #ddd;
+}
+
+/* ---- Contenu des colonnes ---- */
+.column-content {
+  padding: 16px;
+  flex-grow: 1; /* pour étirer le contenu */
+}
+
+/* ---- Styles liste de détails ---- */
+.details-liste img {
+  width: 100%;
+  height: auto;
+}
+
+.details-liste ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.details-liste li {
+  margin-bottom: 8px;
+}
+
+/* ---- Zone d'actions ---- */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 16px;
+}
+
+.action-button {
+  background-color: #2196f3; 
+  color: #fff;
+  text-decoration: none;
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.action-button.secondary {
+  background-color: #ccc;
+  color: #333;
+}
+
+.action-button.danger {
+  background-color: #f44336;
+  color: #fff;
+}
+
+/* ---- Styles des commentaires ---- */
+.commentaires .list-group {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.commentaires .list-group-item {
+  border-bottom: 1px solid #eee;
+  padding: 8px 0;
+}
+
+.commentaires .list-group-item form {
+  display: inline-block;
+  margin-left: 10px;
+}
+
+/* ---- Liste des utilisateurs ---- */
+.utilisateurs .user-card {
+  background-color: #fafafa;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.utilisateurs .user-card h6 {
+  margin: 0 0 4px;
+}
+
+.utilisateurs .user-card p {
+  margin: 0 0 4px;
+  font-size: 0.85rem;
+}
+
+.utilisateurs .user-card .badge {
+  display: inline-block;
+  background-color: #ccc;
+  color: #333;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+}
+
+/* ---- Classes utilitaires ---- */
+.badge-success {
+  background-color: #4caf50 !important;
+  color: #fff !important;
+}
+
+.badge-secondary {
+  background-color: #9e9e9e !important;
+  color: #fff !important;
+}
+
+.text-muted {
+  color: #999;
+}
+
+.text-center {
+  text-align: center;
+}
+</style>
+
+<div class="page-container">
+
+    {# ------------------------------------ #
+      SECTION : NOTIFICATIONS FLASH
+      ------------------------------------ #}
+    <div class="flash-container">
+        {% for type, messages in app.flashes %}
+            {% for message in messages %}
+                <div class="flash-message {{ type == 'success' ? '' : 'error' }}">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close-btn" onclick="this.parentElement.style.display='none';">x</button>
+                </div>
+            {% endfor %}
+        {% endfor %}
+    </div>
+
+    {# ------------------------------------ #
+      SECTION : COLONNES
+      ------------------------------------ #}
+    <div class="columns">
+        
+        {# Colonne 1 : Détails de la liste #}
+        <div class="column details-liste">
+            {% if liste.image %}
+                <img src="{{ asset('uploads/' ~ liste.image) }}" alt="Image de {{ liste.name }}">
+            {% endif %}
+            
+            <div class="column-header">
+                Détails de la Liste
+            </div>
+            <div class="column-content">
+                <ul>
+                    <li><strong>ID :</strong> {{ liste.id }}</li>
+                    <li><strong>Nom :</strong> {{ liste.name }}</li>
+                    <li><strong>Email :</strong> {{ liste.email ?: 'Non spécifié' }}</li>
+                    <li><strong>Utilisateur :</strong> {{ liste.user.email ?: 'Non spécifié' }}</li>
+                    <li>
+                        <strong>Projet associé :</strong>
+                        {% if liste.projet %}
+                            <span class="badge badge-success">{{ liste.projet }}</span>
+                        {% else %}
+                            <span class="text-muted">Aucun projet associé</span>
+                        {% endif %}
+                    </li>
+                    <li><strong>Créé le :</strong> {{ liste.createdAt|date('d/m/Y H:i') }}</li>
+                </ul>
+                
+                <div class="actions">
+                    <a href="{{ path('app_liste_index') }}" class="action-button secondary">
+                        ← Retour
+                    </a>
+                    
+                    {% if is_granted('ROLE_ADMIN') or app.user == liste.user %}
+                        <a href="{{ path('app_liste_edit', {'id': liste.id}) }}" class="action-button">
+                            ✎ Modifier
+                        </a>
+                    {% endif %}
+                    
+                   
+                </div>
+            </div>
+        </div>
+
+        {# Colonne 2 : Commentaires #}
+        <div class="column commentaires">
+            <div class="column-header">
+                Commentaires
+            </div>
+            <div class="column-content">
+                {% if liste.comments|length == 0 %}
+                    <p class="text-muted">Aucun commentaire pour cette liste.</p>
+                {% else %}
+                    <ul class="list-group">
+                        {% for comment in liste.comments %}
+                            <li class="list-group-item">
+                                <div>
+                                    <strong>{{ comment.author }}</strong>
+                                    <p style="margin: 4px 0;">{{ comment.content }}</p>
+                                    <small class="text-muted">
+                                        Ajouté le {{ comment.createdAt|date('d/m/Y H:i') }}
+                                    </small>
+                                </div>
+                                {% if is_granted('ROLE_ADMIN') or app.user == liste.user %}
+                                    <form method="post" action="{{ path('app_comment_delete', {'id': comment.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer ce commentaire ?');">
+                                        <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ comment.id) }}">
+                                        <button type="submit" class="action-button danger" style="margin-top: 6px;">
+                                            Supprimer
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+            </div>
+        </div>
+
+        {# Colonne 3 : Liste des utilisateurs #}
+        <div class="column utilisateurs">
+            <div class="column-header">
+                Liste des Utilisateurs
+            </div>
+            <div class="column-content">
+                {% if users|length == 0 %}
+                    <p class="text-muted">Aucun utilisateur trouvé.</p>
+                {% else %}
+                    {% for user in users %}
+                        <div class="user-card">
+                            <div>
+                                <h6>{{ user.email }}</h6>
+                                <p><strong>ID :</strong> {{ user.id }}</p>
+                                <p>
+                                    <strong>Rôles :</strong>
+                                    {% for role in user.roles %}
+                                        <span class="badge badge-secondary">{{ role }}</span>
+                                    {% endfor %}
+                                </p>
+                                <p>
+                                    <strong>Projet associé :</strong>
+                                    {% if user.projet %}
+                                        <span class="badge badge-success">{{ user.projet }}</span>
+                                    {% else %}
+                                        <span class="text-muted">Aucun projet associé</span>
+                                    {% endif %}
+                                </p>
+                            </div>
+                            {% if is_granted('ROLE_ADMIN') %}
+                                <form method="post" action="{{ path('app_liste_delete', {'id': liste.id}) }}" onsubmit="return confirm('Voulez-vous vraiment supprimer cette liste ?');">
+                                    <input type="hidden" name="_token" value="{{ csrf_token('delete_list_' ~ liste.id) }}">
+                                    <button type="submit" class="action-button danger" style="font-size: 0.75rem;">
+                                        Supprimer
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
