@@ -1,0 +1,21 @@
+{# Formulaire de la liste #}
+{{ form_start(form) }}
+    {{ form_row(form.imageFile, {'label': 'Télécharger une image'}) }}
+    <button type="submit" class="btn btn-success mt-3">
+        {{ button_label|default('Enregistrer') }}
+    </button>
+{{ form_end(form) }}
+
+{# Vérifiez si le formulaire des commentaires est disponible avant de l'afficher #}
+{% if commentForm is defined %}
+    <form method="post" action="{{ path('app_liste_comment_add', {'id': liste.id}) }}">
+        {{ form_start(commentForm, {'attr': {'class': 'comment-form'}}) }}
+            {{ form_row(commentForm.author, {'label': 'Votre nom'}) }}
+            {{ form_row(commentForm.content, {'label': 'Votre commentaire'}) }}
+            <button type="submit" class="btn btn-primary mt-3">Ajouter un commentaire</button>
+        {{ form_end(commentForm) }}
+    </form>
+{% else %}
+    {# Affichez un message ou omettez le formulaire si `commentForm` n'est pas fourni #}
+    <p class="text-warning">Le formulaire de commentaire n'est pas disponible.</p>
+{% endif %}
