@@ -1,0 +1,123 @@
+{% extends 'base.html.twig' %}
+
+{% block body_id 'blog_post_show' %}
+
+{% block main %}
+    <div class="container py-5">
+        <div class="row justify-content-center">
+
+            <!-- Colonne de gauche pour afficher l'article -->
+            <div class="col-md-6">
+                <div class="card shadow-lg rounded-4 mb-5 p-4" style="background: linear-gradient(to right, #ff7e5f, #feb47b);">
+
+                    <!-- Titre de l'article -->
+                    <h1 class="text-center text-white mb-4">{{ post.title }}</h1>
+
+                    <!-- Affichage de l'image de l'article, si disponible -->
+                    {% if post.image %}
+                        <img src="{{ asset('uploads/posts/' ~ post.image) }}" alt="{{ post.title }}" class="img-fluid mb-4 rounded-4">
+                    {% endif %}
+
+                    <!-- Métadonnées de l'article (date de publication et auteur) -->
+                    <p class="post-metadata text-center text-white mb-4">
+                        <span class="metadata">
+                            <twig:ux:icon name="tabler:calendar-month" class="text-white"/>
+                            {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}
+                        </span>
+                        <span class="metadata ms-3">
+                            <twig:ux:icon name="tabler:user" class="text-white"/>
+                            {{ post.author.fullName }}
+                        </span>
+                    </p>
+
+                    <!-- Contenu de l'article -->
+                    <div class="post-content text-white mb-4">
+                        {{ post.content|markdown_to_html|sanitize_html }}
+                    </div>
+
+                    <!-- Affichage des tags -->
+                    {% if post.tags is not empty %}
+                        <div class="tags text-center mt-4">
+                            <strong class="text-white">{{ 'Tags'|trans }}:</strong>
+                            {% for tag in post.tags %}
+                                <a href="{{ path('blog_index_tag', {tagName: tag.name|url_encode}) }}" class="badge badge-light rounded-4 ml-2 hover-effect">{{ tag.name }}</a>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+
+                </div>
+
+                <!-- Formulaire d'ajout de commentaire -->
+                <div id="post-add-comment" class="card shadow-sm rounded-4 p-4 mt-4">
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        {{ render(controller('App\\Controller\\BlogController::commentForm', {post})) }}
+                    {% else %}
+                        <p class="text-center">
+                            <a class="btn btn-lg btn-primary" href="{{ path('security_login', {'redirect_to': app.request.pathInfo}) }}">
+                                <twig:ux:icon name="tabler:login" class="text-white"/>
+                                {{ 'action.sign_in'|trans }}
+                            </a>
+                            <br>
+                            {{ 'post.to_publish_a_comment'|trans }}
+                        </p>
+                    {% endif %}
+                </div>
+
+                <!-- Nombre de commentaires -->
+                <h3 class="mt-4 text-center text-black">
+                    <twig:ux:icon name="tabler:messages" class="text-black"/>
+                    {{ 'post.num_comments'|trans({ 'count': post.comments|length }) }}
+                </h3>
+            </div>
+
+            <!-- Colonne de droite pour afficher les commentaires -->
+            <div class="col-md-6">
+                {% for comment in post.comments %}
+                    <div class="card shadow-sm rounded-4 p-3 mt-3">
+                        <a name="comment_{{ comment.id }}"></a>
+                        <div class="row">
+                            <div class="col-md-3 text-center">
+                                <!-- Auteur et date de publication du commentaire -->
+                                <strong>{{ comment.author.fullName }}</strong><br>
+                                <span class="text-muted">{{ 'post.commented_on'|trans }}</span><br>
+                                <strong>{{ comment.publishedAt|format_datetime('medium', 'short', '', 'UTC') }}</strong>
+                            </div>
+                            <div class="col-md-9">
+                                <!-- Contenu du commentaire -->
+                                <p>{{ comment.content|markdown_to_html|sanitize_html }}</p>
+
+                                <!-- Bouton pour supprimer un commentaire (visible seulement pour les admins) -->
+                                {% if is_granted('ROLE_ADMIN') %}
+                                    <form action="{{ path('admin_comment_delete', {commentId: comment.id}) }}" method="POST" onsubmit="return confirm('Are you sure you want to delete this comment?');">
+                                        <input type="hidden" name="token" value="{{ csrf_token('delete_comment') }}">
+                                        <button type="submit" class="btn btn-danger btn-sm rounded-4">
+                                            <twig:ux:icon name="tabler:trash"/>
+                                            {{ 'action.delete_comment'|trans }}
+                                        </button>
+                                    </form>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                {% else %}
+                    <!-- Message si aucun commentaire n'est disponible -->
+                    <div class="alert alert-info text-center mt-3">
+                        {{ 'post.no_comments'|trans }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                {{ parent() }}
+                {{ show_source_code(_self) }}
+                {{ include('blog/_rss.html.twig') }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
