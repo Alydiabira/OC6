@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Fonctionnalités{% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center text-light">Articles en vedette</h1>
+        
+        <!-- Grille Netflix-like -->
+        <div class="row row-cols-1 row-cols-md-3 g-4 mt-4">
+            {% for article in articles %}
+                <div class="col">
+                    <div class="card shadow-sm border-0 rounded-3 position-relative netflix-card">
+                        <div class="card-body">
+                            <h5 class="card-title text-white">{{ article.title }}</h5>
+                            <p class="card-text text-light">{{ article.content|slice(0, 100) ~ '...' }}</p>
+                            <p class="text-muted small"><strong>Créé le :</strong> {{ article.dateTime ? article.dateTime|date('d/m/Y H:i') : 'Non défini' }}</p>
+                            <a href="{{ path('app_article_show', {'id': article.id}) }}" class="btn btn-primary btn-sm">
+                                <i class="bi bi-eye"></i> Voir plus
+                            </a>
+                        </div>
+                        {% if article.isCertified %}
+                            <span class="badge-certified">Certifié</span>
+                        {% endif %}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <!-- Styles personnalisés -->
+    <style>
+        body {
+            background-color: #141414;
+            color: white;
+        }
+
+        .netflix-card {
+            background: linear-gradient(135deg, #222, #111);
+            transition: transform 0.3s ease-in-out;
+            overflow: hidden;
+        }
+
+        .netflix-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 20px rgba(255, 0, 0, 0.8);
+        }
+
+        .badge-certified {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: #28a745;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+    </style>
+{% endblock %}
