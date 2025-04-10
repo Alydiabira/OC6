@@ -1,0 +1,37 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm">
+                <div class="card-body">
+                    <h1 class="text-center mb-4">Reset your password</h1>
+
+                    {# Affichage des messages flash (erreurs ou succès) #}
+                    {% for message in app.flashes('success') %}
+                        <div class="alert alert-success">{{ message }}</div>
+                    {% endfor %}
+                    {% for message in app.flashes('error') %}
+                        <div class="alert alert-danger">{{ message }}</div>
+                    {% endfor %}
+
+                    {{ form_start(resetForm) }}
+                        <div class="form-group">
+                            {{ form_label(resetForm.plainPassword) }}
+                            {{ form_widget(resetForm.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        </div>
+                        <button class="btn btn-primary w-100 mt-3">Reset password</button>
+                    {{ form_end(resetForm) }}
+
+                    <p class="text-center mt-3">
+                        <a href="{{ path('app_login') }}">Back to login</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
