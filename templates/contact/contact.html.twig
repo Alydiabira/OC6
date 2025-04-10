@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block body %}
+    <div class="container py-5">
+        <h1 class="text-center mb-4">Contactez-nous</h1>
+
+        {# Commence le formulaire avec des classes modernes de Bootstrap et des animations #}
+        {{ form_start(form, {'attr': {'class': 'bg-white p-4 rounded shadow-sm'}}) }}
+        
+            <div class="mb-3">
+                {# Affiche chaque champ du formulaire avec son label et les erreurs si nécessaire #}
+                <label for="name" class="form-label">
+                    <i class="fas fa-user"></i> Votre nom
+                </label>
+                {{ form_widget(form.name, {
+                    'attr': {
+                        'class': 'form-control',
+                        'placeholder': 'Entrez votre nom',
+                        'aria-describedby': 'nameHelp'
+                    }
+                }) }}
+                {{ form_errors(form.name) }}
+                <small id="nameHelp" class="form-text text-muted">Veuillez entrer votre nom complet.</small>
+            </div>
+
+            <div class="mb-3">
+                <label for="email" class="form-label">
+                    <i class="fas fa-envelope"></i> Votre email
+                </label>
+                {{ form_widget(form.email, {
+                    'attr': {
+                        'class': 'form-control',
+                        'placeholder': 'Entrez votre email',
+                        'aria-describedby': 'emailHelp'
+                    }
+                }) }}
+                {{ form_errors(form.email) }}
+                <small id="emailHelp" class="form-text text-muted">Nous utiliserons votre email pour vous répondre.</small>
+            </div>
+
+            <div class="mb-3">
+                <label for="message" class="form-label">
+                    <i class="fas fa-comment"></i> Votre message
+                </label>
+                {{ form_widget(form.message, {
+                    'attr': {
+                        'class': 'form-control',
+                        'placeholder': 'Écrivez votre message',
+                        'rows': 5
+                    }
+                }) }}
+                {{ form_errors(form.message) }}
+            </div>
+
+            <div class="d-grid gap-2">
+                {# Bouton de soumission avec un effet de survol et de transition #}
+                {{ form_widget(form.submit, {
+                    'attr': {
+                        'class': 'btn btn-primary btn-lg',
+                        'style': 'transition: background-color 0.3s ease;'
+                    }
+                }) }}
+            </div>
+        
+        {# Termine le formulaire #}
+        {{ form_end(form) }}
+
+        {# Affiche un message flash de succès si l'envoi a été effectué #}
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success mt-4">
+                {{ message }}
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}
