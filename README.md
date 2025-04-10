@@ -1,5 +1,8 @@
 Symfony Demo Application développer par Aly Diabira
 ========================
+OC6 / Mettez en place un site de mise en relation avec PHP
+========================
+
 
 The "Symfony Demo Application" is a reference application created to show how
 to develop applications following the [Symfony Best Practices][1].
