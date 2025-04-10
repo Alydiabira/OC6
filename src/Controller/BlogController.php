@@ -151,6 +151,24 @@ final class BlogController extends AbstractController
         ]);
     }
 
+    #[Route('/comment/form/{slug}', name: 'comment_form', methods: ['GET'])]
+    #[IsGranted('IS_AUTHENTICATED_FULLY')]
+    public function commentForm(
+        #[CurrentUser] User $user,
+        #[MapEntity(mapping: ['slug' => 'slug'])] Post $post
+    ): Response {
+        $comment = new Comment();
+        $comment->setAuthor($user);
+        $post->addComment($comment);
+    
+        $form = $this->createForm(CommentType::class, $comment);
+    
+        return $this->render('blog/_comment_form.html.twig', [
+            'form' => $form->createView(),
+            'post' => $post,
+        ]);
+    }
+
     /**
      * Handles search functionality for blog posts.
      */
