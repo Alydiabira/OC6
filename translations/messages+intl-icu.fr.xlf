@@ -365,7 +365,7 @@
 
             <trans-unit id="help.app_description">
                 <source>help.app_description</source>
-                <target><![CDATA[Ceci est une <strong>application de démonstration</strong> construite avec le framework Symfony pour illustrer la façon recommandée de développer des applications Symfony.]]></target>
+                <target><![CDATA[Ceci est une <strong>application de TomTroc</strong> construite avec le framework Symfony pour illustrer la façon recommandée de développer des applications Symfony.]]></target>
             </trans-unit>
             <trans-unit id="help.show_code">
                 <source>help.show_code</source>
@@ -373,11 +373,11 @@
             </trans-unit>
             <trans-unit id="help.browse_app">
                 <source>help.browse_app</source>
-                <target><![CDATA[Parcourir la <strong>section publique</strong> de l'application de démonstration.]]></target>
+                <target><![CDATA[Parcourir la <strong>section publique</strong> de l'application de TomTroc.]]></target>
             </trans-unit>
             <trans-unit id="help.browse_admin">
                 <source>help.browse_admin</source>
-                <target><![CDATA[Parcourir l'<strong>interface d'administration</strong> de l'application de démonstration.]]></target>
+                <target><![CDATA[Parcourir l'<strong>interface d'administration</strong> de l'application de TomTroc.]]></target>
             </trans-unit>
             <trans-unit id="help.login_users">
                 <source>help.login_users</source>
@@ -427,11 +427,11 @@
 
             <trans-unit id="rss.title">
                 <source>rss.title</source>
-                <target>Blog de démo Symfony</target>
+                <target>Blog de TomTroc</target>
             </trans-unit>
             <trans-unit id="rss.description">
                 <source>rss.description</source>
-                <target>Derniers articles publiés sur le blog de démo Symfony</target>
+                <target>Derniers articles publiés sur le blog de TomTroc</target>
             </trans-unit>
 
             <trans-unit id="paginator.previous">
