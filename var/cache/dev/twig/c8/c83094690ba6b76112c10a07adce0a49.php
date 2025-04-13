@@ -99,7 +99,7 @@ class __TwigTemplate_933be321256ac00f6ed95d5933c75192 extends Template
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
                     <p class=\"modal-title\" lang=\"en\">
-                        Choose your language
+                        Choisissez votre langue
                     </p>
                     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
                         <span aria-hidden=\"true\">&times;</span>
@@ -206,7 +206,7 @@ class __TwigTemplate_933be321256ac00f6ed95d5933c75192 extends Template
             <div class=\"modal-content\">
                 <div class=\"modal-header\">
                     <p class=\"modal-title\" lang=\"en\">
-                        Choose your language
+                        Choisissez votre langue
                     </p>
                     <button type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\">
                         <span aria-hidden=\"true\">&times;</span>
