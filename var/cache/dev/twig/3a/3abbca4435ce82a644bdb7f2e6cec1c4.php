@@ -244,7 +244,7 @@ class __TwigTemplate_767476e1e445233e51ab1ccbf5f09c54 extends Template
                             </h2>
                             <div id=\"collapseThree\" class=\"accordion-collapse collapse\" aria-labelledby=\"headingThree\" data-bs-parent=\"#helpAccordion\">
                                 <div class=\"accordion-body\">
-                                    <code>ROLE_USER</code> (";
+                                    <code>ROLE_ADMIN</code> (";
         // line 96
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("help.role_user"), "html", null, true);
         yield ")
@@ -447,7 +447,7 @@ class __TwigTemplate_767476e1e445233e51ab1ccbf5f09c54 extends Template
                             </h2>
                             <div id=\"collapseThree\" class=\"accordion-collapse collapse\" aria-labelledby=\"headingThree\" data-bs-parent=\"#helpAccordion\">
                                 <div class=\"accordion-body\">
-                                    <code>ROLE_USER</code> ({{ 'help.role_user'|trans }})
+                                    <code>ROLE_ADMIN</code> ({{ 'help.role_user'|trans }})
                                 </div>
                             </div>
                         </div>
