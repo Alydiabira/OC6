@@ -141,7 +141,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "title"));
 
-        yield "Symfony 7 Application";
+        yield "TomTroc";
         
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
 
@@ -275,7 +275,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
                         <a class=\"navbar-brand fw-bold\" href=\"";
         // line 30
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("homepage");
-        yield "\">Symfony 7</a>
+        yield "\">TomTroc</a>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#appNavbar\" aria-controls=\"appNavbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
@@ -573,7 +573,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
         <meta charset=\"UTF-8\" />
         <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\"/>
         <meta name=\"view-transition\" content=\"same-origin\" />
-        <title>{% block title %}Symfony 7 Application{% endblock %}</title>
+        <title>{% block title %}TomTroc{% endblock %}</title>
         <link rel=\"alternate\" type=\"application/rss+xml\" title=\"{{ 'rss.title'|trans }}\" href=\"{{ path('blog_rss') }}\">
         {% block stylesheets %}
             <link rel=\"stylesheet\" href=\"https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css\">
@@ -596,7 +596,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
             <header>
                 <nav class=\"navbar navbar-expand-lg navbar-dark\" style=\"background: linear-gradient(to right, #f12711, #f5af19);\">
                     <div class=\"container\">
-                        <a class=\"navbar-brand fw-bold\" href=\"{{ path('homepage') }}\">Symfony 7</a>
+                        <a class=\"navbar-brand fw-bold\" href=\"{{ path('homepage') }}\">TomTroc</a>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#appNavbar\" aria-controls=\"appNavbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
                             <span class=\"navbar-toggler-icon\"></span>
                         </button>
