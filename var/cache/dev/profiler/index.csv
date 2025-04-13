@@ -569,3 +569,11 @@ f35c89,127.0.0.1,GET,https://127.0.0.1:8001/,1744566354,,200,request
 37a1f5,127.0.0.1,GET,https://127.0.0.1:8001/_fragment?_path=_locale%3Dfr%26_format%3Dhtml%26_controller%3DSymfony%255CBundle%255CFrameworkBundle%255CController%255CTemplateController%253A%253AtemplateAction,1744567576,bf6bb7,200,request
 bf6bb7,127.0.0.1,GET,https://127.0.0.1:8001/fr/blog/,1744567576,,200,request
 54cc17,127.0.0.1,GET,https://127.0.0.1:8001/,1744567581,,200,request
+86a1c1,127.0.0.1,GET,https://127.0.0.1:8001/,1744568016,,200,request
+b339f1,127.0.0.1,GET,https://127.0.0.1:8001/fr/admin/post/,1744568020,,302,request
+723bb3,127.0.0.1,GET,https://127.0.0.1:8001/_fragment?_path=_locale%3Dfr%26_format%3Dhtml%26_controller%3DSymfony%255CBundle%255CFrameworkBundle%255CController%255CTemplateController%253A%253AtemplateAction,1744568020,a30c19,200,request
+a30c19,127.0.0.1,GET,https://127.0.0.1:8001/fr/login,1744568020,,200,request
+1cb791,127.0.0.1,GET,https://127.0.0.1:8001/_fragment?_path=_locale%3Dfr%26_format%3Dhtml%26_controller%3DSymfony%255CBundle%255CFrameworkBundle%255CController%255CTemplateController%253A%253AtemplateAction,1744568190,d1b892,200,request
+d1b892,127.0.0.1,GET,https://127.0.0.1:8001/fr/login,1744568190,,200,request
+418b70,127.0.0.1,GET,https://127.0.0.1:8001/_fragment?_path=_locale%3Dfr%26_format%3Dhtml%26_controller%3DSymfony%255CBundle%255CFrameworkBundle%255CController%255CTemplateController%253A%253AtemplateAction,1744568244,0b4989,200,request
+0b4989,127.0.0.1,GET,https://127.0.0.1:8001/fr/login,1744568245,,200,request
