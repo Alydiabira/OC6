@@ -223,7 +223,7 @@ $catalogue = new MessageCatalogue('fr', array (
     'http_error_404.suggestion' => 'Vérifiez si l\'URL ne comporte pas d\'erreurs ou <a href="{url}">retournez sur la page principale</a>.',
     'http_error_500.description' => 'Il y a eu une erreur interne du serveur.',
     'http_error_500.suggestion' => 'Essayez de recharger cette page dans quelques minutes ou <a href="{url}">retournez sur la page principale</a>.',
-    'title.homepage' => 'Bienvenue sur l\'application <strong>Symfony Demo</strong>',
+    'title.homepage' => 'Bienvenue sur l\'application <strong>TomTroc</strong>',
     'title.source_code' => 'Le code source utilisé pour afficher cette page',
     'title.controller_code' => 'Code du contrôleur',
     'title.twig_template_code' => 'Code du template Twig',
