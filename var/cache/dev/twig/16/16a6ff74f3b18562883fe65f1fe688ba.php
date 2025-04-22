@@ -110,7 +110,7 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
             // line 11
             yield "                        <div class=\"col-sm-6 mb-4\">
-                            <div class=\"card shadow-lg rounded-4 overflow-hidden\" style=\"background: linear-gradient(to right, #ff7e5f, #feb47b);\">
+                            <div class=\"card shadow-lg rounded-4 overflow-hidden\" style=\"background:rgb(71, 61, 127);\">
                                 <div class=\"card-body p-4\">
                                     <!-- Affichage de l'image de l'article, si disponible -->
                                     ";
@@ -452,7 +452,7 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
                 <div class=\"row\">
                     {% for post in paginator %}
                         <div class=\"col-sm-6 mb-4\">
-                            <div class=\"card shadow-lg rounded-4 overflow-hidden\" style=\"background: linear-gradient(to right, #ff7e5f, #feb47b);\">
+                            <div class=\"card shadow-lg rounded-4 overflow-hidden\" style=\"background:rgb(71, 61, 127);\">
                                 <div class=\"card-body p-4\">
                                     <!-- Affichage de l'image de l'article, si disponible -->
                                     {% if post.image %}
