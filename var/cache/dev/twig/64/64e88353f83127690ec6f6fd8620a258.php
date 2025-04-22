@@ -270,7 +270,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
 
         // line 27
         yield "            <header>
-                <nav class=\"navbar navbar-expand-lg navbar-dark\" style=\"background: linear-gradient(to right, #f12711, #f5af19);\">
+                <nav class=\"navbar navbar-expand-lg navbar-dark\" style=\"background:rgb(18, 17, 17);\">
                     <div class=\"container\">
                         <a class=\"navbar-brand fw-bold\" href=\"";
         // line 30
@@ -594,7 +594,7 @@ class __TwigTemplate_54840b117992a1c171328c8f8f7767a7 extends Template
 
         {% block header %}
             <header>
-                <nav class=\"navbar navbar-expand-lg navbar-dark\" style=\"background: linear-gradient(to right, #f12711, #f5af19);\">
+                <nav class=\"navbar navbar-expand-lg navbar-dark\" style=\"background:rgb(18, 17, 17);\">
                     <div class=\"container\">
                         <a class=\"navbar-brand fw-bold\" href=\"{{ path('homepage') }}\">TomTroc</a>
                         <button class=\"navbar-toggler\" type=\"button\" data-bs-toggle=\"collapse\" data-bs-target=\"#appNavbar\" aria-controls=\"appNavbar\" aria-expanded=\"false\" aria-label=\"Toggle navigation\">
