@@ -103,7 +103,7 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
 
             <!-- Colonne de gauche pour afficher l'article -->
             <div class=\"col-md-6\">
-                <div class=\"card shadow-lg rounded-4 mb-5 p-4\" style=\"background: linear-gradient(to right, #ff7e5f, #feb47b);\">
+                <div class=\"card shadow-lg rounded-4 mb-5 p-4\" style=\"background:rgb(71, 61, 127);\">
 
                     <!-- Titre de l'article -->
                     <h1 class=\"text-center text-white mb-4\">";
@@ -413,7 +413,7 @@ class __TwigTemplate_efda9eb0dd0c4a8ee834e36ca0d3f993 extends Template
 
             <!-- Colonne de gauche pour afficher l'article -->
             <div class=\"col-md-6\">
-                <div class=\"card shadow-lg rounded-4 mb-5 p-4\" style=\"background: linear-gradient(to right, #ff7e5f, #feb47b);\">
+                <div class=\"card shadow-lg rounded-4 mb-5 p-4\" style=\"background:rgb(71, 61, 127);\">
 
                     <!-- Titre de l'article -->
                     <h1 class=\"text-center text-white mb-4\">{{ post.title }}</h1>
