@@ -8,6 +8,7 @@ $baseDir = dirname($vendorDir);
 return array(
     'Vich\\UploaderBundle\\' => array($vendorDir . '/vich/uploader-bundle/src'),
     'Twig\\Extra\\TwigExtraBundle\\' => array($vendorDir . '/twig/extra-bundle'),
+    'Twig\\Extra\\String\\' => array($vendorDir . '/twig/string-extra'),
     'Twig\\Extra\\Markdown\\' => array($vendorDir . '/twig/markdown-extra'),
     'Twig\\Extra\\Intl\\' => array($vendorDir . '/twig/intl-extra'),
     'Twig\\Extra\\Html\\' => array($vendorDir . '/twig/html-extra'),
