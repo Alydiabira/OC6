@@ -250,31 +250,34 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
         // line 69
         yield "                </div>
 
+
+                
+
                 ";
-        // line 71
-        if (((isset($context["totalItems"]) || array_key_exists("totalItems", $context) ? $context["totalItems"] : (function () { throw new RuntimeError('Variable "totalItems" does not exist.', 71, $this->source); })()) > (isset($context["pageSize"]) || array_key_exists("pageSize", $context) ? $context["pageSize"] : (function () { throw new RuntimeError('Variable "pageSize" does not exist.', 71, $this->source); })()))) {
-            // line 72
+        // line 74
+        if (((isset($context["totalItems"]) || array_key_exists("totalItems", $context) ? $context["totalItems"] : (function () { throw new RuntimeError('Variable "totalItems" does not exist.', 74, $this->source); })()) > (isset($context["pageSize"]) || array_key_exists("pageSize", $context) ? $context["pageSize"] : (function () { throw new RuntimeError('Variable "pageSize" does not exist.', 74, $this->source); })()))) {
+            // line 75
             yield "                    <nav class=\"mt-4\" aria-label=\"Pagination\">
                         <ul class=\"pagination pagination-lg d-flex justify-content-center\">
                             <!-- Previous Page -->
                             <li class=\"page-item ";
-            // line 75
-            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 75, $this->source); })()), "hasPreviousPage", [], "any", false, false, false, 75)) {
+            // line 78
+            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 78, $this->source); })()), "hasPreviousPage", [], "any", false, false, false, 78)) {
                 yield "disabled";
             }
             yield "\">
                                 <a class=\"page-link\" href=\"";
-            // line 76
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 76, $this->source); })()) - 1), "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 76, $this->source); })())]), "html", null, true);
+            // line 79
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 79, $this->source); })()) - 1), "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 79, $this->source); })())]), "html", null, true);
             yield "\" rel=\"previous\" ";
-            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 76, $this->source); })()), "hasPreviousPage", [], "any", false, false, false, 76)) {
+            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 79, $this->source); })()), "hasPreviousPage", [], "any", false, false, false, 79)) {
                 yield "aria-disabled=\"true\"";
             }
             yield " aria-label=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("paginator.previous"), "html", null, true);
             yield "\">
                                     ";
-            // line 77
+            // line 80
             yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:arrow-left"]);
             yield " ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("paginator.previous"), "html", null, true);
@@ -284,65 +287,65 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
 
                             <!-- Page Numbers -->
                             ";
-            // line 82
-            $context["startPage"] = ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 82, $this->source); })()) - 2);
-            // line 83
+            // line 85
+            $context["startPage"] = ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 85, $this->source); })()) - 2);
+            // line 86
             yield "                            ";
-            $context["endPage"] = ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 83, $this->source); })()) + 2);
-            // line 84
+            $context["endPage"] = ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 86, $this->source); })()) + 2);
+            // line 87
             yield "                            ";
             $context['_parent'] = $context;
-            $context['_seq'] = CoreExtension::ensureTraversable(range((isset($context["startPage"]) || array_key_exists("startPage", $context) ? $context["startPage"] : (function () { throw new RuntimeError('Variable "startPage" does not exist.', 84, $this->source); })()), (isset($context["endPage"]) || array_key_exists("endPage", $context) ? $context["endPage"] : (function () { throw new RuntimeError('Variable "endPage" does not exist.', 84, $this->source); })())));
+            $context['_seq'] = CoreExtension::ensureTraversable(range((isset($context["startPage"]) || array_key_exists("startPage", $context) ? $context["startPage"] : (function () { throw new RuntimeError('Variable "startPage" does not exist.', 87, $this->source); })()), (isset($context["endPage"]) || array_key_exists("endPage", $context) ? $context["endPage"] : (function () { throw new RuntimeError('Variable "endPage" does not exist.', 87, $this->source); })())));
             foreach ($context['_seq'] as $context["_key"] => $context["i"]) {
-                // line 85
+                // line 88
                 yield "                                ";
-                if ((($context["i"] > 0) && ($context["i"] <= (isset($context["pageCount"]) || array_key_exists("pageCount", $context) ? $context["pageCount"] : (function () { throw new RuntimeError('Variable "pageCount" does not exist.', 85, $this->source); })())))) {
-                    // line 86
+                if ((($context["i"] > 0) && ($context["i"] <= (isset($context["pageCount"]) || array_key_exists("pageCount", $context) ? $context["pageCount"] : (function () { throw new RuntimeError('Variable "pageCount" does not exist.', 88, $this->source); })())))) {
+                    // line 89
                     yield "                                    <li class=\"page-item ";
-                    if (($context["i"] == (isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 86, $this->source); })()))) {
+                    if (($context["i"] == (isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 89, $this->source); })()))) {
                         yield "active";
                     }
                     yield "\" ";
-                    if (($context["i"] == (isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 86, $this->source); })()))) {
+                    if (($context["i"] == (isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 89, $this->source); })()))) {
                         yield "aria-current=\"page\"";
                     }
                     yield ">
                                         <a class=\"page-link\" href=\"";
-                    // line 87
-                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => $context["i"], "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 87, $this->source); })())]), "html", null, true);
+                    // line 90
+                    yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => $context["i"], "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 90, $this->source); })())]), "html", null, true);
                     yield "\">";
                     yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($context["i"], "html", null, true);
                     yield "</a>
                                     </li>
                                 ";
                 }
-                // line 90
+                // line 93
                 yield "                            ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['i'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 91
+            // line 94
             yield "
                             <!-- Next Page -->
                             <li class=\"page-item ";
-            // line 93
-            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 93, $this->source); })()), "hasNextPage", [], "any", false, false, false, 93)) {
+            // line 96
+            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 96, $this->source); })()), "hasNextPage", [], "any", false, false, false, 96)) {
                 yield "disabled";
             }
             yield "\">
                                 <a class=\"page-link\" href=\"";
-            // line 94
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 94, $this->source); })()) + 1), "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 94, $this->source); })())]), "html", null, true);
+            // line 97
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_index_paginated", ["page" => ((isset($context["currentPage"]) || array_key_exists("currentPage", $context) ? $context["currentPage"] : (function () { throw new RuntimeError('Variable "currentPage" does not exist.', 97, $this->source); })()) + 1), "tag" => (isset($context["tagName"]) || array_key_exists("tagName", $context) ? $context["tagName"] : (function () { throw new RuntimeError('Variable "tagName" does not exist.', 97, $this->source); })())]), "html", null, true);
             yield "\" ";
-            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 94, $this->source); })()), "hasNextPage", [], "any", false, false, false, 94)) {
+            if ( !CoreExtension::getAttribute($this->env, $this->source, (isset($context["paginator"]) || array_key_exists("paginator", $context) ? $context["paginator"] : (function () { throw new RuntimeError('Variable "paginator" does not exist.', 97, $this->source); })()), "hasNextPage", [], "any", false, false, false, 97)) {
                 yield "aria-disabled=\"true\"";
             }
             yield " aria-label=\"";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("paginator.next"), "html", null, true);
             yield "\">
                                     ";
-            // line 95
+            // line 98
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("paginator.next"), "html", null, true);
             yield " ";
             yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:arrow-right"]);
@@ -353,13 +356,13 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
                     </nav>
                 ";
         } else {
-            // line 101
+            // line 104
             yield "                    <p>";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("No pagination available"), "html", null, true);
             yield "</p>
                 ";
         }
-        // line 103
+        // line 106
         yield "            </div>
         </div>
     </div>
@@ -373,7 +376,7 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
         yield from [];
     }
 
-    // line 108
+    // line 111
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -386,20 +389,20 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "sidebar"));
 
-        // line 109
+        // line 112
         yield "    <div class=\"container\">
         <div class=\"row justify-content-center\">
             <div class=\"col-md-10\">
                 ";
-        // line 112
+        // line 115
         yield from $this->yieldParentBlock("sidebar", $context, $blocks);
         yield "
                 ";
-        // line 113
+        // line 116
         yield $this->extensions['App\Twig\SourceCodeExtension']->showSourceCode($this->env, $this->getTemplateName());
         yield "
                 ";
-        // line 114
+        // line 117
         yield Twig\Extension\CoreExtension::include($this->env, $context, "blog/_rss.html.twig");
         yield "
             </div>
@@ -436,7 +439,7 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  403 => 114,  399 => 113,  395 => 112,  390 => 109,  377 => 108,  363 => 103,  357 => 101,  346 => 95,  336 => 94,  330 => 93,  326 => 91,  320 => 90,  312 => 87,  301 => 86,  298 => 85,  293 => 84,  290 => 83,  288 => 82,  278 => 77,  268 => 76,  262 => 75,  257 => 72,  255 => 71,  251 => 69,  242 => 66,  239 => 65,  237 => 68,  224 => 58,  220 => 57,  216 => 56,  208 => 51,  204 => 50,  200 => 48,  196 => 46,  185 => 44,  181 => 43,  177 => 42,  174 => 41,  172 => 40,  167 => 37,  161 => 35,  155 => 33,  153 => 32,  144 => 26,  140 => 25,  132 => 20,  128 => 18,  120 => 16,  118 => 15,  112 => 11,  107 => 10,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  406 => 117,  402 => 116,  398 => 115,  393 => 112,  380 => 111,  366 => 106,  360 => 104,  349 => 98,  339 => 97,  333 => 96,  329 => 94,  323 => 93,  315 => 90,  304 => 89,  301 => 88,  296 => 87,  293 => 86,  291 => 85,  281 => 80,  271 => 79,  265 => 78,  260 => 75,  258 => 74,  251 => 69,  242 => 66,  239 => 65,  237 => 68,  224 => 58,  220 => 57,  216 => 56,  208 => 51,  204 => 50,  200 => 48,  196 => 46,  185 => 44,  181 => 43,  177 => 42,  174 => 41,  172 => 40,  167 => 37,  161 => 35,  155 => 33,  153 => 32,  144 => 26,  140 => 25,  132 => 20,  128 => 18,  120 => 16,  118 => 15,  112 => 11,  107 => 10,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -510,6 +513,9 @@ class __TwigTemplate_0b5ef7593823f6ec0a4861fef0a53376 extends Template
                         </div>
                     {% endfor %}
                 </div>
+
+
+                
 
                 {% if totalItems > pageSize %}
                     <nav class=\"mt-4\" aria-label=\"Pagination\">
