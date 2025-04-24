@@ -13,6 +13,9 @@
                     <thead class="table-light">
                         <tr>
                             <th scope="col" class="py-3">{{ 'label.title'|trans }}</th>
+                            <th scope="col" class="py-3">Description</th>
+                            <th scope="col" class="py-3">Disponible</th>
+                            <th scope="col" class="py-3">Créé le</th>
                             <th scope="col" class="py-3">
                                 <twig:ux:icon name="tabler:calendar-month"/> {{ 'label.published_at'|trans }}
                             </th>
@@ -25,13 +28,26 @@
                     {% for post in posts %}
                         <tr>
                             <td class="py-2">{{ post.title }}</td>
+                            <td class="py-2">
+                                {{ post.description ? post.description[:60] ~ (post.description|length > 60 ? '…' : '') : '—' }}
+                            </td>
+                            <td class="py-2">
+                                {% if post.available %}
+                                    <span class="badge bg-success">Oui</span>
+                                {% else %}
+                                    <span class="badge bg-danger">Non</span>
+                                {% endif %}
+                            </td>
+                            <td class="py-2">
+                                {{ post.createdAt ? post.createdAt|date('d/m/Y') : '—' }}
+                            </td>
                             <td class="py-2">{{ post.publishedAt|format_datetime('medium', 'short', '', 'UTC') }}</td>
                             <td class="text-center py-2">
                                 <div class="d-flex justify-content-center gap-3">
-                                    <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm" aria-label="{{ 'action.show'|trans }}">
+                                    <a href="{{ path('admin_post_show', {id: post.id}) }}" class="btn btn-outline-secondary btn-sm">
                                         <twig:ux:icon name="tabler:eye"/> {{ 'action.show'|trans }}
                                     </a>
-                                    <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-outline-primary btn-sm" aria-label="{{ 'action.edit'|trans }}">
+                                    <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-outline-primary btn-sm">
                                         <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit'|trans }}
                                     </a>
                                 </div>
@@ -39,7 +55,7 @@
                         </tr>
                     {% else %}
                         <tr>
-                            <td colspan="3" class="text-center text-muted py-4">
+                            <td colspan="6" class="text-center text-muted py-4">
                                 {{ 'post.no_posts_found'|trans }}
                             </td>
                         </tr>
