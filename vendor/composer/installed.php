@@ -1553,6 +1553,15 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
+        'twig/string-extra' => array(
+            'pretty_version' => 'v3.20.0',
+            'version' => '3.20.0.0',
+            'reference' => '4b3337544ac8f76c280def94e32b53acfaec0589',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../twig/string-extra',
+            'aliases' => array(),
+            'dev_requirement' => false,
+        ),
         'twig/twig' => array(
             'pretty_version' => 'v3.19.0',
             'version' => '3.19.0.0',
