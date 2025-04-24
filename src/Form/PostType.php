@@ -75,6 +75,19 @@ final class PostType extends AbstractType
                 'label' => 'label.published_at',
                 'help' => 'help.post_publication',
             ])
+            ->add('description', TextareaType::class, [
+                'label' => 'Description',
+                'required' => false,
+                'attr' => [
+                    'rows' => 5,
+                    'placeholder' => 'Description détaillée de l’article...',
+                ],
+            ])
+            
+            ->add('available', null, [
+                'label' => 'Disponible à la publication',
+                'required' => false,
+            ])
             ->add('tags', TagsInputType::class, [
                 'label' => 'label.tags',
                 'required' => false,
