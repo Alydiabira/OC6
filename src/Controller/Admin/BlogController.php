@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use App\Form\UserType;
 
 /**
  * Controller used to manage blog contents in the backend.
@@ -176,6 +177,27 @@ public function commentDelete(
     return $this->redirectToRoute('admin_post_show', ['id' => $comment->getPost()->getId()]);
 }
 
+#[Route('/profile', name: 'admin_profile', methods: ['GET', 'POST'])]
+#[IsGranted('ROLE_ADMIN')]
+public function profile(
+    #[CurrentUser] User $user,
+    Request $request,
+    EntityManagerInterface $entityManager
+): Response {
+    $form = $this->createForm(UserType::class, $user);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $entityManager->flush();
+        $this->addFlash('success', 'Profil mis à jour avec succès.');
+        return $this->redirectToRoute('admin_profile');
+    }
+
+    return $this->render('admin/profile/edit.html.twig', [
+        'form' => $form->createView(),
+        'user' => $user,
+    ]);
+}
 
 
 }
