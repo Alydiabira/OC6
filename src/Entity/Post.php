@@ -74,11 +74,59 @@ class Post
     #[ORM\Column(type: Types::DATETIME_IMMUTABLE, nullable: true)]
     private ?\DateTimeImmutable $updatedAt = null;
 
+
+    #[ORM\Column(type: 'text', nullable: true)]
+private ?string $description = null;
+
+#[ORM\Column(type: 'boolean')]
+private bool $available = true;
+
+#[ORM\Column(type: 'datetime_immutable')]
+private \DateTimeImmutable $createdAt;
+
+
+
+public function getDescription(): ?string
+{
+    return $this->description;
+}
+
+public function setDescription(?string $description): self
+{
+    $this->description = $description;
+    return $this;
+}
+
+public function isAvailable(): bool
+{
+    return $this->available;
+}
+
+public function setAvailable(bool $available): self
+{
+    $this->available = $available;
+    return $this;
+}
+
+public function getCreatedAt(): \DateTimeImmutable
+{
+    return $this->createdAt;
+}
+
+public function setCreatedAt(\DateTimeImmutable $createdAt): self
+{
+    $this->createdAt = $createdAt;
+    return $this;
+}
+
+
     public function __construct()
     {
         $this->publishedAt = new \DateTimeImmutable();
         $this->comments = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->createdAt = new \DateTimeImmutable();
+    $this->available = true;
     }
 
     public function getId(): ?int
