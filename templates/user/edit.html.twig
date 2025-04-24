@@ -1,44 +1,88 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'user_edit' %}
+{% block body_id %}user_edit{% endblock %}
 
 {% block main %}
-    <div class="container mt-5">
-        <!-- Profile Edit Card -->
-        <div class="card shadow-lg border-0 rounded-4">
-            <div class="card-body">
-                <h1 class="h4 text-center text-dark mb-4">{{ 'title.edit_user'|trans }}</h1>
+<div class="container mt-5">
+    <!-- Profile Edit Card -->
+    <div class="card shadow-lg border-0 rounded-4 mb-5">
+        <div class="card-body">
+            <h1 class="h4 text-center text-dark mb-4">{{ 'title.edit_user'|trans }}</h1>
 
-                {{ form_start(form, {'attr': {'class': 'form-edit-user'}}) }}
-                    <div class="form-group mb-4">
-                        {{ form_row(form.fullName, {'attr': {'class': 'form-control rounded-pill'}}) }}
-                    </div>
-                    <div class="form-group mb-4">
-                        {{ form_row(form.email, {'attr': {'class': 'form-control rounded-pill'}}) }}
-                    </div>
-                    <div class="form-group mb-4">
-                        {{ form_row(form.phoneNumber, {'attr': {'class': 'form-control rounded-pill'}}) }}
-                    </div>
-                    <div class="form-group mb-4">
-                        {{ form_row(form.message, {'attr': {'class': 'form-control rounded-pill', 'rows': '4'}}) }}
-                    </div>
+            {{ form_start(form, {'attr': {'class': 'form-edit-user'}}) }}
+                <div class="form-group mb-4">
+                    {{ form_row(form.fullName, {'attr': {'class': 'form-control rounded-pill'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_row(form.email, {'attr': {'class': 'form-control rounded-pill'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_row(form.phoneNumber, {'attr': {'class': 'form-control rounded-pill'}}) }}
+                </div>
+                <div class="form-group mb-4">
+                    {{ form_row(form.message, {'attr': {'class': 'form-control rounded-pill', 'rows': '4'}}) }}
+                </div>
 
-                    <!-- Save Button -->
-                    <button type="submit" class="btn btn-primary btn-block rounded-pill mt-4">
-                        <twig:ux:icon name="tabler:save-changes" class="mr-2" />
-                        {{ 'action.save'|trans }}
-                    </button>
-                {{ form_end(form) }}
-            </div>
+                <button type="submit" class="btn btn-primary w-100 rounded-pill mt-4">
+                    <twig:ux:icon name="tabler:save-changes" class="me-2" />
+                    {{ 'action.save'|trans }}
+                </button>
+            {{ form_end(form) }}
         </div>
     </div>
+
+    {% if app.user and is_granted('ROLE_ADMIN') %}
+        <h2 class="mb-4">Mes livres</h2>
+
+        <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+            {% for book in app.user.books %}
+                <div class="col">
+                    <div class="card h-100 shadow-sm border-0 rounded-4">
+                        {% if book.image %}
+                            <img src="{{ asset('uploads/' ~ book.image) }}" class="card-img-top rounded-top-4" alt="{{ book.title }}">
+                        {% else %}
+                            <img src="{{ asset('uploads/default.jpg') }}" class="card-img-top rounded-top-4" alt="Image par défaut">
+                        {% endif %}
+
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-subtitle text-muted mb-2">Auteur : {{ book.author }}</p>
+                            <p class="card-text">{{ book.description }}</p>
+                            <p class="card-text">
+                                <strong>Disponibilité :</strong>
+                                <span class="{{ book.available ? 'text-success' : 'text-danger' }}">
+                                    {{ book.available ? 'Disponible' : 'Indisponible' }}
+                                </span>
+                            </p>
+                        </div>
+
+                        <div class="card-footer bg-white border-0 d-flex justify-content-between">
+                            <a href="{{ path('admin_book_edit', { id: book.id }) }}" class="btn btn-outline-secondary btn-sm rounded-pill">
+                                ✏️ Modifier
+                            </a>
+                            <a href="{{ path('admin_book_delete', { id: book.id }) }}"
+                               onclick="return confirm('Confirmer la suppression ?')"
+                               class="btn btn-outline-danger btn-sm rounded-pill">
+                                🗑️ Supprimer
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p class="text-muted">Aucun livre enregistré pour l’instant.</p>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="mt-5 text-muted">Accès réservé aux administrateurs.</p>
+    {% endif %}
+</div>
 {% endblock %}
 
 {% block sidebar %}
-    <div class="section mt-5">
+    <div class="section mt-5 px-3">
         <!-- Change Password Section -->
-        <a href="{{ path('user_change_password') }}" class="btn btn-lg btn-block btn-outline-danger rounded-pill shadow-sm">
-            <twig:ux:icon name="tabler:key" class="mr-2" />
+        <a href="{{ path('user_change_password') }}" class="btn btn-lg btn-outline-danger rounded-pill shadow-sm w-100">
+            <twig:ux:icon name="tabler:key" class="me-2" />
             {{ 'action.change_password'|trans }}
         </a>
     </div>
