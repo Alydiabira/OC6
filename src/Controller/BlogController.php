@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use App\Repository\BookRepository;
 
 /**
  * Controller to manage blog contents in the public part of the site.
@@ -198,4 +199,15 @@ final class BlogController extends AbstractController
             'pageSize' => $pageSize,  // Passer pageSize à la vue
         ]);
     }
+
+    #[Route('/livres', name: 'blog_books', methods: ['GET'])]
+public function livres(BookRepository $bookRepository): Response
+{
+    $books = $bookRepository->findBy([], ['createdAt' => 'DESC']);
+
+    return $this->render('blog/livres.html.twig', [
+        'books' => $books,
+    ]);
+}
+
 }
