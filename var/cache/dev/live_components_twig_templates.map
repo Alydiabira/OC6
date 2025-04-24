@@ -36,7 +36,6 @@ return [[
     'a40ddd36065a8caf17461afb4808c132' => 'default/homepage.html.twig',
     '8e210d181a96a4397cf5419263ea9143' => 'default/_flash_messages.html.twig',
     '8df2ad3b2122368265e6d21ddd183a42' => 'default/_language_selector.html.twig',
-    '8eca9330540c9372cf75200830ca64fc' => 'contact_controller_test/index.html.twig',
     '8a538a20b67276b2bf1067883bc475d1' => 'language/index.html.twig',
     'e4132f3a180c7c9f99fd6fde52722c6a' => 'user/edit.html.twig',
     'f4587834e68fce2bbab6c7966a65263b' => 'user/index.html.twig',
