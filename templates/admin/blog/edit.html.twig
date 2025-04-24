@@ -27,6 +27,18 @@
         </div>
 
         <div class="mb-4">
+            {{ form_label(form.description, null, {'attr': {'class': 'form-label'}}) }}
+            {{ form_widget(form.description, {'attr': {'class': 'form-control', 'rows': '4'}}) }}
+            {{ form_errors(form.description) }}
+        </div>
+
+        <div class="mb-4 form-check">
+            {{ form_widget(form.available, {'attr': {'class': 'form-check-input'}}) }}
+            {{ form_label(form.available, null, {'attr': {'class': 'form-check-label'}}) }}
+            {{ form_errors(form.available) }}
+        </div>
+
+        <div class="mb-4">
             {{ form_label(form.publishedAt, null, {'attr': {'class': 'form-label'}}) }}
             {{ form_widget(form.publishedAt, {'attr': {'class': 'form-control'}}) }}
             {{ form_errors(form.publishedAt) }}
