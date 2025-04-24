@@ -529,6 +529,20 @@
         <argument type="service" id=".service_locator.vBCpsnH.App\Controller\BlogController"/>
       </call>
     </service>
+    <service id="App\Controller\BookController" class="App\Controller\BookController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vBCpsnH.App\Controller\BookController"/>
+      </call>
+    </service>
+    <service id="App\Controller\BookControllerPhpController" class="App\Controller\BookControllerPhpController" public="true" autowire="true" autoconfigure="true">
+      <tag name="controller.service_arguments"/>
+      <tag name="container.service_subscriber"/>
+      <call method="setContainer">
+        <argument type="service" id=".service_locator.vBCpsnH.App\Controller\BookControllerPhpController"/>
+      </call>
+    </service>
     <service id="App\Controller\ContactController" class="App\Controller\ContactController" public="true" autowire="true" autoconfigure="true">
       <tag name="controller.service_arguments"/>
       <tag name="container.service_subscriber"/>
@@ -570,6 +584,7 @@
       <argument type="service" id="security.user_password_hasher"/>
       <argument type="service" id="slugger"/>
     </service>
+    <service id="App\Entity\Book" class="App\Entity\Book" autowire="true" autoconfigure="true"/>
     <service id="App\Entity\Comment" class="App\Entity\Comment" autowire="true" autoconfigure="true"/>
     <service id="App\Entity\Contact" class="App\Entity\Contact" autowire="true" autoconfigure="true"/>
     <service id="App\Entity\Post" class="App\Entity\Post" autowire="true" autoconfigure="true"/>
@@ -634,6 +649,9 @@
       <tag name="container.error" message="Class &quot;Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory&quot; not found while loading &quot;App\Factory\UserFactory&quot;."/>
       <tag name="container.error" message="Invalid service &quot;App\Factory\UserFactory&quot;: class &quot;Zenstruck\Foundry\Persistence\PersistentProxyObjectFactory&quot; not found while loading &quot;App\Factory\UserFactory&quot;."/>
     </service>
+    <service id="App\Form\BookType" class="App\Form\BookType" autowire="true" autoconfigure="true">
+      <tag name="form.type"/>
+    </service>
     <service id="App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" autoconfigure="true">
       <tag name="form.type"/>
     </service>
@@ -662,6 +680,10 @@
     </service>
     <service id="App\Pagination\Paginator" class="App\Pagination\Paginator" autowire="true" autoconfigure="true">
       <tag name="container.error" message="Cannot autowire service &quot;App\Pagination\Paginator&quot;: argument &quot;$queryBuilder&quot; of method &quot;__construct()&quot; references class &quot;Doctrine\ORM\QueryBuilder&quot; but no such service exists."/>
+    </service>
+    <service id="App\Repository\BookRepository" class="App\Repository\BookRepository" autowire="true" autoconfigure="true">
+      <tag name="doctrine.repository_service"/>
+      <argument type="service" id="doctrine"/>
     </service>
     <service id="App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" autoconfigure="true">
       <tag name="doctrine.repository_service"/>
@@ -741,7 +763,7 @@
     </service>
     <service id="argument_resolver.service" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">
       <tag priority="-50" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\ServiceValueResolver">controller.argument_value_resolver</tag>
-      <argument type="service" id=".service_locator.myrB.L7"/>
+      <argument type="service" id=".service_locator.gcIOy3x"/>
     </service>
     <service id="argument_resolver.default" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">
       <tag priority="-100" name="Symfony\Component\HttpKernel\Controller\ArgumentResolver\DefaultValueResolver">controller.argument_value_resolver</tag>
@@ -1758,6 +1780,7 @@
         <argument>EasyCorp\Bundle\EasyAdminBundle\Form\Type</argument>
       </argument>
       <argument type="collection">
+        <argument>App\Form\BookType</argument>
         <argument>App\Form\ChangePasswordType</argument>
         <argument>App\Form\CommentType</argument>
         <argument>App\Form\ContactType</argument>
@@ -4361,7 +4384,7 @@
     </service>
     <service id="argument_resolver.not_tagged_controller" class="Symfony\Component\HttpKernel\Controller\ArgumentResolver\NotTaggedControllerValueResolver">
       <tag name="controller.argument_value_resolver" priority="-200"/>
-      <argument type="service" id=".service_locator.myrB.L7"/>
+      <argument type="service" id=".service_locator.gcIOy3x"/>
     </service>
     <service id="debug.log_processor" class="Symfony\Bridge\Monolog\Processor\DebugProcessor">
       <tag name="kernel.reset" method="reset"/>
@@ -4749,7 +4772,7 @@
       <argument type="service" id="form.registry"/>
     </service>
     <service id="form.extension" class="Symfony\Component\Form\Extension\DependencyInjection\DependencyInjectionExtension">
-      <argument type="service" id=".service_locator.xRliTzT"/>
+      <argument type="service" id=".service_locator.JFL5nHs"/>
       <argument type="collection">
         <argument key="Symfony\Component\Form\Extension\Core\Type\FormType" type="iterator">
           <argument type="service" id="form.type_extension.form.transformation_failure_handling"/>
@@ -7185,7 +7208,7 @@
     <service id="doctrine.orm.configuration" class="Doctrine\ORM\Configuration" abstract="true"/>
     <service id="doctrine.orm.entity_manager.abstract" class="Doctrine\ORM\EntityManager" lazy="true" abstract="true"/>
     <service id="doctrine.orm.container_repository_factory" class="Doctrine\Bundle\DoctrineBundle\Repository\ContainerRepositoryFactory">
-      <argument type="service" id=".service_locator.IGUveB4"/>
+      <argument type="service" id=".service_locator.dYuvhGV"/>
     </service>
     <service id="doctrine.orm.manager_configurator.abstract" class="Doctrine\Bundle\DoctrineBundle\ManagerConfigurator" abstract="true">
       <argument type="collection"/>
@@ -7614,6 +7637,9 @@
       </call>
       <call method="addExtension">
         <argument type="service" id="twig.extension.cssinliner"/>
+      </call>
+      <call method="addExtension">
+        <argument type="service" id="twig.extension.string"/>
       </call>
       <call method="addExtension">
         <argument type="service" id="ux.twig_component.twig.component_extension"/>
@@ -8606,6 +8632,9 @@
       <tag name="twig.extension"/>
     </service>
     <service id="twig.extension.cssinliner" class="Twig\Extra\CssInliner\CssInlinerExtension">
+      <tag name="twig.extension"/>
+    </service>
+    <service id="twig.extension.string" class="Twig\Extra\String\StringExtension">
       <tag name="twig.extension"/>
     </service>
     <service id="ux.twig_component.component_template_finder" class="Symfony\UX\TwigComponent\ComponentTemplateFinder">
@@ -9804,6 +9833,12 @@
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\BlogController" class="App\Controller\BlogController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BookController" class="App\Controller\BookController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BookController" class="App\Controller\BookController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\BookController" class="App\Controller\BookController" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\BookControllerPhpController" class="App\Controller\BookControllerPhpController" autowire="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\BookControllerPhpController" class="App\Controller\BookControllerPhpController" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Controller\BookControllerPhpController" class="App\Controller\BookControllerPhpController" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Contracts\Service\ServiceSubscriberInterface.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
     <service id=".instanceof.Symfony\Bundle\FrameworkBundle\Controller\AbstractController.0.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Controller\ContactController" class="App\Controller\ContactController" autowire="true" autoconfigure="true" abstract="true"/>
@@ -9837,6 +9872,8 @@
     <service id=".abstract.instanceof.App\EventSubscriber\ControllerSubscriber" class="App\EventSubscriber\ControllerSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\EventDispatcher\EventSubscriberInterface.0.App\EventSubscriber\RedirectToPreferredLocaleSubscriber" class="App\EventSubscriber\RedirectToPreferredLocaleSubscriber" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\EventSubscriber\RedirectToPreferredLocaleSubscriber" class="App\EventSubscriber\RedirectToPreferredLocaleSubscriber" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\BookType" class="App\Form\BookType" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Form\BookType" class="App\Form\BookType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\ChangePasswordType" class="App\Form\ChangePasswordType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\CommentType" class="App\Form\CommentType" autowire="true" abstract="true"/>
@@ -9851,6 +9888,8 @@
     <service id=".abstract.instanceof.App\Form\Type\TagsInputType" class="App\Form\Type\TagsInputType" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Symfony\Component\Form\FormTypeInterface.0.App\Form\UserType" class="App\Form\UserType" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Form\UserType" class="App\Form\UserType" autowire="true" autoconfigure="true" abstract="true"/>
+    <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\BookRepository" class="App\Repository\BookRepository" autowire="true" abstract="true"/>
+    <service id=".abstract.instanceof.App\Repository\BookRepository" class="App\Repository\BookRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" abstract="true"/>
     <service id=".abstract.instanceof.App\Repository\ContactRepository" class="App\Repository\ContactRepository" autowire="true" autoconfigure="true" abstract="true"/>
     <service id=".instanceof.Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepositoryInterface.0.App\Repository\PostRepository" class="App\Repository\PostRepository" autowire="true" abstract="true"/>
@@ -10697,6 +10736,12 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.Fbxi6sJ" method="withContext"/>
     </service>
+    <service id=".service_locator.WkfvUVe.App\Controller\Admin\BlogController::profile()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\Admin\BlogController::profile()"/>
+      <argument>App\Controller\Admin\BlogController::profile()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.WkfvUVe" method="withContext"/>
+    </service>
     <service id=".service_locator.5FanY8e" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -10774,6 +10819,18 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.jcYtTcg" method="withContext"/>
     </service>
+    <service id=".service_locator.ErcxNfJ" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator"/>
+      <argument type="collection">
+        <argument key="bookRepository" type="service_closure" id="App\Repository\BookRepository"/>
+      </argument>
+    </service>
+    <service id=".service_locator.ErcxNfJ.App\Controller\BlogController::livres()" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BlogController::livres()"/>
+      <argument>App\Controller\BlogController::livres()</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.ErcxNfJ" method="withContext"/>
+    </service>
     <service id=".service_locator.l6i3pzs" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
@@ -10808,7 +10865,7 @@
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.g7oipAF" method="withContext"/>
     </service>
-    <service id=".service_locator.myrB.L7" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.gcIOy3x" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
         <argument key="kernel::registerContainerConfiguration" type="service_closure" id=".service_locator.zHyJIs5.kernel::registerContainerConfiguration()"/>
@@ -10821,6 +10878,7 @@
         <argument key="App\Controller\Admin\BlogController::edit" type="service_closure" id=".service_locator.1vNE1Q3.App\Controller\Admin\BlogController::edit()"/>
         <argument key="App\Controller\Admin\BlogController::delete" type="service_closure" id=".service_locator.1vNE1Q3.App\Controller\Admin\BlogController::delete()"/>
         <argument key="App\Controller\Admin\BlogController::commentDelete" type="service_closure" id=".service_locator.Fbxi6sJ.App\Controller\Admin\BlogController::commentDelete()"/>
+        <argument key="App\Controller\Admin\BlogController::profile" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\BlogController::profile()"/>
         <argument key="App\Controller\Admin\DashboardController::configureUserMenu" type="service_closure" id=".service_locator.5FanY8e.App\Controller\Admin\DashboardController::configureUserMenu()"/>
         <argument key="App\Controller\BlogController::index" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::index()"/>
         <argument key="App\Controller\BlogController::indexByTag" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::indexByTag()"/>
@@ -10828,6 +10886,7 @@
         <argument key="App\Controller\BlogController::commentNew" type="service_closure" id=".service_locator.jFa5KmS.App\Controller\BlogController::commentNew()"/>
         <argument key="App\Controller\BlogController::commentForm" type="service_closure" id=".service_locator.80cKC8..App\Controller\BlogController::commentForm()"/>
         <argument key="App\Controller\BlogController::search" type="service_closure" id=".service_locator.jcYtTcg.App\Controller\BlogController::search()"/>
+        <argument key="App\Controller\BlogController::livres" type="service_closure" id=".service_locator.ErcxNfJ.App\Controller\BlogController::livres()"/>
         <argument key="App\Controller\SecurityController::login" type="service_closure" id=".service_locator.l6i3pzs.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\UserController::edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\UserController::edit()"/>
         <argument key="App\Controller\UserController::changePassword" type="service_closure" id=".service_locator.g7oipAF.App\Controller\UserController::changePassword()"/>
@@ -10839,6 +10898,7 @@
         <argument key="App\Controller\Admin\BlogController:edit" type="service_closure" id=".service_locator.1vNE1Q3.App\Controller\Admin\BlogController::edit()"/>
         <argument key="App\Controller\Admin\BlogController:delete" type="service_closure" id=".service_locator.1vNE1Q3.App\Controller\Admin\BlogController::delete()"/>
         <argument key="App\Controller\Admin\BlogController:commentDelete" type="service_closure" id=".service_locator.Fbxi6sJ.App\Controller\Admin\BlogController::commentDelete()"/>
+        <argument key="App\Controller\Admin\BlogController:profile" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\Admin\BlogController::profile()"/>
         <argument key="App\Controller\Admin\DashboardController:configureUserMenu" type="service_closure" id=".service_locator.5FanY8e.App\Controller\Admin\DashboardController::configureUserMenu()"/>
         <argument key="App\Controller\BlogController:index" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::index()"/>
         <argument key="App\Controller\BlogController:indexByTag" type="service_closure" id=".service_locator.mtjqjIT.App\Controller\BlogController::indexByTag()"/>
@@ -10846,6 +10906,7 @@
         <argument key="App\Controller\BlogController:commentNew" type="service_closure" id=".service_locator.jFa5KmS.App\Controller\BlogController::commentNew()"/>
         <argument key="App\Controller\BlogController:commentForm" type="service_closure" id=".service_locator.80cKC8..App\Controller\BlogController::commentForm()"/>
         <argument key="App\Controller\BlogController:search" type="service_closure" id=".service_locator.jcYtTcg.App\Controller\BlogController::search()"/>
+        <argument key="App\Controller\BlogController:livres" type="service_closure" id=".service_locator.ErcxNfJ.App\Controller\BlogController::livres()"/>
         <argument key="App\Controller\SecurityController:login" type="service_closure" id=".service_locator.l6i3pzs.App\Controller\SecurityController::login()"/>
         <argument key="App\Controller\UserController:edit" type="service_closure" id=".service_locator.WkfvUVe.App\Controller\UserController::edit()"/>
         <argument key="App\Controller\UserController:changePassword" type="service_closure" id=".service_locator.g7oipAF.App\Controller\UserController::changePassword()"/>
@@ -10943,9 +11004,10 @@
       <argument type="service" id="argument_resolver.query_parameter_value_resolver"/>
       <argument type="service" id="debug.stopwatch"/>
     </service>
-    <service id=".service_locator.xRliTzT" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.JFL5nHs" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Form\BookType" type="service_closure" id="App\Form\BookType"/>
         <argument key="App\Form\ChangePasswordType" type="service_closure" id="App\Form\ChangePasswordType"/>
         <argument key="App\Form\CommentType" type="service_closure" id="App\Form\CommentType"/>
         <argument key="App\Form\ContactType" type="service_closure" id="App\Form\ContactType"/>
@@ -11129,9 +11191,10 @@
         <argument key="vich_uploader.listener.upload.post_images" type="service_closure" id="vich_uploader.listener.upload.post_images"/>
       </argument>
     </service>
-    <service id=".service_locator.IGUveB4" class="Symfony\Component\DependencyInjection\ServiceLocator">
+    <service id=".service_locator.dYuvhGV" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator"/>
       <argument type="collection">
+        <argument key="App\Repository\BookRepository" type="service_closure" id="App\Repository\BookRepository"/>
         <argument key="App\Repository\ContactRepository" type="service_closure" id="App\Repository\ContactRepository"/>
         <argument key="App\Repository\PostRepository" type="service_closure" id="App\Repository\PostRepository"/>
         <argument key="App\Repository\ResetPasswordRequestRepository" type="service_closure" id="App\Repository\ResetPasswordRequestRepository"/>
@@ -11413,6 +11476,18 @@
     <service id=".service_locator.vBCpsnH.App\Controller\BlogController" class="Symfony\Component\DependencyInjection\ServiceLocator">
       <tag name="container.service_locator_context" id="App\Controller\BlogController"/>
       <argument>App\Controller\BlogController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vBCpsnH" method="withContext"/>
+    </service>
+    <service id=".service_locator.vBCpsnH.App\Controller\BookController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BookController"/>
+      <argument>App\Controller\BookController</argument>
+      <argument type="service" id="service_container"/>
+      <factory service=".service_locator.vBCpsnH" method="withContext"/>
+    </service>
+    <service id=".service_locator.vBCpsnH.App\Controller\BookControllerPhpController" class="Symfony\Component\DependencyInjection\ServiceLocator">
+      <tag name="container.service_locator_context" id="App\Controller\BookControllerPhpController"/>
+      <argument>App\Controller\BookControllerPhpController</argument>
       <argument type="service" id="service_container"/>
       <factory service=".service_locator.vBCpsnH" method="withContext"/>
     </service>
@@ -11734,6 +11809,8 @@
           <argument>App\Controller\Admin\BlogController</argument>
           <argument>App\Controller\Admin\DashboardController</argument>
           <argument>App\Controller\BlogController</argument>
+          <argument>App\Controller\BookController</argument>
+          <argument>App\Controller\BookControllerPhpController</argument>
           <argument>App\Controller\ContactController</argument>
           <argument>App\Controller\ContactControllerTestController</argument>
           <argument>App\Controller\MailController</argument>
@@ -13189,7 +13266,7 @@
     <service id="EasyCorp\Bundle\EasyAdminBundle\Contracts\Orm\EntityPaginatorInterface" alias="EasyCorp\Bundle\EasyAdminBundle\Orm\EntityPaginator"/>
     <service id="container.env_var_processors_locator" alias=".service_locator.pRu6x_4" public="true"/>
     <service id="twig.loader.filesystem" alias="twig.loader.native_filesystem"/>
-    <service id="argument_resolver.controller_locator" alias=".service_locator.myrB.L7"/>
+    <service id="argument_resolver.controller_locator" alias=".service_locator.gcIOy3x"/>
     <service id="doctrine.id_generator_locator" alias=".service_locator.BxSdgVt"/>
     <service id="Psr\Log\LoggerInterface $requestLogger" alias="monolog.logger.request"/>
     <service id="Psr\Log\LoggerInterface $consoleLogger" alias="monolog.logger.console"/>
@@ -13248,6 +13325,7 @@
     <service id=".service_locator.heoLegD" alias=".service_locator.jFa5KmS"/>
     <service id=".service_locator.l1ZtRxG" alias=".service_locator.80cKC8."/>
     <service id=".service_locator.gkWRRmJ" alias=".service_locator.jcYtTcg"/>
+    <service id=".service_locator.RTRo_vd" alias=".service_locator.ErcxNfJ"/>
     <service id=".service_locator.OjCqSpk" alias=".service_locator.l6i3pzs"/>
     <service id=".service_locator.oQrhM8Z" alias=".service_locator.g7oipAF"/>
     <service id=".service_locator.yiZk6YE" alias=".service_locator.vBCpsnH"/>
