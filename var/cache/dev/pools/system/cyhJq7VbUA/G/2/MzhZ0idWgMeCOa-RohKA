@@ -1,0 +1,3 @@
+<?php //e4667a9ee49dbcad9bd96950494c6427
+
+return [PHP_INT_MAX, 'vendor/highlight.js/lib/languages/twig.js'];
