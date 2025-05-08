@@ -12,6 +12,7 @@
                 <table class="table table-hover table-striped align-middle">
                     <thead class="table-light">
                         <tr>
+                            <th scope="col" class="py-3">Image</th>
                             <th scope="col" class="py-3">{{ 'label.title'|trans }}</th>
                             <th scope="col" class="py-3">Description</th>
                             <th scope="col" class="py-3">Disponible</th>
@@ -27,7 +28,14 @@
                     <tbody>
                     {% for post in posts %}
                         <tr>
-                            <td class="py-2">{{ post.title }}</td>
+                        <td class="py-2">
+                            {% if post.image %}
+                                <img src="{{ asset('uploads/posts/' ~ post.image) }}" alt="Image de {{ post.title }}" style="width: 100px;" class="img-thumbnail">
+                            {% else %}
+                                <span class="text-muted">Aucune image</span>
+                            {% endif %}
+                        </td>                            
+                        <td class="py-2">{{ post.title }}</td>
                             <td class="py-2">
                                 {{ post.description ? post.description[:60] ~ (post.description|length > 60 ? '…' : '') : '—' }}
                             </td>
