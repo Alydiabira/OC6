@@ -599,46 +599,68 @@ $catalogueFr = new MessageCatalogue('fr', array (
     'notification.comment_created' => 'Votre article a reçu un commentaire !',
     'notification.comment_created.description' => 'Votre article "{title}" a reçu un nouveau commentaire. Vous pouvez lire le commentaire en suivant <a href="{link}">ce lien</a>',
     'help.app_description' => '
-                    <div class="container my-5">
-                        <!-- Section : Comment ça marche -->
-                        <section class="mb-5">
-                            <h2 class="text-center mb-4">🔄 Comment ça marche ?</h2>
-                            <div class="row text-center">
-                                <div class="col-md-4 mb-4">
-                                    <h5>1. Créez un compte</h5>
-                                    <p>Rejoignez notre communauté d’amoureux de la lecture.</p>
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <h5>2. Ajoutez vos livres</h5>
-                                    <p>Publiez les livres que vous souhaitez échanger.</p>
-                                </div>
-                                <div class="col-md-4 mb-4">
-                                    <h5>3. Troc & contact</h5>
-                                    <p>Trouvez des livres et contactez d\'autres membres !</p>
-                                </div>
-                            </div>
-                        </section>
+                <div class="container my-5">
 
-                        <!-- Section : Nos valeurs -->
-                        <section class="text-white p-4 rounded-4" style="background-color: #473D7F;">
-                            <h2 class="text-center mb-4">💡 Nos valeurs</h2>
-                            <div class="row text-center">
-                                <div class="col-md-4 mb-3">
-                                    <h5 class="text-white">Partage</h5>
-                                    <p>Favoriser l’accès à la culture pour tous.</p>
+                    <!-- SLIDER : Comment ça marche -->
+                    <section class="mb-5">
+                        <h2 class="text-center mb-5 display-6">Comment ça marche ?</h2>
+                        <div id="carouselHowItWorks" class="carousel slide carousel-fade shadow-sm rounded bg-light p-4" data-bs-ride="carousel" data-bs-interval="6000">
+                            <div class="carousel-inner text-center">
+                                <div class="carousel-item active">
+                                    <h5>1. Créez un compte</h5>
+                                    <p class="mt-3 fs-5">Rejoignez notre communauté d’amoureux de la lecture.</p>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <h5 class="text-white">Écologie</h5>
-                                    <p>Donner une seconde vie aux livres.</p>
+                                <div class="carousel-item">
+                                    <h5>2. Ajoutez vos livres</h5>
+                                    <p class="mt-3 fs-5">Publiez les livres que vous souhaitez échanger.</p>
                                 </div>
-                                <div class="col-md-4 mb-3">
-                                    <h5 class="text-white">Simplicité</h5>
-                                    <p>Une plateforme intuitive, pensée pour vous.</p>
+                                <div class="carousel-item">
+                                    <h5>3. Troc & contact</h5>
+                                    <p class="mt-3 fs-5">Trouvez des livres et contactez d\'autres membres !</p>
                                 </div>
                             </div>
-                        </section>
-                    </div>
-                ',
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselHowItWorks" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Précédent</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselHowItWorks" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Suivant</span>
+                            </button>
+                        </div>
+                    </section>
+
+                    <!-- SLIDER : Nos valeurs -->
+                    <section class="p-5 rounded-4 text-white" style="background-color: #473D7F;">
+                        <h2 class="text-center mb-5 display-6">Nos valeurs</h2>
+                        <div id="carouselValues" class="carousel slide carousel-fade shadow-sm bg-transparent p-4" data-bs-ride="carousel" data-bs-interval="6000">
+                            <div class="carousel-inner text-center">
+                                <div class="carousel-item active">
+                                    <h5 class="text-white">📚 Partage</h5>
+                                    <p class="mt-3 fs-5">Favoriser l’accès à la culture pour tous.</p>
+                                </div>
+                                <div class="carousel-item">
+                                    <h5 class="text-white">🌱 Écologie</h5>
+                                    <p class="mt-3 fs-5">Donner une seconde vie aux livres.</p>
+                                </div>
+                                <div class="carousel-item">
+                                    <h5 class="text-white">✨ Simplicité</h5>
+                                    <p class="mt-3 fs-5">Une plateforme intuitive, pensée pour vous.</p>
+                                </div>
+                            </div>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#carouselValues" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Précédent</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#carouselValues" data-bs-slide="next">
+                                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                <span class="visually-hidden">Suivant</span>
+                            </button>
+                        </div>
+                    </section>
+
+                </div>
+            ',
     'help.show_code' => 'Cliquez sur ce bouton pour voir le code source du <strong>contrôleur</strong> et du <strong>template</strong> utilisé pour afficher cette page.',
     'help.browse_app' => 'Parcourir la <strong>section publique</strong> de l\'application de TomTroc.',
     'help.browse_admin' => 'Parcourir l\'<strong>interface d\'administration</strong> de l\'application de TomTroc.',
