@@ -110,8 +110,9 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                 <table class=\"table table-hover table-striped align-middle\">
                     <thead class=\"table-light\">
                         <tr>
+                            <th scope=\"col\" class=\"py-3\">Image</th>
                             <th scope=\"col\" class=\"py-3\">";
-        // line 15
+        // line 16
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("label.title"), "html", null, true);
         yield "</th>
                             <th scope=\"col\" class=\"py-3\">Description</th>
@@ -119,7 +120,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                             <th scope=\"col\" class=\"py-3\">Créé le</th>
                             <th scope=\"col\" class=\"py-3\">
                                 ";
-        // line 20
+        // line 21
         yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:calendar-month"]);
         yield " ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("label.published_at"), "html", null, true);
@@ -127,7 +128,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                             </th>
                             <th scope=\"col\" class=\"text-center py-3\">
                                 ";
-        // line 23
+        // line 24
         yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:settings"]);
         yield " ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("label.actions"), "html", null, true);
@@ -137,66 +138,84 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                     </thead>
                     <tbody>
                     ";
-        // line 28
+        // line 29
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 28, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["posts"]) || array_key_exists("posts", $context) ? $context["posts"] : (function () { throw new RuntimeError('Variable "posts" does not exist.', 29, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["post"]) {
-            // line 29
-            yield "                        <tr>
-                            <td class=\"py-2\">";
             // line 30
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 30), "html", null, true);
+            yield "                        <tr>
+                        <td class=\"py-2\">
+                            ";
+            // line 32
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["post"], "image", [], "any", false, false, false, 32)) {
+                // line 33
+                yield "                                <img src=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/posts/" . CoreExtension::getAttribute($this->env, $this->source, $context["post"], "image", [], "any", false, false, false, 33))), "html", null, true);
+                yield "\" alt=\"Image de ";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 33), "html", null, true);
+                yield "\" style=\"width: 100px;\" class=\"img-thumbnail\">
+                            ";
+            } else {
+                // line 35
+                yield "                                <span class=\"text-muted\">Aucune image</span>
+                            ";
+            }
+            // line 37
+            yield "                        </td>                            
+                        <td class=\"py-2\">";
+            // line 38
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "title", [], "any", false, false, false, 38), "html", null, true);
             yield "</td>
                             <td class=\"py-2\">
                                 ";
-            // line 32
-            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 32)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 32), 0, 60) . (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 32)) > 60)) ? ("…") : (""))), "html", null, true)) : ("—"));
+            // line 40
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 40)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 40), 0, 60) . (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["post"], "description", [], "any", false, false, false, 40)) > 60)) ? ("…") : (""))), "html", null, true)) : ("—"));
             yield "
                             </td>
                             <td class=\"py-2\">
                                 ";
-            // line 35
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["post"], "available", [], "any", false, false, false, 35)) {
-                // line 36
+            // line 43
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["post"], "available", [], "any", false, false, false, 43)) {
+                // line 44
                 yield "                                    <span class=\"badge bg-success\">Oui</span>
                                 ";
             } else {
-                // line 38
+                // line 46
                 yield "                                    <span class=\"badge bg-danger\">Non</span>
                                 ";
             }
-            // line 40
+            // line 48
             yield "                            </td>
                             <td class=\"py-2\">
                                 ";
-            // line 42
-            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["post"], "createdAt", [], "any", false, false, false, 42)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "createdAt", [], "any", false, false, false, 42), "d/m/Y"), "html", null, true)) : ("—"));
+            // line 50
+            yield ((CoreExtension::getAttribute($this->env, $this->source, $context["post"], "createdAt", [], "any", false, false, false, 50)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["post"], "createdAt", [], "any", false, false, false, 50), "d/m/Y"), "html", null, true)) : ("—"));
             yield "
                             </td>
                             <td class=\"py-2\">";
-            // line 44
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extra\Intl\IntlExtension']->formatDateTime($this->env, CoreExtension::getAttribute($this->env, $this->source, $context["post"], "publishedAt", [], "any", false, false, false, 44), "medium", "short", "", "UTC"), "html", null, true);
+            // line 52
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extra\Intl\IntlExtension']->formatDateTime($this->env, CoreExtension::getAttribute($this->env, $this->source, $context["post"], "publishedAt", [], "any", false, false, false, 52), "medium", "short", "", "UTC"), "html", null, true);
             yield "</td>
                             <td class=\"text-center py-2\">
                                 <div class=\"d-flex justify-content-center gap-3\">
                                     <a href=\"";
-            // line 47
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_post_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 47)]), "html", null, true);
+            // line 55
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_post_show", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 55)]), "html", null, true);
             yield "\" class=\"btn btn-outline-secondary btn-sm\">
                                         ";
-            // line 48
+            // line 56
             yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:eye"]);
             yield " ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.show"), "html", null, true);
             yield "
                                     </a>
                                     <a href=\"";
-            // line 50
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_post_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 50)]), "html", null, true);
+            // line 58
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_post_edit", ["id" => CoreExtension::getAttribute($this->env, $this->source, $context["post"], "id", [], "any", false, false, false, 58)]), "html", null, true);
             yield "\" class=\"btn btn-outline-primary btn-sm\">
                                         ";
-            // line 51
+            // line 59
             yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:pencil"]);
             yield " ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.edit"), "html", null, true);
@@ -208,13 +227,13 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                     ";
             $context['_iterated'] = true;
         }
-        // line 62
+        // line 70
         if (!$context['_iterated']) {
-            // line 57
+            // line 65
             yield "                        <tr>
                             <td colspan=\"6\" class=\"text-center text-muted py-4\">
                                 ";
-            // line 59
+            // line 67
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("post.no_posts_found"), "html", null, true);
             yield "
                             </td>
@@ -224,7 +243,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['post'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 63
+        // line 71
         yield "                    </tbody>
                 </table>
             </div>
@@ -241,7 +260,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
         yield from [];
     }
 
-    // line 71
+    // line 79
     /**
      * @return iterable<null|scalar|\Stringable>
      */
@@ -254,22 +273,22 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "sidebar"));
 
-        // line 72
+        // line 80
         yield "<div class=\"container mt-4\">
     <div class=\"card shadow-sm border-0\">
         <div class=\"card-body text-center py-4\">
             <h4 class=\"mb-3\">";
-        // line 75
+        // line 83
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("sidebar.create_post"), "html", null, true);
         yield "</h4>
             <a href=\"";
-        // line 76
+        // line 84
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("admin_post_new");
         yield "\" class=\"btn btn-success w-100\" aria-label=\"";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.create_post"), "html", null, true);
         yield "\">
                 ";
-        // line 77
+        // line 85
         yield $this->env->getRuntime('Symfony\UX\TwigComponent\Twig\ComponentRuntime')->render("ux:icon", ["name" => "tabler:pencil"]);
         yield " ";
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\TranslationExtension']->trans("action.create_post"), "html", null, true);
@@ -281,14 +300,14 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
 
 <div class=\"mt-4\">
     ";
-        // line 84
+        // line 92
         yield from $this->yieldParentBlock("sidebar", $context, $blocks);
         yield "
 </div>
 
 <div class=\"text-center mt-3\">
     ";
-        // line 88
+        // line 96
         yield $this->extensions['App\Twig\SourceCodeExtension']->showSourceCode($this->env, $this->getTemplateName());
         yield "
 </div>
@@ -323,7 +342,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  292 => 88,  285 => 84,  273 => 77,  267 => 76,  263 => 75,  258 => 72,  245 => 71,  228 => 63,  218 => 59,  214 => 57,  212 => 62,  200 => 51,  196 => 50,  189 => 48,  185 => 47,  179 => 44,  174 => 42,  170 => 40,  166 => 38,  162 => 36,  160 => 35,  154 => 32,  149 => 30,  146 => 29,  141 => 28,  131 => 23,  123 => 20,  115 => 15,  104 => 7,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
+        return array (  311 => 96,  304 => 92,  292 => 85,  286 => 84,  282 => 83,  277 => 80,  264 => 79,  247 => 71,  237 => 67,  233 => 65,  231 => 70,  219 => 59,  215 => 58,  208 => 56,  204 => 55,  198 => 52,  193 => 50,  189 => 48,  185 => 46,  181 => 44,  179 => 43,  173 => 40,  168 => 38,  165 => 37,  161 => 35,  153 => 33,  151 => 32,  147 => 30,  142 => 29,  132 => 24,  124 => 21,  116 => 16,  104 => 7,  101 => 6,  88 => 5,  65 => 3,  42 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -342,6 +361,7 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                 <table class=\"table table-hover table-striped align-middle\">
                     <thead class=\"table-light\">
                         <tr>
+                            <th scope=\"col\" class=\"py-3\">Image</th>
                             <th scope=\"col\" class=\"py-3\">{{ 'label.title'|trans }}</th>
                             <th scope=\"col\" class=\"py-3\">Description</th>
                             <th scope=\"col\" class=\"py-3\">Disponible</th>
@@ -357,7 +377,14 @@ class __TwigTemplate_d5de84a8772e706b5a368b71c09e0ead extends Template
                     <tbody>
                     {% for post in posts %}
                         <tr>
-                            <td class=\"py-2\">{{ post.title }}</td>
+                        <td class=\"py-2\">
+                            {% if post.image %}
+                                <img src=\"{{ asset('uploads/posts/' ~ post.image) }}\" alt=\"Image de {{ post.title }}\" style=\"width: 100px;\" class=\"img-thumbnail\">
+                            {% else %}
+                                <span class=\"text-muted\">Aucune image</span>
+                            {% endif %}
+                        </td>                            
+                        <td class=\"py-2\">{{ post.title }}</td>
                             <td class=\"py-2\">
                                 {{ post.description ? post.description[:60] ~ (post.description|length > 60 ? '…' : '') : '—' }}
                             </td>
