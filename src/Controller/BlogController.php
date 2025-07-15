@@ -35,30 +35,33 @@ final class BlogController extends AbstractController
     #[Route('/rss.xml', name: 'blog_rss', defaults: ['page' => 1, '_format' => 'xml'], methods: ['GET'])]
     #[Route('/page/{page}', name: 'blog_index_paginated', defaults: ['_format' => 'html'], requirements: ['page' => '\d+'], methods: ['GET'])]
     public function index(Request $request, int $page, string $_format, PostRepository $postRepository, TagRepository $tagRepository): Response
-    {
-        // Handle tag filtering if provided
-        $tag = $request->query->get('tag') ? $tagRepository->findOneBy(['name' => $request->query->get('tag')]) : null;
+{
+    // Handle tag filtering if provided
+    $tag = $request->query->get('tag') ? $tagRepository->findOneBy(['name' => $request->query->get('tag')]) : null;
 
-        // Retrieve paginated posts
-        $paginatedResults = $postRepository->findLatest($page, $tag);
+    // Retrieve paginated posts
+    $paginatedResults = $postRepository->findLatest($page, $tag);
 
-        // Extract the paginated data and pagination info
-        $postsData = $paginatedResults['data']; // Paginated posts
-        $currentPage = $paginatedResults['currentPage']; // Current page number
-        $pageCount = $paginatedResults['pageCount']; // Total pages
-        $totalItems = $paginatedResults['totalItems']; // Total items
-        $pageSize = Paginator::PAGE_SIZE; // Pass the page size constant
+    // Extract the paginated data and pagination info
+    $postsData = $paginatedResults['data'];
+    $currentPage = $paginatedResults['currentPage'];
+    $pageCount = $paginatedResults['pageCount'];
+    $totalItems = $paginatedResults['totalItems'];
+    $pageSize = Paginator::PAGE_SIZE;
 
-        // Pass the paginated data and pageSize to the view
-        return $this->render('blog/index.' . $_format . '.twig', [
-            'paginator' => $postsData,
-            'currentPage' => $currentPage,
-            'pageCount' => $pageCount,
-            'totalItems' => $totalItems,
-            'tagName' => $tag?->getName(),
-            'pageSize' => $pageSize, // Pass the page size constant to the view
-        ]);
-    }
+    // ✅ ➕ AJOUTE CETTE LIGNE ICI
+    $books = $postRepository->findBy([], ['createdAt' => 'DESC'], 4);
+
+    return $this->render('blog/index.' . $_format . '.twig', [
+        'paginator' => $postsData,
+        'currentPage' => $currentPage,
+        'pageCount' => $pageCount,
+        'totalItems' => $totalItems,
+        'tagName' => $tag?->getName(),
+        'pageSize' => $pageSize,
+        'books' => $books, // ✅ ➕ PASSE LA VARIABLE À TWIG
+    ]);
+}
 
     /**
      * Displays a list of posts filtered by a specific tag.
@@ -206,6 +209,16 @@ public function livres(BookRepository $bookRepository): Response
     $books = $bookRepository->findBy([], ['createdAt' => 'DESC']);
 
     return $this->render('blog/livres.html.twig', [
+        'books' => $books,
+    ]);
+}
+
+ #[Route('/livres', name: 'book_index')]
+public function showBooks(PostRepository $postRepository): Response
+{
+    $books = $postRepository->findAll();
+
+    return $this->render('book/index.html.twig', [
         'books' => $books,
     ]);
 }
