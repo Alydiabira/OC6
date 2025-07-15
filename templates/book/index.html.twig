@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nos livres à l’échange{% endblock %}
+
+{% block body %}
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Nos livres à l’échange</h2>
+
+    <form method="get" action="{{ path('book_search') }}" class="mb-4 text-center">
+      <input type="search" name="q" placeholder="Rechercher un livre..." class="form-control w-50 d-inline-block">
+      <button type="submit" class="btn btn-primary ms-2">Rechercher</button>
+    </form>
+
+    <div class="row">
+      {% for book in books %}
+        <div class="col-md-3 mb-4">
+          <div class="card h-100 shadow-sm rounded-4">
+            {% if book.image %}
+              <img src="{{ asset('uploads/posts/' ~ book.image) }}" class="card-img-top" alt="{{ book.title }}">
+            {% endif %}
+            <div class="card-body">
+              <h5 class="card-title">{{ book.title }}</h5>
+              <p class="card-text text-muted small">{{ book.author.username }}</p>
+              <p class="text-muted small">
+                <strong>Vendeur :</strong> {{ book.seller.username }}
+              </p>
+              {% if book.tags %}
+                <p class="small">
+                  <strong>Statut :</strong>
+                  {% for tag in book.tags %}
+                    <span class="badge bg-warning text-dark">{{ tag.name }}</span>
+                  {% endfor %}
+                </p>
+              {% endif %}
+              <a href="{{ path('book_show', {slug: book.slug}) }}" class="btn btn-outline-primary btn-sm mt-2">Voir</a>
+            </div>
+          </div>
+        </div>
+      {% else %}
+        <p class="text-center text-muted">Aucun livre trouvé.</p>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
