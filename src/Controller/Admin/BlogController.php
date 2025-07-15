@@ -23,7 +23,7 @@ use App\Form\UserType;
 /**
  * Controller used to manage blog contents in the backend.
  */
-#[Route('/admin/post')]
+#[Route('/{_locale}/admin/post', name: 'admin_', defaults: ['_locale' => 'fr'])]
 #[IsGranted(User::ROLE_ADMIN)]
 final class BlogController extends AbstractController
 {
