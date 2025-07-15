@@ -25,7 +25,7 @@ use App\Repository\BookRepository;
 /**
  * Controller to manage blog contents in the public part of the site.
  */
-#[Route('/blog')]
+#[Route('/{_locale}/blog', name: 'blog_', defaults: ['_locale' => 'fr'])]
 final class BlogController extends AbstractController
 {
     /**
@@ -203,24 +203,7 @@ final class BlogController extends AbstractController
         ]);
     }
 
-    #[Route('/livres', name: 'blog_books', methods: ['GET'])]
-public function livres(BookRepository $bookRepository): Response
-{
-    $books = $bookRepository->findBy([], ['createdAt' => 'DESC']);
+ 
 
-    return $this->render('blog/livres.html.twig', [
-        'books' => $books,
-    ]);
-}
-
- #[Route('/livres', name: 'book_index')]
-public function showBooks(PostRepository $postRepository): Response
-{
-    $books = $postRepository->findAll();
-
-    return $this->render('book/index.html.twig', [
-        'books' => $books,
-    ]);
-}
 
 }
