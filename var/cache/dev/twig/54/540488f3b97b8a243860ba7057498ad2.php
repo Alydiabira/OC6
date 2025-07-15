@@ -32,6 +32,7 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
         $this->blocks = [
             'title' => [$this, 'block_title'],
             'body_id' => [$this, 'block_body_id'],
+            'stylesheets' => [$this, 'block_stylesheets'],
             'body' => [$this, 'block_body'],
         ];
     }
@@ -111,6 +112,33 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
     /**
      * @return iterable<null|scalar|\Stringable>
      */
+    public function block_stylesheets(array $context, array $blocks = []): iterable
+    {
+        $macros = $this->macros;
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2 = $this->extensions["Symfony\\Bundle\\WebProfilerBundle\\Twig\\WebProfilerExtension"];
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->enter($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "stylesheets"));
+
+        // line 141
+        yield "  <link rel=\"stylesheet\" href=\"";
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("styles/app.css"), "html", null, true);
+        yield "\">
+";
+        
+        $__internal_6f47bbe9983af81f1e7450e9a3e3768f->leave($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof);
+
+        
+        $__internal_5a27a8ba21ca79b61932376b2fa922d2->leave($__internal_5a27a8ba21ca79b61932376b2fa922d2_prof);
+
+        yield from [];
+    }
+
+    // line 145
+    /**
+     * @return iterable<null|scalar|\Stringable>
+     */
     public function block_body(array $context, array $blocks = []): iterable
     {
         $macros = $this->macros;
@@ -120,7 +148,7 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f = $this->extensions["Symfony\\Bridge\\Twig\\Extension\\ProfilerExtension"];
         $__internal_6f47bbe9983af81f1e7450e9a3e3768f->enter($__internal_6f47bbe9983af81f1e7450e9a3e3768f_prof = new \Twig\Profiler\Profile($this->getTemplateName(), "block", "body"));
 
-        // line 141
+        // line 146
         yield "<div class=\"container\">
 
     <!-- HERO -->
@@ -129,13 +157,13 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
             <h2 class=\"mb-3\">Rejoignez nos lecteurs passionnés</h2>
             <p>Donnez une nouvelle vie à vos livres en les échangeant entre amoureux de la lecture !</p>
             <a href=\"";
-        // line 148
+        // line 153
         yield $this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("book_index");
         yield "\" class=\"btn btn-success mt-3\">Découvrir</a>
         </div>
         <div class=\"hero-image\">
             <img src=\"";
-        // line 151
+        // line 156
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/livres.jpg"), "html", null, true);
         yield "\" alt=\"Livres empilés\" class=\"img-fluid rounded-4 shadow\" />
         </div>
@@ -146,68 +174,68 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
         <h3 class=\"text-center mb-4\">Les derniers livres ajoutés</h3>
         <div class=\"d-flex justify-content-between flex-wrap gap-3\">
             ";
-        // line 159
+        // line 164
         $context['_parent'] = $context;
-        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 159, $this->source); })()));
+        $context['_seq'] = CoreExtension::ensureTraversable((isset($context["books"]) || array_key_exists("books", $context) ? $context["books"] : (function () { throw new RuntimeError('Variable "books" does not exist.', 164, $this->source); })()));
         $context['_iterated'] = false;
         foreach ($context['_seq'] as $context["_key"] => $context["book"]) {
-            // line 160
+            // line 165
             yield "                <div class=\"card shadow-sm\" style=\"width: 12rem;\">
                     ";
-            // line 161
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["book"], "image", [], "any", false, false, false, 161)) {
-                // line 162
+            // line 166
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["book"], "image", [], "any", false, false, false, 166)) {
+                // line 167
                 yield "                        <img src=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/posts/" . CoreExtension::getAttribute($this->env, $this->source, $context["book"], "image", [], "any", false, false, false, 162))), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl(("uploads/posts/" . CoreExtension::getAttribute($this->env, $this->source, $context["book"], "image", [], "any", false, false, false, 167))), "html", null, true);
                 yield "\" class=\"card-img-top\" alt=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 162), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 167), "html", null, true);
                 yield "\">
                     ";
             }
-            // line 164
+            // line 169
             yield "                    <div class=\"card-body\">
                         <h5 class=\"card-title\">";
-            // line 165
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 165), "html", null, true);
+            // line 170
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["book"], "title", [], "any", false, false, false, 170), "html", null, true);
             yield "</h5>
                         <p class=\"card-text text-muted small\">";
-            // line 166
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 166), "username", [], "any", false, false, false, 166), "html", null, true);
+            // line 171
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, CoreExtension::getAttribute($this->env, $this->source, $context["book"], "author", [], "any", false, false, false, 171), "username", [], "any", false, false, false, 171), "html", null, true);
             yield "</p>
                         <p class=\"text-muted small mb-1\">
                             <strong>Disponibilité :</strong>
                             ";
-            // line 169
-            if (CoreExtension::getAttribute($this->env, $this->source, $context["book"], "available", [], "any", false, false, false, 169)) {
-                // line 170
+            // line 174
+            if (CoreExtension::getAttribute($this->env, $this->source, $context["book"], "available", [], "any", false, false, false, 174)) {
+                // line 175
                 yield "                                <span class=\"badge bg-success\">Disponible</span>
                             ";
             } else {
-                // line 172
+                // line 177
                 yield "                                <span class=\"badge bg-danger\">Indisponible</span>
                             ";
             }
-            // line 174
+            // line 179
             yield "                        </p>
                         <a href=\"";
-            // line 175
-            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_post", ["slug" => CoreExtension::getAttribute($this->env, $this->source, $context["book"], "slug", [], "any", false, false, false, 175)]), "html", null, true);
+            // line 180
+            yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\RoutingExtension']->getPath("blog_post", ["slug" => CoreExtension::getAttribute($this->env, $this->source, $context["book"], "slug", [], "any", false, false, false, 180)]), "html", null, true);
             yield "\" class=\"btn btn-sm btn-outline-primary mt-2\">Voir</a>
                     </div>
                 </div>
             ";
             $context['_iterated'] = true;
         }
-        // line 180
+        // line 185
         if (!$context['_iterated']) {
-            // line 179
+            // line 184
             yield "                <p class=\"text-center text-muted\">Aucun livre disponible pour le moment.</p>
             ";
         }
         $_parent = $context['_parent'];
         unset($context['_seq'], $context['_key'], $context['book'], $context['_parent'], $context['_iterated']);
         $context = array_intersect_key($context, $_parent) + $_parent;
-        // line 181
+        // line 186
         yield "        </div>
     </section>
 
@@ -227,7 +255,7 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
         <h3 class=\"mb-3\">Nos valeurs</h3>
         <p>Chez TomTroc, nous croyons au partage, à la communauté et à la passion de lire. Chaque livre est une opportunité de rencontre et de lien social.</p>
         <img src=\"";
-        // line 199
+        // line 204
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Symfony\Bridge\Twig\Extension\AssetExtension']->getAssetUrl("images/heart-line.svg"), "html", null, true);
         yield "\" alt=\"Cœur\" height=\"40\" />
     </section>
@@ -264,7 +292,7 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
      */
     public function getDebugInfo(): array
     {
-        return array (  231 => 199,  211 => 181,  204 => 179,  202 => 180,  194 => 175,  191 => 174,  187 => 172,  183 => 170,  181 => 169,  175 => 166,  171 => 165,  168 => 164,  160 => 162,  158 => 161,  155 => 160,  150 => 159,  139 => 151,  133 => 148,  124 => 141,  111 => 140,  88 => 138,  65 => 137,  42 => 136,);
+        return array (  259 => 204,  239 => 186,  232 => 184,  230 => 185,  222 => 180,  219 => 179,  215 => 177,  211 => 175,  209 => 174,  203 => 171,  199 => 170,  196 => 169,  188 => 167,  186 => 166,  183 => 165,  178 => 164,  167 => 156,  161 => 153,  152 => 146,  139 => 145,  125 => 141,  112 => 140,  89 => 138,  66 => 137,  43 => 136,);
     }
 
     public function getSourceContext(): Source
@@ -407,6 +435,11 @@ class __TwigTemplate_b845bc1749ff7988e6d5aa024ba0fb50 extends Template
 {% extends 'base.html.twig' %}
 {% block title %}Accueil - TomTroc{% endblock %}
 {% block body_id 'homepage' %}
+
+{% block stylesheets %}
+  <link rel=\"stylesheet\" href=\"{{ asset('styles/app.css') }}\">
+{% endblock %}
+
 
 {% block body %}
 <div class=\"container\">
