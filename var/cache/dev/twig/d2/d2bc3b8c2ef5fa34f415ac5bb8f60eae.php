@@ -227,6 +227,6 @@ Exception stack trace attached.
 {{ exception }}
 {% endif %}
 {% endblock %}
-", "@email/zurb_2/notification/body.txt.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/body.txt.twig");
+", "@email/zurb_2/notification/body.txt.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/twig-bridge/Resources/views/Email/zurb_2/notification/body.txt.twig");
     }
 }
