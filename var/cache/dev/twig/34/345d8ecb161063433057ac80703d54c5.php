@@ -118,6 +118,6 @@ class __TwigTemplate_378ef39bc7fd8ec3c16be99afe66c184 extends Template
         {{ render_as_html ? field.formattedValue|raw : field.formattedValue|striptags }}
     </span>
 {% endif %}
-", "@EasyAdmin/crud/field/textarea.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/textarea.html.twig");
+", "@EasyAdmin/crud/field/textarea.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/textarea.html.twig");
     }
 }
