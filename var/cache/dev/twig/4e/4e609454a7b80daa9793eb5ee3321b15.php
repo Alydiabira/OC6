@@ -173,6 +173,6 @@ class __TwigTemplate_601be3a35cad6d2c97fe8827bb6ce0ba extends Template
         {% endif %}
     {% endblock %}
 </{{ loadingTag }}>
-", "@LiveComponent/deferred.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/ux-live-component/templates/deferred.html.twig");
+", "@LiveComponent/deferred.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/ux-live-component/templates/deferred.html.twig");
     }
 }
