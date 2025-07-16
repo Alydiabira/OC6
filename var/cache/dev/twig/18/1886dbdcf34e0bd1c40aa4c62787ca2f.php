@@ -297,6 +297,6 @@ class __TwigTemplate_33e0d53c8d4bf912e5a181f667173330 extends Template
         {%- endif -%}
     </div>
 {%- endblock -%}
-", "@VichUploader/Form/fields.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/vich/uploader-bundle/templates/Form/fields.html.twig");
+", "@VichUploader/Form/fields.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/vich/uploader-bundle/templates/Form/fields.html.twig");
     }
 }
