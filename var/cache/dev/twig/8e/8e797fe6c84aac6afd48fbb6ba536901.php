@@ -119,6 +119,6 @@ class __TwigTemplate_06478a75dad4aa2f5f884698f729cdd7 extends Template
 <div {{ attributes.defaults({class: 'dropdown'}) }}>
     {% block content %}{% endblock %}
 </div>
-", "@EasyAdmin/components/ActionMenu.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu.html.twig");
+", "@EasyAdmin/components/ActionMenu.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu.html.twig");
     }
 }
