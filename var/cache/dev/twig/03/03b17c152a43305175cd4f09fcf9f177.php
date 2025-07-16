@@ -1489,6 +1489,6 @@ class __TwigTemplate_f66723fdb293d84cb840fc18383bdddd extends Template
         <span>{{ route|default(controller) }}</span>
     {%- endif %}
 {% endmacro %}
-", "@WebProfiler/Collector/request.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
+", "@WebProfiler/Collector/request.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Collector/request.html.twig");
     }
 }
