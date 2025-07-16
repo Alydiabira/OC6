@@ -21,8 +21,7 @@ use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[Route('/{_locale}/blog', name: 'blog_', defaults: ['_locale' => 'fr'])]
-final class BlogController extends AbstractController
+#[Route('/blog', name: 'blog_index')]final class BlogController extends AbstractController
 {
     #[Route('/', name: 'index', defaults: ['page' => 1, '_format' => 'html'], methods: ['GET'])]
     #[Route('/rss.xml', name: 'rss', defaults: ['page' => 1, '_format' => 'xml'], methods: ['GET'])]
