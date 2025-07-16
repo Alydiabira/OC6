@@ -339,6 +339,6 @@ class __TwigTemplate_1f89d9aeef4127002694a9203d9ab504 extends Template
     </body>
 </html>
 
-", "@EasyAdmin/page/login_minimal.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/page/login_minimal.html.twig");
+", "@EasyAdmin/page/login_minimal.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/page/login_minimal.html.twig");
     }
 }
