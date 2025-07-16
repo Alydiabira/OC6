@@ -360,6 +360,6 @@ class __TwigTemplate_87974484549ade402a7937669469f825 extends Template
 </div>
 
 {% endblock %}
-", "reset_password/check_email.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/reset_password/check_email.html.twig");
+", "reset_password/check_email.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/reset_password/check_email.html.twig");
     }
 }
