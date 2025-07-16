@@ -100,6 +100,6 @@ class __TwigTemplate_bd0afd399124505f6b97969b3817daff extends Template
         {% if form is not rootform %}</span>{% else %}</div>{% endif %}
     {%- endif %}
 {%- endblock form_errors %} #}
-", "form/layout.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/form/layout.html.twig");
+", "form/layout.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/form/layout.html.twig");
     }
 }
