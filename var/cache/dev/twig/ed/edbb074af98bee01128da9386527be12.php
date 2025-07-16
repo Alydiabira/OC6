@@ -154,6 +154,6 @@ class __TwigTemplate_abae24bedb2dc52c795840b939c2c337 extends Template
         {{ include('blog/_comment_form.html.twig') }}
     </div>
 {% endblock %}
-", "blog/comment_form_error.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/blog/comment_form_error.html.twig");
+", "blog/comment_form_error.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/blog/comment_form_error.html.twig");
     }
 }
