@@ -134,6 +134,6 @@ class __TwigTemplate_561c8b7d4b66d516d1294effa3a31e65 extends Template
 
     {{ form_widget(filters_form) }}
 {{ form_end(filters_form) }}
-", "@EasyAdmin/crud/filters.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/filters.html.twig");
+", "@EasyAdmin/crud/filters.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/filters.html.twig");
     }
 }
