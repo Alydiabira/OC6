@@ -240,6 +240,6 @@ class __TwigTemplate_45146171f82039a879dc82958e33b282 extends Template
 
     {{ show_source_code(_self) }}
 {% endblock %}
-", "user/change_password.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/user/change_password.html.twig");
+", "user/change_password.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/user/change_password.html.twig");
     }
 }
