@@ -343,6 +343,6 @@ class __TwigTemplate_865e609b5ca6a332a436a3c9c63ab3fc extends Template
         </tbody>
     </table>
 {% endblock %}
-", "@VichUploader/Collector/mapping_collector.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/vich/uploader-bundle/templates/Collector/mapping_collector.html.twig");
+", "@VichUploader/Collector/mapping_collector.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/vich/uploader-bundle/templates/Collector/mapping_collector.html.twig");
     }
 }
