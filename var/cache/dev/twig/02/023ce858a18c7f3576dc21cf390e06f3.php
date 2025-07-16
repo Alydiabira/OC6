@@ -96,6 +96,6 @@ class __TwigTemplate_62b761f053208461c90a5d47695ad03b extends Template
 <span class=\"badge badge-danger\" title=\"{{ 'label.inaccessible.explanation'|trans }}\">
     {{ 'label.inaccessible'|trans }}
 </span>
-", "@EasyAdmin/label/inaccessible.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/label/inaccessible.html.twig");
+", "@EasyAdmin/label/inaccessible.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/label/inaccessible.html.twig");
     }
 }
