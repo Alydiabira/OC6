@@ -151,6 +151,6 @@ class __TwigTemplate_25a4013e6cdcc59352782dfe0431fe65 extends Template
     {# Affichez un message ou omettez le formulaire si `commentForm` n'est pas fourni #}
     <p class=\"text-warning\">Le formulaire de commentaire n'est pas disponible.</p>
 {% endif %}
-", "liste/_form.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/liste/_form.html.twig");
+", "liste/_form.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/liste/_form.html.twig");
     }
 }
