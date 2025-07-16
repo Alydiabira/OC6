@@ -85,6 +85,6 @@ class __TwigTemplate_040a58bb15d3af8924b38cec88951457 extends Template
     <line x1=\"4\" y1=\"10\" x2=\"20\" y2=\"10\" />
     <line x1=\"10\" y1=\"4\" x2=\"10\" y2=\"20\" />
 </svg>
-", "@EasyAdmin/inspector/icon-v3.svg.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/inspector/icon-v3.svg.twig");
+", "@EasyAdmin/inspector/icon-v3.svg.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/inspector/icon-v3.svg.twig");
     }
 }
