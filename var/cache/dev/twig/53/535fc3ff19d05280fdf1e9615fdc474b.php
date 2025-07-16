@@ -160,6 +160,6 @@ class __TwigTemplate_a7e887c6807bc05d920d0c082c3c73b7 extends Template
         <img src=\"{{ asset(image) }}\">
     </div>
 {% endfor %}
-", "@EasyAdmin/crud/field/image.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/image.html.twig");
+", "@EasyAdmin/crud/field/image.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/image.html.twig");
     }
 }
