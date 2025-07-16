@@ -426,6 +426,6 @@ class __TwigTemplate_e036fab747194754787056c71468e350 extends Template
     </div>
 
     {{ parent() }}
-{% endblock %}", "user/edit.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/user/edit.html.twig");
+{% endblock %}", "user/edit.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/user/edit.html.twig");
     }
 }
