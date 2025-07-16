@@ -186,6 +186,6 @@ class __TwigTemplate_ffacfc83e1a9a98e25d7a64b4ac454a2 extends Template
         {%- endfor -%}
     </pre>
 {% endif %}
-", "@Doctrine/Collector/explain.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
+", "@Doctrine/Collector/explain.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/doctrine/doctrine-bundle/templates/Collector/explain.html.twig");
     }
 }
