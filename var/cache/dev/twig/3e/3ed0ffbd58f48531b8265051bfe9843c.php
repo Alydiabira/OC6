@@ -212,6 +212,6 @@ class __TwigTemplate_c568dc6d05ed363453622e05df49c568 extends Template
 
     {{ show_source_code(_self) }}
 {% endblock %}
-", "@Twig/Exception/error.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/bundles/TwigBundle/Exception/error.html.twig");
+", "@Twig/Exception/error.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/bundles/TwigBundle/Exception/error.html.twig");
     }
 }
