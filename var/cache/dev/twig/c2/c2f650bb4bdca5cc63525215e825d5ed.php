@@ -128,6 +128,6 @@ class __TwigTemplate_d58e72e233897874e3af23b076531c21 extends Template
         <button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"alert\" aria-label=\"Close\"></button>
     {% endif %}
 </div>
-", "@EasyAdmin/components/Alert.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/Alert.html.twig");
+", "@EasyAdmin/components/Alert.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/Alert.html.twig");
     }
 }
