@@ -125,6 +125,6 @@ class __TwigTemplate_093f7b4137c01c58f73f850ed9e7cdf1 extends Template
         {{ ea_ux_icon(icon.name, attributes.all) }}
     {% endif %}
 </span>
-", "@EasyAdmin/components/Icon.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/Icon.html.twig");
+", "@EasyAdmin/components/Icon.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/Icon.html.twig");
     }
 }
