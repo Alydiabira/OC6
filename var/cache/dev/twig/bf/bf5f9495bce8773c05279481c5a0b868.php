@@ -234,6 +234,6 @@ class __TwigTemplate_cb11a1e51386c2f66535d91dcf283875 extends Template
         </dl>
     </div>
 </div>
-", "@WebProfiler/Profiler/_command_summary.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/_command_summary.html.twig");
+", "@WebProfiler/Profiler/_command_summary.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/_command_summary.html.twig");
     }
 }
