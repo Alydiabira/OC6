@@ -133,6 +133,6 @@ class __TwigTemplate_96787d1f587f716095aaddf77aa10f7e extends Template
         <p>Aucun article récent.</p>
     {% endfor %}
 </div>
-", "article/recent.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/article/recent.html.twig");
+", "article/recent.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/article/recent.html.twig");
     }
 }
