@@ -109,6 +109,6 @@ class __TwigTemplate_51fb0a3a4b9b992d66cc2265c7d1f451 extends Template
 <p>
     Cheers!
 </p>
-", "registration/confirmation_email.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/registration/confirmation_email.html.twig");
+", "registration/confirmation_email.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/registration/confirmation_email.html.twig");
     }
 }
