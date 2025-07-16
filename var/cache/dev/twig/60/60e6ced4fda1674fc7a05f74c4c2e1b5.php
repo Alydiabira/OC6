@@ -99,6 +99,6 @@ class __TwigTemplate_c4ce1575d9acefd1ce05848967c36237 extends Template
         {{ component('ux:icon', { name: 'tabler:rss' }) }} {{ 'menu.rss'|trans }}
     </a>
 </div>
-", "blog/_rss.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/blog/_rss.html.twig");
+", "blog/_rss.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/blog/_rss.html.twig");
     }
 }
