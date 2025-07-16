@@ -245,6 +245,6 @@ class __TwigTemplate_abf13fcd0d7dfad867e352325d4f536e extends Template
         }
     }
 </style>
-", "liste/_delete_form.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/liste/_delete_form.html.twig");
+", "liste/_delete_form.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/liste/_delete_form.html.twig");
     }
 }
