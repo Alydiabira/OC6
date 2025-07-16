@@ -6,32 +6,37 @@ homepage:
         template: default/homepage.html.twig
         _locale: '%app.locale%'
     requirements:
-        _locale: en|fr  # Spécifiez les locales possibles (en, fr, etc.)
+        _locale: en|fr
 
 # Définir les routes pour les contrôleurs personnalisés, avec un préfixe de locale
 controllers:
-    resource: '../src/Controller/'
+    resource: ../src/Controller/
     type: attribute
     prefix: /{_locale}
+    requirements:
+        _locale: en|fr
     defaults:
-        _locale: '%app.locale%'  # Utilisation de la locale par défaut
+        _locale: '%app.locale%'
 
-# Définir la route pour le tableau de bord admin avec la gestion des locales
+# Route du tableau de bord admin avec locale
 admin_dashboard:
     path: /{_locale}/admin
     controller: App\Controller\Admin\DashboardController::index
     requirements:
-        _locale: en|fr  # Définir les locales autorisées (en, fr, etc.)
+        _locale: en|fr
     methods: [GET]
 
+# Route blog avec tag (sans doublon de _locale)
 blog_index_tag:
-    path: /blog/tag/{tagName}
+    path: /{_locale}/blog/tag/{tagName}
     controller: App\Controller\BlogController::indexByTag
     requirements:
-        tagName: '.*'  # Allow any characters (this is less restrictive)
+        _locale: en|fr
+        tagName: .*
 
-
-# config/routes.yaml
+# Route test contact
 contact_test:
-    path: /contact/controller/test
+    path: /{_locale}/contact/controller/test
     controller: App\Controller\ContactController::test
+    requirements:
+        _locale: en|fr
