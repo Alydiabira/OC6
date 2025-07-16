@@ -155,6 +155,6 @@ class __TwigTemplate_f3f6b34d6c86dbd7fb71387cb1eeaaa6 extends Template
         <label class=\"form-check-label\" for=\"{{ field.uniqueId }}\"></label>
     </div>
 {% endif %}
-", "@EasyAdmin/crud/field/boolean.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/boolean.html.twig");
+", "@EasyAdmin/crud/field/boolean.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/boolean.html.twig");
     }
 }
