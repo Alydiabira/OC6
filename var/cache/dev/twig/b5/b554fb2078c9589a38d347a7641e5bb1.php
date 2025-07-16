@@ -148,6 +148,6 @@ class __TwigTemplate_6bd498f6a9779afc5451038c6fb0e511 extends Template
         {{ form_row(button_delete) }}
     {%- endif -%}
 {%- endblock live_collection_entry_row -%}
-", "@LiveComponent/form_theme.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/ux-live-component/templates/form_theme.html.twig");
+", "@LiveComponent/form_theme.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/ux-live-component/templates/form_theme.html.twig");
     }
 }
