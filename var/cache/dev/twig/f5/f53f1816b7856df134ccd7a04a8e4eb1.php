@@ -75,6 +75,6 @@ class __TwigTemplate_e17fe739b2ba10ec2c6756a474973c20 extends Template
     public function getSourceContext(): Source
     {
         return new Source("<li class=\"dropdown-divider\"></li>
-", "@EasyAdmin/components/ActionMenu/ActionList/Divider.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Divider.html.twig");
+", "@EasyAdmin/components/ActionMenu/ActionList/Divider.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList/Divider.html.twig");
     }
 }
