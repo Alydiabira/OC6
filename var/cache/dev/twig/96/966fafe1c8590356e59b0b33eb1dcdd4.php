@@ -96,6 +96,6 @@ class __TwigTemplate_5079a2311cdef9a397214e6f256767c8 extends Template
 {% for encore_asset in assets %}
     {{ ea_call_function_if_exists('encore_entry_script_tags', encore_asset.value, encore_asset.webpackPackageName, encore_asset.webpackEntrypointName, encore_asset.htmlAttributes) }}
 {% endfor %}
-", "@EasyAdmin/includes/_encore_script_tags.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_encore_script_tags.html.twig");
+", "@EasyAdmin/includes/_encore_script_tags.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_encore_script_tags.html.twig");
     }
 }
