@@ -284,6 +284,6 @@ class __TwigTemplate_9850c255c1b9fe0e41cfe0457a3227e1 extends Template
         </nav>
     {% endif %}
 </div>
-", "@EasyAdmin/crud/paginator.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/paginator.html.twig");
+", "@EasyAdmin/crud/paginator.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/paginator.html.twig");
     }
 }
