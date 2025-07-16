@@ -111,6 +111,6 @@ class __TwigTemplate_d2472113167e9cbb35b4ec7a69193575 extends Template
         <link rel=\"next\" href=\"{{ path(route, knp_pagination_query(query, next)) }}\" />
     {% endif %}
 {% endif %}
-", "@KnpPaginator/Pagination/rel_links.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/knplabs/knp-paginator-bundle/templates/Pagination/rel_links.html.twig");
+", "@KnpPaginator/Pagination/rel_links.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/knplabs/knp-paginator-bundle/templates/Pagination/rel_links.html.twig");
     }
 }
