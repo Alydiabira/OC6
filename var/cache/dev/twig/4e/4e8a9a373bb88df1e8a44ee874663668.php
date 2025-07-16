@@ -171,6 +171,6 @@ class __TwigTemplate_91f99766c4214b0377759aec32279b02 extends Template
 </div>
 
 
-", "admin/dashboard.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/admin/dashboard.html.twig");
+", "admin/dashboard.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/admin/dashboard.html.twig");
     }
 }
