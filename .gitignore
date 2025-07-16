@@ -1,0 +1,21 @@
+# Symfony : ignorer cache, logs, sessions
+/var/cache/
+/var/log/
+/var/sessions/
+/var/test/
+/var/dev/
+/var/prod/
+/var/cache/dev/profiler/
+/var/cache/prod/profiler/
+
+# Fichiers d’environnement locaux
+.env.local
+.env.*.local
+
+# IDE et outils
+.idea/
+.vscode/
+
+# Dépendances
+/vendor/
+/node_modules/
