@@ -731,6 +731,6 @@ class __TwigTemplate_2e2707b53e56a8061d6864e0a3b91aeb extends Template
     });
 })();
 </script>
-", "@WebProfiler/Profiler/settings.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/settings.html.twig");
+", "@WebProfiler/Profiler/settings.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/settings.html.twig");
     }
 }
