@@ -1,0 +1,3 @@
+<?php //40afe2f61675c117989c4125bf986bfb
+
+return [PHP_INT_MAX, 'vendor/highlight.js/lib/languages/php.js'];
