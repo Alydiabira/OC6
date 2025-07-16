@@ -85,6 +85,6 @@ class __TwigTemplate_95e09ce3038f0621b0690bf49a7b07cf extends Template
     {
         return new Source("{# @var assets \\EasyCorp\\Bundle\\EasyAdminBundle\\Dto\\AssetDto[] #}
 {{ ea_importmap(assets|map(asset => asset.value)) }}
-", "@EasyAdmin/includes/_importmap.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_importmap.html.twig");
+", "@EasyAdmin/includes/_importmap.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_importmap.html.twig");
     }
 }
