@@ -128,6 +128,6 @@ class __TwigTemplate_28b42515af88451cad04152580831a4e extends Template
     </p>
 {% endif %}
 
-", "blog/_post_tags.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/blog/_post_tags.html.twig");
+", "blog/_post_tags.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/blog/_post_tags.html.twig");
     }
 }
