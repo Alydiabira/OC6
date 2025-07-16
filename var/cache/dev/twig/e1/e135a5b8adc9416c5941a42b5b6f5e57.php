@@ -150,6 +150,6 @@ class __TwigTemplate_85f245f12b07e964b246a28412281edb extends Template
     <p>Votre message a bien été envoyé à l'administrateur.</p>
     <p><a href=\"{{ path('contact') }}\">Retour au formulaire de contact</a></p>
 {% endblock %}
-", "mail/index.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/mail/index.html.twig");
+", "mail/index.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/mail/index.html.twig");
     }
 }
