@@ -1866,6 +1866,6 @@ class __TwigTemplate_912a8bc62fb2af3bcbc67e4123abb628 extends Template
         </tbody>
     </table>
 {% endmacro %}
-", "@Doctrine/Collector/db.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
+", "@Doctrine/Collector/db.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/doctrine/doctrine-bundle/templates/Collector/db.html.twig");
     }
 }
