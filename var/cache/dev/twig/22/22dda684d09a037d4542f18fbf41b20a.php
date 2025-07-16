@@ -212,6 +212,6 @@ class __TwigTemplate_ade0749c7afb724eae698da358aaf978 extends Template
         {% endif %}
     </div>
 {% endif %}
-", "@KnpPaginator/Pagination/sliding.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sliding.html.twig");
+", "@KnpPaginator/Pagination/sliding.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/knplabs/knp-paginator-bundle/templates/Pagination/sliding.html.twig");
     }
 }
