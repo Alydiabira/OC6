@@ -118,6 +118,6 @@ class __TwigTemplate_8a7842db92fc75d06716f1fdc326d709 extends Template
     <script src=\"{{ (js_asset.preload ? ea_call_function_if_exists('preload', src, { as: 'script', nopush: js_asset.nopush }))|default(src) }}\" {{ js_asset.async ? 'async' }} {{ js_asset.defer ? 'defer' }}
     {%- for attr, value in js_asset.htmlAttributes %} {{ attr }}=\"{{ value|e('html') }}\"{% endfor %}></script>
 {% endfor %}
-", "@EasyAdmin/includes/_js_assets.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_js_assets.html.twig");
+", "@EasyAdmin/includes/_js_assets.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/includes/_js_assets.html.twig");
     }
 }
