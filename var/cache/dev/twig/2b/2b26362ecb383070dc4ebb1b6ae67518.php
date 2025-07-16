@@ -2272,6 +2272,6 @@ class __TwigTemplate_731f61b3ced5799919cf6fe952c47b94 extends Template
         </dd>
     </div>
 {% endmacro %}
-", "@EasyAdmin/crud/detail.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/detail.html.twig");
+", "@EasyAdmin/crud/detail.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/detail.html.twig");
     }
 }
