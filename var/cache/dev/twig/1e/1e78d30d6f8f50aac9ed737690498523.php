@@ -231,6 +231,6 @@ class __TwigTemplate_a4b116d20bf12e0b5a52c76c882a96a0 extends Template
         </div>
     </div>
 {% endmacro %}
-", "default/_language_selector.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/default/_language_selector.html.twig");
+", "default/_language_selector.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/default/_language_selector.html.twig");
     }
 }
