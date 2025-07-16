@@ -1086,6 +1086,6 @@ class __TwigTemplate_2f2ff936ad9c9ed1fde0c4cdd2137184 extends Template
         {% endfor %}
     </div>
 {% endblock %}
-", "@TwigComponent/Collector/twig_component.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/ux-twig-component/templates/Collector/twig_component.html.twig");
+", "@TwigComponent/Collector/twig_component.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/ux-twig-component/templates/Collector/twig_component.html.twig");
     }
 }
