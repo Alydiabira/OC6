@@ -161,6 +161,6 @@ class __TwigTemplate_5fdd6ddc76e7323d2f118f716ee4fb46 extends Template
         {% endfor %}
     </div>
 {% endif %}
-", "default/_flash_messages.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/default/_flash_messages.html.twig");
+", "default/_flash_messages.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/default/_flash_messages.html.twig");
     }
 }
