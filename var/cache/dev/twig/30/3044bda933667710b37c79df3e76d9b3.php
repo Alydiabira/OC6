@@ -118,6 +118,6 @@ class __TwigTemplate_ac25897a19f6d20bde400e3e3b5a8bc9 extends Template
    avoid errors when the 'intl' PHP extension is not available and the application
    is forced to use the limited \"intl polyfill\", which only supports UTC and GMT #}
 <!-- Fragment rendered on {{ 'now'|format_datetime('long', 'long', '', 'UTC') }} -->
-", "blog/about.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/blog/about.html.twig");
+", "blog/about.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/blog/about.html.twig");
     }
 }
