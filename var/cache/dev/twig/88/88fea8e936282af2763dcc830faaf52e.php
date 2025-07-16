@@ -544,6 +544,6 @@ class __TwigTemplate_9bf106a91d551a306bb48b2f66608335 extends Template
         {{ include('@EasyAdmin/crud/includes/_delete_form.html.twig', { entity_id: entity.primaryKeyValue }, with_context = false) }}
     {% endblock delete_form %}
 {% endblock %}
-", "@EasyAdmin/crud/edit.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/edit.html.twig");
+", "@EasyAdmin/crud/edit.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/edit.html.twig");
     }
 }
