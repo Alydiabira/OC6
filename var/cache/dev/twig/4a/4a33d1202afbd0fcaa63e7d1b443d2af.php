@@ -229,6 +229,6 @@ class __TwigTemplate_605eef20439c4ecc741d45fed0a67040 extends Template
         {{ exception.publicMessage|trans(exception.translationParameters, 'EasyAdminBundle') }}
     </div>
 {% endblock %}
-", "@EasyAdmin/exception.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/exception.html.twig");
+", "@EasyAdmin/exception.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/exception.html.twig");
     }
 }
