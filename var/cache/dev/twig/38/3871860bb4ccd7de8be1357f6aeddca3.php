@@ -221,6 +221,6 @@ class __TwigTemplate_06c9a3c4a778c1ca8b5e4accd0645aa9 extends Template
 {% block content_title %}{{ block('page_title') }}{% endblock %}
 
 {% block main %}{{ block('page_content') }}{% endblock %}
-", "@EasyAdmin/page/content.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/page/content.html.twig");
+", "@EasyAdmin/page/content.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/page/content.html.twig");
     }
 }
