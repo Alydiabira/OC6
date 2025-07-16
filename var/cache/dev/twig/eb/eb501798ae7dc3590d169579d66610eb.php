@@ -115,6 +115,6 @@ class __TwigTemplate_fd21949c8724e064a70353d17b8a38eb extends Template
         return new Source("<div {{ attributes.defaults({class: 'dropdown-overlay'}) }}>
     {% block content %}{% endblock %}
 </div>
-", "@EasyAdmin/components/ActionMenu/Overlay.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/Overlay.html.twig");
+", "@EasyAdmin/components/ActionMenu/Overlay.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/Overlay.html.twig");
     }
 }
