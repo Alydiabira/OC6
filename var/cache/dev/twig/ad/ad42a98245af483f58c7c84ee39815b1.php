@@ -962,6 +962,6 @@ form textarea {
 </div> {# Fin .page-container #}
 
 {% endblock %}
-", "liste/edit.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/liste/edit.html.twig");
+", "liste/edit.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/liste/edit.html.twig");
     }
 }
