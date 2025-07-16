@@ -119,6 +119,6 @@ class __TwigTemplate_6282c6e08ec498a928563fa4e1b321a4 extends Template
 {% if field.customOptions.get('showName') %}
     {{ field.formattedValue.name }}
 {% endif %}
-", "@EasyAdmin/crud/field/currency.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/currency.html.twig");
+", "@EasyAdmin/crud/field/currency.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/currency.html.twig");
     }
 }
