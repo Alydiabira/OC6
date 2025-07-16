@@ -189,6 +189,6 @@ class __TwigTemplate_aa75473f3df11e85a2d8243856829543 extends Template
         </div>
     </div>
 {% endblock %}
-", "form/fields.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/form/fields.html.twig");
+", "form/fields.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/form/fields.html.twig");
     }
 }
