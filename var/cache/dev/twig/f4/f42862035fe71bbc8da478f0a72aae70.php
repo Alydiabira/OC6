@@ -112,6 +112,6 @@ class __TwigTemplate_4f0313444b87faa0696e082f1ac6a01f extends Template
 <style>
    
 </style>
-", "article/_delete_form.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/article/_delete_form.html.twig");
+", "article/_delete_form.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/article/_delete_form.html.twig");
     }
 }
