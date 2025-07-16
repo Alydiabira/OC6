@@ -167,6 +167,6 @@ class __TwigTemplate_fa1614574ac4bc016472cea9b3706230 extends Template
         <button type=\"submit\" class=\"btn btn-primary\">Envoyer</button>
     {{ form_end(form) }}
 {% endblock %}
-", "mail/send_mail_form.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/mail/send_mail_form.html.twig");
+", "mail/send_mail_form.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/mail/send_mail_form.html.twig");
     }
 }
