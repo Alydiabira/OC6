@@ -109,6 +109,6 @@ class __TwigTemplate_cedfb809da4f37097cf5e533fd87f0e6 extends Template
         <button type=\"submit\">Vérifier le code</button>
     {{ form_end(form) }}
 </form>
-", "reset_password/verify_code.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/reset_password/verify_code.html.twig");
+", "reset_password/verify_code.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/reset_password/verify_code.html.twig");
     }
 }
