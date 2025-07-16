@@ -676,6 +676,6 @@ class __TwigTemplate_d351dff514906b02614d52c6546f9913 extends Template
         </div>
     {% endfor %}
 {% endblock %}
-", "@WebProfiler/Collector/notifier.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Collector/notifier.html.twig");
+", "@WebProfiler/Collector/notifier.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Collector/notifier.html.twig");
     }
 }
