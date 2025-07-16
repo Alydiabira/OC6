@@ -110,6 +110,6 @@ class __TwigTemplate_fa513e16244dbbed4c954b2e3ad850d9 extends Template
        </form>
     </div>
 </div>
-", "@WebProfiler/Profiler/header.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/header.html.twig");
+", "@WebProfiler/Profiler/header.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/symfony/web-profiler-bundle/Resources/views/Profiler/header.html.twig");
     }
 }
