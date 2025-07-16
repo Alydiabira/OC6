@@ -99,6 +99,6 @@ class __TwigTemplate_3dc04481965a85e22ebabb4b144b249b extends Template
     {{ form_widget(form) }}
     <button class=\"btn\">{{ button_label|default('Save') }}</button>
 {{ form_end(form) }}
-", "article/_form.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/article/_form.html.twig");
+", "article/_form.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/article/_form.html.twig");
     }
 }
