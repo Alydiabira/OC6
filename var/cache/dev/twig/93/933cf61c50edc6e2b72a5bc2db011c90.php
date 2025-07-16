@@ -115,6 +115,6 @@ class __TwigTemplate_329b60528a6d9067a6b11d160ee4c4fc extends Template
         return new Source("<ul {{ attributes.defaults({class: 'dropdown-menu dropdown-menu-end'}) }}>
     {% block content %}{% endblock %}
 </ul>
-", "@EasyAdmin/components/ActionMenu/ActionList.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList.html.twig");
+", "@EasyAdmin/components/ActionMenu/ActionList.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/components/ActionMenu/ActionList.html.twig");
     }
 }
