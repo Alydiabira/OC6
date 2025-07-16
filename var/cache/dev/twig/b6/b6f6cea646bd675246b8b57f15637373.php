@@ -240,6 +240,6 @@ class __TwigTemplate_cfc974c59c7d94246d6cfe0d6c789920 extends Template
         {{- field.formattedValue|escape -}}
     </textarea>
 {% endmacro %}
-", "@EasyAdmin/crud/field/code_editor.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/code_editor.html.twig");
+", "@EasyAdmin/crud/field/code_editor.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/vendor/easycorp/easyadmin-bundle/templates/crud/field/code_editor.html.twig");
     }
 }
