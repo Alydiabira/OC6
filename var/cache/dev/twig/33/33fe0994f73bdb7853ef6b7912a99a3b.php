@@ -345,6 +345,6 @@ class __TwigTemplate_c441da87d3fb777396e45f79f9393b69 extends Template
     }
 </style>
 {% endblock %}
-", "article/new.html.twig", "/Users/diabiraaly/Desktop/Openclassrooms/OC6/templates/article/new.html.twig");
+", "article/new.html.twig", "/Users/diabiraaly/Desktop/PHP-blog-emilie-forteroche/OC6/templates/article/new.html.twig");
     }
 }
