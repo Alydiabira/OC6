@@ -75,74 +75,74 @@
 
             <div class="container">
 
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-text">
-      <h2>Rejoignez nos lecteurs passionnés</h2>
-      <p>Donnez une nouvelle vie à vos livres en les échangeant entre amoureux de la lecture !</p>
-      <a href="{{ path('book_index') }}" class="button">Découvrir</a>
-    </div>
-    <div class="hero-image">
-      <img src="{{ asset('images/livres.jpg') }}" alt="Livres empilés" />
-    </div>
-  </section>
+            <!-- HERO -->
+            <section class="hero">
+                <div class="hero-text">
+                <h2>Rejoignez nos lecteurs passionnés</h2>
+                <p>Donnez une nouvelle vie à vos livres en les échangeant entre amoureux de la lecture !</p>
+                <a href="{{ path('book_index') }}" class="button">Découvrir</a>
+                </div>
+                <div class="hero-image">
+                <img src="{{ asset('images/livres.jpg') }}" alt="Livres empilés" />
+                </div>
+            </section>
 
-  <!-- DERNIERS LIVRES -->
-  <section class="latest-books">
-    <h3 class="text-center">Les derniers livres ajoutés</h3>
-    {% if books is defined and books is not empty %}
-  <!-- DERNIERS LIVRES -->
-  <section class="latest-books">
-    <h3 class="text-center">Les derniers livres ajoutés</h3>
-    <div class="book-grid">
-      {% for book in books %}
-        <div class="card">
-          {% if book.image %}
-            <img src="{{ asset('uploads/posts/' ~ book.image) }}" alt="{{ book.title }}">
-          {% endif %}
-          <div class="card-body">
-            <h5 class="card-title">{{ book.title }}</h5>
-            <p class="card-text text-muted">{{ book.author.username }}</p>
-            <p>
-              <strong>Disponibilité :</strong>
-              {% if book.available %}
-                <span class="badge">Disponible</span>
-              {% else %}
-                <span class="badge unavailable">Indisponible</span>
-              {% endif %}
-            </p>
-            <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
-          </div>
-        </div>
-      {% endfor %}
-    </div>
-    <div class="text-center mt-4">
-      <a href="{{ path('book_index') }}" class="button">Voir tous les livres</a>
-    </div>
-  </section>
-{% endif %}
+            <!-- DERNIERS LIVRES -->
+            <section class="latest-books">
+                <h3 class="text-center">Les derniers livres ajoutés</h3>
+                {% if books is defined and books is not empty %}
+            <!-- DERNIERS LIVRES -->
+            <section class="latest-books">
+                <h3 class="text-center">Les derniers livres ajoutés</h3>
+                <div class="book-grid">
+                {% for book in books %}
+                    <div class="card">
+                    {% if book.image %}
+                        <img src="{{ asset('uploads/posts/' ~ book.image) }}" alt="{{ book.title }}">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ book.title }}</h5>
+                        <p class="card-text text-muted">{{ book.author.username }}</p>
+                        <p>
+                        <strong>Disponibilité :</strong>
+                        {% if book.available %}
+                            <span class="badge">Disponible</span>
+                        {% else %}
+                            <span class="badge unavailable">Indisponible</span>
+                        {% endif %}
+                        </p>
+                        <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
+                    </div>
+                    </div>
+                {% endfor %}
+                </div>
+                <div class="text-center mt-4">
+                <a href="{{ path('book_index') }}" class="button">Voir tous les livres</a>
+                </div>
+            </section>
+            {% endif %}
 
-  </section>
+            </section>
 
-  <!-- COMMENT ÇA MARCHE -->
-  <section class="how-it-works">
-    <h3>Comment ça marche ?</h3>
-    <div class="steps">
-      <div>🧾 Inscrivez-vous</div>
-      <div>📖 Ajoutez des livres</div>
-      <div>🔍 Parcourez les livres</div>
-      <div>🤝 Échangez avec d’autres lecteurs</div>
-    </div>
-  </section>
+            <!-- COMMENT ÇA MARCHE -->
+            <section class="how-it-works">
+                <h3>Comment ça marche ?</h3>
+                <div class="steps">
+                <div>🧾 Inscrivez-vous</div>
+                <div>📖 Ajoutez des livres</div>
+                <div>🔍 Parcourez les livres</div>
+                <div>🤝 Échangez avec d’autres lecteurs</div>
+                </div>
+            </section>
 
-  <!-- NOS VALEURS -->
-  <section class="our-values">
-    <h3>Nos valeurs</h3>
-    <p>Chez TomTroc, nous croyons au partage, à la communauté et à la passion de lire. Chaque livre est une opportunité de rencontre et de lien social.</p>
-    <img src="{{ asset('images/heart-line.svg') }}" alt="Cœur" height="40" />
-  </section>
+            <!-- NOS VALEURS -->
+            <section class="our-values">
+                <h3>Nos valeurs</h3>
+                <p>Chez TomTroc, nous croyons au partage, à la communauté et à la passion de lire. Chaque livre est une opportunité de rencontre et de lien social.</p>
+                <img src="{{ asset('images/heart-line.svg') }}" alt="Cœur" height="40" />
+            </section>
 
-</div>
+            </div>
         {% endblock %}
     </main>
 
