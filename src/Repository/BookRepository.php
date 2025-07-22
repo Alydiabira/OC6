@@ -4,7 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Book;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
-use Doctrine\ORM\Tools\Pagination\Paginator;
+use Doctrine\ORM\Tools\Pagination\Paginator as DoctrinePaginator;
 use Doctrine\Persistence\ManagerRegistry;
 
 class BookRepository extends ServiceEntityRepository
@@ -17,9 +17,14 @@ class BookRepository extends ServiceEntityRepository
     /**
      * Recherche paginée des livres
      *
-     * @return Paginator<Book>
+     * @return array{
+     *     data: Book[],
+     *     currentPage: int,
+     *     pageCount: int,
+     *     totalItems: int
+     * }
      */
-    public function findPaginated(int $page, int $limit): Paginator
+    public function findPaginated(int $page, int $limit): array
     {
         $query = $this->createQueryBuilder('b')
             ->orderBy('b.createdAt', 'DESC')
@@ -27,7 +32,16 @@ class BookRepository extends ServiceEntityRepository
             ->setMaxResults($limit)
             ->getQuery();
 
-        return new Paginator($query);
+        $paginator = new DoctrinePaginator($query);
+        $totalItems = count($paginator);
+        $pageCount = (int) ceil($totalItems / $limit);
+
+        return [
+            'data'        => iterator_to_array($paginator),
+            'currentPage' => $page,
+            'pageCount'   => $pageCount,
+            'totalItems'  => $totalItems,
+        ];
     }
 
     /**
@@ -37,7 +51,9 @@ class BookRepository extends ServiceEntityRepository
      */
     public function searchByTitleOrAuthor(?string $query): array
     {
-        if (empty($query)) {
+        $query = trim((string) $query);
+
+        if ($query === '') {
             return [];
         }
 
