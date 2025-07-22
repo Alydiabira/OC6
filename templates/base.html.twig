@@ -90,35 +90,38 @@
   <!-- DERNIERS LIVRES -->
   <section class="latest-books">
     <h3 class="text-center">Les derniers livres ajoutés</h3>
-    {% if books is not empty %}
-      <div class="book-grid">
-        {% for book in books %}
-          <div class="card">
-            {% if book.image %}
-              <img src="{{ asset('uploads/posts/' ~ book.image) }}" alt="{{ book.title }}">
-            {% endif %}
-            <div class="card-body">
-              <h5 class="card-title">{{ book.title }}</h5>
-              <p class="card-text text-muted">{{ book.author.username }}</p>
-              <p>
-                <strong>Disponibilité :</strong>
-                {% if book.available %}
-                  <span class="badge">Disponible</span>
-                {% else %}
-                  <span class="badge unavailable">Indisponible</span>
-                {% endif %}
-              </p>
-              <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
-            </div>
+    {% if books is defined and books is not empty %}
+  <!-- DERNIERS LIVRES -->
+  <section class="latest-books">
+    <h3 class="text-center">Les derniers livres ajoutés</h3>
+    <div class="book-grid">
+      {% for book in books %}
+        <div class="card">
+          {% if book.image %}
+            <img src="{{ asset('uploads/posts/' ~ book.image) }}" alt="{{ book.title }}">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ book.title }}</h5>
+            <p class="card-text text-muted">{{ book.author.username }}</p>
+            <p>
+              <strong>Disponibilité :</strong>
+              {% if book.available %}
+                <span class="badge">Disponible</span>
+              {% else %}
+                <span class="badge unavailable">Indisponible</span>
+              {% endif %}
+            </p>
+            <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
           </div>
-        {% endfor %}
-      </div>
-      <div class="text-center mt-4">
-        <a href="{{ path('book_index') }}" class="button">Voir tous les livres</a>
-      </div>
-    {% else %}
-      <p class="text-center text-muted">Aucun livre disponible pour le moment.</p>
-    {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+    <div class="text-center mt-4">
+      <a href="{{ path('book_index') }}" class="button">Voir tous les livres</a>
+    </div>
+  </section>
+{% endif %}
+
   </section>
 
   <!-- COMMENT ÇA MARCHE -->
