@@ -17,6 +17,7 @@ final class BookController extends AbstractController
         $page = max(1, (int) $request->query->get('page', 1));
         $limit = 8;
 
+        // Assure-toi que BookRepository::findPaginated() existe et fonctionne
         $books = $bookRepository->findPaginated($page, $limit);
         $totalItems = $bookRepository->count([]);
         $pageCount = ceil($totalItems / $limit);
@@ -34,8 +35,10 @@ final class BookController extends AbstractController
     #[Route('/livres/recherche', name: 'book_search', methods: ['GET'])]
     public function searchBooks(Request $request, BookRepository $bookRepository): Response
     {
-        $query = $request->query->get('q', '');
-        $books = $bookRepository->searchByTitleOrAuthor($query);
+        $query = trim($request->query->get('q', ''));
+
+        // Assure-toi que BookRepository::searchByTitleOrAuthor() existe
+        $books = $query ? $bookRepository->searchByTitleOrAuthor($query) : [];
 
         return $this->render('book/index.html.twig', [
             'books' => $books,
