@@ -8,6 +8,7 @@ use App\Entity\User;
 use App\Event\CommentCreatedEvent;
 use App\Form\CommentType;
 use App\Pagination\Paginator;
+use App\Repository\BookRepository;
 use App\Repository\PostRepository;
 use App\Repository\TagRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -26,25 +27,23 @@ final class BlogController extends AbstractController
     #[Route('/blog', name: 'blog_index', defaults: ['page' => 1, '_format' => 'html'], methods: ['GET'])]
     #[Route('/blog/rss.xml', name: 'blog_rss', defaults: ['page' => 1, '_format' => 'xml'], methods: ['GET'])]
     #[Route('/blog/page/{page}', name: 'blog_index_paginated', defaults: ['_format' => 'html'], requirements: ['page' => '\d+'], methods: ['GET'])]
-    public function index(
-        Request $request,
-        int $page,
-        string $_format,
-        PostRepository $postRepository,
-        TagRepository $tagRepository
-    ): Response {
-        $tag = $request->query->get('tag') ? $tagRepository->findOneBy(['name' => $request->query->get('tag')]) : null;
+    #[Route('/blog', name: 'blog_index', methods: ['GET'])]
+    public function index(BookRepository $bookRepository): Response
+    {
+        $books = $bookRepository->findLatest(4);
 
-        $paginatedResults = $postRepository->findLatest($page, $tag);
+        return $this->render('blog/index.html.twig', [
+            'books' => $books,
+        ]);
+    }
 
-        return $this->render('blog/index.' . $_format . '.twig', [
-            'paginator'    => $paginatedResults['data'],
-            'currentPage'  => $paginatedResults['currentPage'],
-            'pageCount'    => $paginatedResults['pageCount'],
-            'totalItems'   => $paginatedResults['totalItems'],
-            'pageSize'     => Paginator::PAGE_SIZE,
-            'tagName'      => $tag?->getName(),
-            'books'        => $postRepository->findBy([], ['createdAt' => 'DESC'], 4),
+    #[Route('/blog/rss.xml', name: 'blog_rss', methods: ['GET'])]
+    public function rss(BookRepository $bookRepository): Response
+    {
+        $books = $bookRepository->findLatest(20);
+
+        return $this->render('blog/rss.xml.twig', [
+            'books' => $books,
         ]);
     }
 
