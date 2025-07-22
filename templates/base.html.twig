@@ -32,9 +32,9 @@
                     <ul>
                         <li><a href="{{ path('blog_index') }}" class="{{ app.request.get('_route') == 'blog_index' ? 'active' : '' }}">Accueil</a></li>
                         <li><a href="{{ path('book_index') }}">Nos livres à l'échange</a></li>
-                        <a href="{{ path('app_message') }}">Messagerie</a>
+                        <li><a href="{{ path('app_message') }}">Messagerie</a></li>
                         {% if app.user %}
-                            <li><a href="{{ path('user_account') }}">Mon compte</a></li>
+                            <li><a href="{{ path('user_edit') }}">Mon compte</a></li>
                             <li><a href="{{ logout_path() }}" class="text-danger">Déconnexion</a></li>
                         {% else %}
                             <li><a href="{{ path('app_login') }}">Connexion</a></li>
