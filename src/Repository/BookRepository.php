@@ -16,13 +16,6 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * Recherche paginée des livres
-     *
-     * @return array{
-     *     data: Book[],
-     *     currentPage: int,
-     *     pageCount: int,
-     *     totalItems: int
-     * }
      */
     public function findPaginated(int $page, int $limit): array
     {
@@ -46,8 +39,6 @@ class BookRepository extends ServiceEntityRepository
 
     /**
      * Recherche par titre ou nom d’auteur
-     *
-     * @return Book[]
      */
     public function searchByTitleOrAuthor(?string $query): array
     {
@@ -62,6 +53,18 @@ class BookRepository extends ServiceEntityRepository
             ->andWhere('b.title LIKE :q OR a.username LIKE :q')
             ->setParameter('q', '%' . $query . '%')
             ->orderBy('b.createdAt', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
+
+    /**
+     * Récupère les derniers livres ajoutés
+     */
+    public function findLatest(int $limit = 4): array
+    {
+        return $this->createQueryBuilder('b')
+            ->orderBy('b.createdAt', 'DESC')
+            ->setMaxResults($limit)
             ->getQuery()
             ->getResult();
     }
