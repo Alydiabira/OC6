@@ -40,6 +40,10 @@ class Book
     #[ORM\JoinColumn(nullable: false)]
     private ?User $owner = null;
 
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $seller = null;
+
     public function __construct()
     {
         $this->createdAt = new \DateTimeImmutable();
@@ -124,6 +128,17 @@ class Book
     public function setOwner(?User $owner): static
     {
         $this->owner = $owner;
+        return $this;
+    }
+
+    public function getSeller(): ?User
+    {
+        return $this->seller;
+    }
+
+    public function setSeller(?User $seller): static
+    {
+        $this->seller = $seller;
         return $this;
     }
 }
