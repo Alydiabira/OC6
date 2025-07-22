@@ -184,9 +184,23 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Book::class, orphanRemoval: true)]
     private Collection $books;
 
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
+    private Collection $messagesSent;
+
+    /**
+     * @var Collection<int, Message>
+     */
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
+    private Collection $messages;
+
     public function __construct()
     {
         $this->books = new ArrayCollection();
+        $this->messagesSent = new ArrayCollection();
+        $this->messages = new ArrayCollection();
     }
 
     /**
@@ -212,6 +226,66 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->books->removeElement($book)) {
             if ($book->getOwner() === $this) {
                 $book->setOwner(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessagesSent(): Collection
+    {
+        return $this->messagesSent;
+    }
+
+    public function addMessagesSent(Message $messagesSent): static
+    {
+        if (!$this->messagesSent->contains($messagesSent)) {
+            $this->messagesSent->add($messagesSent);
+            $messagesSent->setSender($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessagesSent(Message $messagesSent): static
+    {
+        if ($this->messagesSent->removeElement($messagesSent)) {
+            // set the owning side to null (unless already changed)
+            if ($messagesSent->getSender() === $this) {
+                $messagesSent->setSender(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Message>
+     */
+    public function getMessages(): Collection
+    {
+        return $this->messages;
+    }
+
+    public function addMessage(Message $message): static
+    {
+        if (!$this->messages->contains($message)) {
+            $this->messages->add($message);
+            $message->setRecipient($this);
+        }
+
+        return $this;
+    }
+
+    public function removeMessage(Message $message): static
+    {
+        if ($this->messages->removeElement($message)) {
+            // set the owning side to null (unless already changed)
+            if ($message->getRecipient() === $this) {
+                $message->setRecipient(null);
             }
         }
 
