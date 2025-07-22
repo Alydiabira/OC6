@@ -11,25 +11,24 @@ use Symfony\Component\Routing\Attribute\Route;
 final class BookController extends AbstractController
 {
     // 📚 Liste des livres avec pagination
-    #[Route('/livres', name: 'book_index', methods: ['GET'])]
-    public function showBooks(Request $request, BookRepository $bookRepository): Response
-    {
-        $page = max(1, (int) $request->query->get('page', 1));
-        $limit = 8;
+ #[Route('/livres', name: 'book_index', methods: ['GET'])]
+public function showBooks(Request $request, BookRepository $bookRepository): Response
+{
+    $page = max(1, (int) $request->query->get('page', 1));
+    $limit = 8;
 
-        // Assure-toi que BookRepository::findPaginated() existe et fonctionne
-        $books = $bookRepository->findPaginated($page, $limit);
-        $totalItems = $bookRepository->count([]);
-        $pageCount = ceil($totalItems / $limit);
+    $paginated = $bookRepository->findPaginated($page, $limit);
 
-        return $this->render('book/index.html.twig', [
-            'books' => $books,
-            'currentPage' => $page,
-            'pageCount' => $pageCount,
-            'totalItems' => $totalItems,
-            'pageSize' => $limit,
-        ]);
-    }
+    return $this->render('book/index.html.twig', [
+        'books' => $paginated['data'],
+        'currentPage' => $paginated['currentPage'],
+        'pageCount' => $paginated['pageCount'],
+        'totalItems' => $paginated['totalItems'],
+        'pageSize' => $limit,
+    ]);
+}
+
+
 
     // 🔍 Recherche par titre ou auteur
     #[Route('/livres/recherche', name: 'book_search', methods: ['GET'])]
