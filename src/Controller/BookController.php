@@ -69,4 +69,6 @@ public function show(BookRepository $bookRepository, string $slug): Response
     ]);
 }
 
+
+
 }
