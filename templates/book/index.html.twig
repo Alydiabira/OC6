@@ -32,7 +32,11 @@
                 {% endfor %}
               </p>
             {% endif %}
-              <a href="{{ path('book_show', {slug: book.slug}) }}" class="btn btn-outline-primary btn-sm mt-2">Voir</a>
+              {% if book.slug %}
+                  <a href="{{ path('book_show', {slug: book.slug}) }}" class="btn btn-outline-primary btn-sm mt-2">Voir</a>
+              {% else %}
+                  <span class="text-muted">Slug manquant</span>
+              {% endif %}
             </div>
           </div>
         </div>
