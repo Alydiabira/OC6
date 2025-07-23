@@ -1,41 +1,33 @@
 <?php
 
-/*
- * This file is part of the Symfony package.
- *
- * (c) Fabien Potencier <fabien@symfony.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
-
 namespace App\Entity;
 
-use Doctrine\DBAL\Types\Types;
+use App\Repository\TagRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use App\Entity\Book;
 
-/**
- * Defines the properties of the Tag entity to represent the post tags.
- *
- * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class
- *
- * @author Yonel Ceruto <yonelceruto@gmail.com>
- */
-#[ORM\Entity]
-#[ORM\Table(name: 'tag')]
-class Tag implements \JsonSerializable
+#[ORM\Entity(repositoryClass: TagRepository::class)]
+class Tag
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
-    #[ORM\Column(type: Types::INTEGER)]
+    #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(type: Types::STRING, unique: true)]
-    private readonly string $name;
+    #[ORM\Column(length: 100)]
+    #[Assert\NotBlank]
+    private ?string $name = null;
 
-    public function __construct(string $name)
+    #[ORM\ManyToMany(targetEntity: Book::class, mappedBy: 'tags')]
+    private Collection $books;
+
+
+    public function __construct()
     {
-        $this->name = $name;
+        $this->books = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -43,22 +35,43 @@ class Tag implements \JsonSerializable
         return $this->id;
     }
 
-    public function getName(): string
+    public function getName(): ?string
     {
         return $this->name;
     }
 
-    public function jsonSerialize(): string
+    public function setName(string $name): static
     {
-        // This entity implements JsonSerializable (http://php.net/manual/en/class.jsonserializable.php)
-        // so this method is used to customize its JSON representation when json_encode()
-        // is called, for example in tags|json_encode (templates/form/fields.html.twig)
+        $this->name = $name;
+        return $this;
+    }
 
-        return $this->name;
+    public function getBooks(): Collection
+    {
+        return $this->books;
+    }
+
+    public function addBook(Book $book): static
+    {
+        if (!$this->books->contains($book)) {
+            $this->books->add($book);
+            $book->addTag($this);
+        }
+
+        return $this;
+    }
+
+    public function removeBook(Book $book): static
+    {
+        if ($this->books->removeElement($book)) {
+            $book->removeTag($this);
+        }
+
+        return $this;
     }
 
     public function __toString(): string
     {
-        return $this->name;
+        return $this->name ?? '';
     }
 }
