@@ -1,4 +1,5 @@
 {% extends 'base.html.twig' %}
+
 {% block title %}Nos livres à l'échange - TomTroc{% endblock %}
 {% block body_id %}book_list{% endblock %}
 
@@ -28,7 +29,14 @@
           {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ book.title }}</h5>
-              <p class="card-text">{{ book.author }}</p>
+            <p class="card-text">
+             {% if book.author is defined and book.author is same as(null) == false and book.author.username is defined %}
+                  {{ book.author.username }}
+              {% else %}
+                  {{ book.author }}
+              {% endif %}
+
+            </p>
             <p>
               <strong>Disponibilité :</strong>
               {% if book.available %}
@@ -37,23 +45,26 @@
                 <span class="badge unavailable">Indisponible</span>
               {% endif %}
             </p>
-            {% if book.slug %}
+            {% if book.slug is defined and book.slug %}
+              {% if app.request.attributes.get('_route') starts with 'blog_' %}
                 <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
+              {% else %}
+                <a href="{{ path('book_show', {slug: book.slug}) }}" class="button small">Voir</a>
+              {% endif %}
             {% else %}
-                <span class="text-muted">Slug manquant</span>
+              <span class="text-muted">Slug manquant</span>
             {% endif %}
-
           </div>
         </div>
       {% endfor %}
     </div>
 
-    {% if totalItems > pageSize %}
+    {% if totalItems is defined and pageSize is defined and totalItems > pageSize %}
       <nav class="mt-4" aria-label="Pagination">
         <ul class="pagination pagination-lg d-flex justify-content-center">
           {% for i in 1..pageCount %}
             <li class="page-item {% if i == currentPage %}active{% endif %}">
-              <a class="page-link" href="{{ path('book_index', {'page': i}) }}">{{ i }}</a>
+              <a class="page-link" href="{{ path(app.request.attributes.get('_route'), {'page': i}) }}">{{ i }}</a>
             </li>
           {% endfor %}
         </ul>
