@@ -20,9 +20,9 @@
             {% endif %}
             <div class="card-body">
               <h5 class="card-title">{{ book.title }}</h5>
-              <p class="card-text text-muted small">{{ book.author.username }}</p>
+              <p class="card-text text-muted small">{{ book.author.username }}</p> {# ✅ corrigé ici #}
               <p class="text-muted small">
-                <strong>Vendeur :</strong> {{ book.seller.username }}
+                <strong>Vendeur :</strong> {{ book.seller.username }} {# ✅ corrigé ici #}
               </p>
               {% if book.tags %}
                 <p class="small">
