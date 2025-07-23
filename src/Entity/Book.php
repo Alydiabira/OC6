@@ -50,6 +50,22 @@ class Book
 
     #[ORM\ManyToMany(targetEntity: Tag::class, inversedBy: 'books')]
     private Collection $tags;
+    
+    #[ORM\Column(length: 255, unique: true)]
+    #[Assert\NotBlank]
+    private ?string $slug = null;
+
+    public function getSlug(): ?string
+    {
+        return $this->slug;
+    }
+
+    public function setSlug(string $slug): static
+    {
+        $this->slug = $slug;
+        return $this;
+    }
+
 
 
     public function __construct()
