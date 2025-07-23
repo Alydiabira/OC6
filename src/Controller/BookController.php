@@ -54,4 +54,19 @@ public function showBooks(Request $request, BookRepository $bookRepository): Res
             'books' => [],
         ]);
     }
+    // 📖 Détail d’un livre
+#[Route('/livres/{slug}', name: 'book_show', methods: ['GET'])]
+public function show(BookRepository $bookRepository, string $slug): Response
+{
+    $book = $bookRepository->findOneBy(['slug' => $slug]);
+
+    if (!$book) {
+        throw $this->createNotFoundException("Livre non trouvé.");
+    }
+
+    return $this->render('book/show.html.twig', [
+        'book' => $book,
+    ]);
+}
+
 }
