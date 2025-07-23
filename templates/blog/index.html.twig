@@ -28,7 +28,7 @@
           {% endif %}
           <div class="card-body">
             <h5 class="card-title">{{ book.title }}</h5>
-            <p class="card-text">{{ book.author.username }}</p>
+              <p class="card-text">{{ book.author }}</p>
             <p>
               <strong>Disponibilité :</strong>
               {% if book.available %}
@@ -37,7 +37,12 @@
                 <span class="badge unavailable">Indisponible</span>
               {% endif %}
             </p>
-            <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
+            {% if book.slug %}
+                <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button small">Voir</a>
+            {% else %}
+                <span class="text-muted">Slug manquant</span>
+            {% endif %}
+
           </div>
         </div>
       {% endfor %}
