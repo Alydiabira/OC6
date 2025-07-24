@@ -27,11 +27,7 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Kernel.php'
 
-    # Service definition for the MailController
-    App\Controller\MailController:
-        arguments:
-            $mailer: '@mailer'  # Inject the mailer service into the controller
-        tags: ['controller.service_arguments']
+   
 
     # Service definition for App\Twig\Extension\AppExtension
     App\Twig\Extension\AppExtension:
