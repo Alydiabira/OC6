@@ -1,14 +1,56 @@
-# Définir la route pour la page d'accueil avec la gestion des locales
-homepage:
-    path: /{_locale}
-    controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
-    defaults:
-        template: default/homepage.html.twig
-        _locale: '%app.locale%'
-    requirements:
-        _locale: en|fr
+# # Définir la route pour la page d'accueil avec la gestion des locales
+# homepage:
+#     path: /{_locale}
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: default/homepage.html.twig
+#         _locale: '%app.locale%'
+#     requirements:
+#         _locale: en|fr
 
-# Définir les routes pour les contrôleurs personnalisés, avec un préfixe de locale
+# # Définir les routes pour les contrôleurs personnalisés, avec un préfixe de locale
+# controllers:
+#     resource: ../src/Controller/
+#     type: attribute
+#     prefix: /{_locale}
+#     requirements:
+#         _locale: en|fr
+#     defaults:
+#         _locale: '%app.locale%'
+
+# # Route du tableau de bord admin avec locale
+# admin_dashboard:
+#     path: /{_locale}/admin
+#     controller: App\Controller\Admin\DashboardController::index
+#     requirements:
+#         _locale: en|fr
+#     methods: [GET]
+
+# # Route blog avec tag (sans doublon de _locale)
+# blog_index_tag:
+#     path: /{_locale}/blog/tag/{tagName}
+#     controller: App\Controller\BlogController::indexByTag
+#     requirements:
+#         _locale: en|fr
+#         tagName: .*
+
+# # Route test contact
+# contact_test:
+#     path: /{_locale}/contact/controller/test
+#     controller: App\Controller\ContactController::test
+#     requirements:
+#         _locale: en|fr
+
+
+
+# # ✅ Route d'accueil sans doublon de locale
+# homepage:
+#     path: /
+#     controller: Symfony\Bundle\FrameworkBundle\Controller\TemplateController::templateAction
+#     defaults:
+#         template: default/homepage.html.twig
+
+# ✅ Routes des contrôleurs avec préfixe de locale
 controllers:
     resource: ../src/Controller/
     type: attribute
@@ -16,9 +58,9 @@ controllers:
     requirements:
         _locale: en|fr
     defaults:
-        _locale: '%app.locale%'
+        _locale: fr
 
-# Route du tableau de bord admin avec locale
+# ✅ Tableau de bord admin
 admin_dashboard:
     path: /{_locale}/admin
     controller: App\Controller\Admin\DashboardController::index
@@ -26,7 +68,7 @@ admin_dashboard:
         _locale: en|fr
     methods: [GET]
 
-# Route blog avec tag (sans doublon de _locale)
+# ✅ Blog par tag
 blog_index_tag:
     path: /{_locale}/blog/tag/{tagName}
     controller: App\Controller\BlogController::indexByTag
@@ -34,7 +76,7 @@ blog_index_tag:
         _locale: en|fr
         tagName: .*
 
-# Route test contact
+# ✅ Route de test contact
 contact_test:
     path: /{_locale}/contact/controller/test
     controller: App\Controller\ContactController::test
