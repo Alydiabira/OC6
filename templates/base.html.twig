@@ -9,10 +9,11 @@
     <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     {% endblock %}
+
 
     {% block javascripts %}
         {% block importmap %}{{ importmap('app') }}{% endblock %}
@@ -30,7 +31,7 @@
                 <a href="{{ path('homepage') }}" class="logo">TomTroc</a>
                 <nav class="main-nav">
                     <ul>
-                        <li<a href="{{ path('homepage', { _locale: app.request.locale }) }}" class="{{ app.request.get('_route') == 'homepage' ? 'active' : '' }}">Accueil</a></li>
+                        <li><a href="{{ path('homepage', { _locale: app.request.locale }) }}" class="{{ app.request.get('_route') == 'homepage' ? 'active' : '' }}">Accueil</a></li>
                         <li><a href="{{ path('book_index') }}">Nos livres à l'échange</a></li>
                         <li><a href="{{ path('app_message') }}">Messagerie</a></li>
                         {% if app.user %}
