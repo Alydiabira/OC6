@@ -23,7 +23,7 @@ use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 #[IsGranted(User::ROLE_ADMIN)]
 final class BlogController extends AbstractController
 {
-    #[Route('/admin/post/', name: 'admin_index', methods: ['GET'])]
+    // Liste des articles de l'utilisateur
     #[Route('/admin/post/', name: 'admin_post_index', methods: ['GET'])]
     public function index(#[CurrentUser] User $user, PostRepository $posts): Response
     {
@@ -32,6 +32,7 @@ final class BlogController extends AbstractController
         return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
     }
 
+    // Création d'un nouvel article
     #[Route('/admin/post/new', name: 'admin_post_new', methods: ['GET', 'POST'])]
     public function new(#[CurrentUser] User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
@@ -63,6 +64,7 @@ final class BlogController extends AbstractController
         ]);
     }
 
+    // Affichage d'un article
     #[Route('/admin/post/{id}', name: 'admin_post_show', requirements: ['id' => Requirement::POSITIVE_INT], methods: ['GET'])]
     public function show(Post $post): Response
     {
@@ -71,6 +73,7 @@ final class BlogController extends AbstractController
         return $this->render('admin/blog/show.html.twig', ['post' => $post]);
     }
 
+    // Édition d'un article
     #[Route('/admin/post/{id}/edit', name: 'admin_post_edit', requirements: ['id' => Requirement::POSITIVE_INT], methods: ['GET', 'POST'])]
     #[IsGranted('edit', subject: 'post')]
     public function edit(Request $request, Post $post, EntityManagerInterface $entityManager): Response
@@ -87,17 +90,18 @@ final class BlogController extends AbstractController
             $entityManager->flush();
             $this->addFlash('success', 'post.updated_successfully');
 
-            return $this->redirectToRoute('admin_post_edit', ['id' => $post->getId()]);
+            return $this->redirectToRoute('admin_post_show', ['id' => $post->getId()]);
         }
 
         return $this->render('admin/blog/edit.html.twig', ['post' => $post, 'form' => $form]);
     }
 
+    // Suppression d'un article
     #[Route('/admin/post/{id}/delete', name: 'admin_post_delete', requirements: ['id' => Requirement::POSITIVE_INT], methods: ['POST'])]
     #[IsGranted('delete', subject: 'post')]
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
-        if (!$this->isCsrfTokenValid('delete', $request->get('token'))) {
+        if (!$this->isCsrfTokenValid('delete_post_' . $post->getId(), $request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
         }
 
@@ -110,6 +114,7 @@ final class BlogController extends AbstractController
         return $this->redirectToRoute('admin_post_index');
     }
 
+    // Suppression d'un commentaire
     #[Route('/admin/post/comment/{commentId}/delete', name: 'admin_comment_delete', requirements: ['commentId' => Requirement::POSITIVE_INT], methods: ['POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function commentDelete(
@@ -117,7 +122,7 @@ final class BlogController extends AbstractController
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
-        if (!$this->isCsrfTokenValid('delete_comment', $request->get('token'))) {
+        if (!$this->isCsrfTokenValid('delete_comment_' . $comment->getId(), $request->get('token'))) {
             return $this->redirectToRoute('admin_post_index');
         }
 
@@ -128,6 +133,7 @@ final class BlogController extends AbstractController
         return $this->redirectToRoute('admin_post_show', ['id' => $comment->getPost()->getId()]);
     }
 
+    // Édition du profil administrateur
     #[Route('/admin/post/profile', name: 'admin_profile', methods: ['GET', 'POST'])]
     #[IsGranted('ROLE_ADMIN')]
     public function profile(#[CurrentUser] User $user, Request $request, EntityManagerInterface $entityManager): Response
