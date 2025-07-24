@@ -30,7 +30,7 @@
                 <a href="{{ path('homepage') }}" class="logo">TomTroc</a>
                 <nav class="main-nav">
                     <ul>
-                        <li><a href="{{ path('homepage') }}" class="{{ app.request.get('_route') == 'homepage' ? 'active' : '' }}">Accueil</a></li>
+                        <li<a href="{{ path('homepage', { _locale: app.request.locale }) }}" class="{{ app.request.get('_route') == 'homepage' ? 'active' : '' }}">Accueil</a></li>
                         <li><a href="{{ path('book_index') }}">Nos livres à l'échange</a></li>
                         <li><a href="{{ path('app_message') }}">Messagerie</a></li>
                         {% if app.user %}
