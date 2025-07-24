@@ -37,7 +37,7 @@
                             <li><a href="{{ path('user_edit') }}">Mon compte</a></li>
                             <li><a href="{{ logout_path() }}" class="text-danger">Déconnexion</a></li>
                         {% else %}
-                            <li><a href="{{ path('app_login') }}">Connexion</a></li>
+                            <li><a href="{{ path('security_login') }}">Connexion</a></li>
                         {% endif %}
                         <li>{{ lang.render_language_selector(true) }}</li>
                     </ul>
