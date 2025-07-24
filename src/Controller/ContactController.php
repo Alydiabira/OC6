@@ -21,9 +21,7 @@ class ContactController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             // Forward l'entité Contact à MailController
-            return $this->forward('App\Controller\MailController::send', [
-                'contact' => $contact,  // Passe l'objet Contact ici
-            ]);
+            
         }
 
         return $this->render('contact/contact.html.twig', [
