@@ -9,13 +9,14 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class HomeController extends AbstractController
 {
-    #[Route('/', name: 'homepage')]
-    public function index(BookRepository $bookRepository): Response
-    {
-        $books = $bookRepository->findLatest(4);
+#[Route('/{_locale}/', name: 'homepage', requirements: ['_locale' => 'fr|en'], defaults: ['_locale' => 'fr'])]
+public function index(BookRepository $bookRepository): Response
+{
+    $books = $bookRepository->findLatest(4);
 
-        return $this->render('default/homepage.html.twig', [
-            'books' => $books,
-        ]);
-    }
+    return $this->render('default/homepage.html.twig', [
+        'books' => $books,
+    ]);
+}
+
 }
