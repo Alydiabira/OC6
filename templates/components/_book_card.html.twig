@@ -1,0 +1,18 @@
+<div class="book-card">
+    {% if book.image %}
+        <img src="{{ asset('uploads/posts/' ~ book.image) }}" alt="{{ book.title }}">
+    {% endif %}
+    <div class="book-info">
+        <h3>{{ book.title }}</h3>
+        <p class="author">{{ book.author.username }}</p>
+        <p>
+            <strong>Disponibilité :</strong>
+            {% if book.available %}
+                <span class="badge">Disponible</span>
+            {% else %}
+                <span class="badge unavailable">Indisponible</span>
+            {% endif %}
+        </p>
+        <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button">Voir</a>
+    </div>
+</div>
