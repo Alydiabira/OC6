@@ -13,6 +13,11 @@
                 <span class="badge unavailable">Indisponible</span>
             {% endif %}
         </p>
-        <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button">Voir</a>
+        {% if book.slug %}
+    <a href="{{ path('blog_post', {slug: book.slug}) }}" class="button">Voir</a>
+{% else %}
+    <span class="button disabled">Lien indisponible</span>
+{% endif %}
+
     </div>
 </div>
