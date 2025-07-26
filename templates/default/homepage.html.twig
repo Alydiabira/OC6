@@ -44,4 +44,20 @@
             </div>
         </div>
     </div>
+
+     {# 🔽 Ajoute ce bloc ici 🔽 #}
+    {% if books is not empty %}
+        <div class="latest-books mt-5">
+            <h2>{{ 'title.latest_books'|trans }}</h2>
+            <div class="row">
+                {% for book in books %}
+                    <div class="col-md-3">
+                        {{ include('components/_book_card.html.twig', { book: book }) }}
+                    </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p class="text-muted text-center">{{ 'message.no_books'|trans }}</p>
+    {% endif %}
 {% endblock %}
