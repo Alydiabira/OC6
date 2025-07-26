@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bienvenue sur TomTroc{% endblock %}
+
+{% block body %}
+    <section class="hero">
+        <div class="hero-text">
+            <h2>Rejoignez nos lecteurs passionnés</h2>
+            <p>Donnez une nouvelle vie à vos livres en les échangeant entre amoureux de la lecture !</p>
+            <a href="{{ path('book_index') }}" class="button">Découvrir</a>
+        </div>
+        <div class="hero-image">
+            <img src="{{ asset('images/livres.jpg') }}" alt="Livres empilés" />
+        </div>
+    </section>
+
+    {% if books is defined %}
+        <section class="latest-books">
+            <h3>Les derniers livres ajoutés</h3>
+            <div class="book-grid">
+                {% for book in books %}
+                    {{ include('components/_book_card.html.twig', { book: book }) }}
+                {% endfor %}
+            </div>
+        </section>
+    {% endif %}
+{% endblock %}
