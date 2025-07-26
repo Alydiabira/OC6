@@ -10,6 +10,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
+use Symfony\Component\String\Slugger\SluggerInterface;
+
 
 #[IsGranted('ROLE_ADMIN')]
 class BookController extends AbstractController
@@ -48,4 +50,25 @@ class BookController extends AbstractController
 
         return $this->redirectToRoute('admin_profile');
     }
+
+    public function create(SluggerInterface $slugger, Request $request): Response
+{
+    $book = new Book();
+    $form = $this->createForm(BookType::class, $book);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        $slug = $slugger->slug($book->getTitle())->lower();
+        $book->setSlug($slug);
+
+        $entityManager->persist($book);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('homepage');
+    }
+
+    return $this->render('book/new.html.twig', [
+        'form' => $form->createView(),
+    ]);
+}
 }
