@@ -9,8 +9,8 @@
     <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}">
 
    {% block stylesheets %}
-    <link rel="stylesheet" href="{{ absolute_url(asset('styles/app.css')) }}">
-    <link rel="stylesheet" href="{{ absolute_url(asset('styles/admin.css')) }}">
+   <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 {% endblock %}
 
@@ -21,6 +21,7 @@
     {% endblock %}
 
     <link rel="shortcut icon" type="image/svg+xml" href="{{ asset('favicon.svg') }}">
+    
 </head>
 
 <body id="{{ app.request.get('_route') }}">
