@@ -12,6 +12,9 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Security\Http\Util\TargetPathTrait;
+use App\Form\RegistrationFormType;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 /**
  * Controller used to manage the application security.
@@ -52,4 +55,34 @@ $this->saveTargetPath($request->getSession(), 'main', $this->generateUrl('admin_
             'error' => $helper->getLastAuthenticationError(),
         ]);
     }
+    #[Route('/register', name: 'app_register')]
+public function register(
+    Request $request,
+    UserPasswordHasherInterface $passwordHasher,
+    EntityManagerInterface $entityManager
+): Response {
+    $user = new User();
+    $form = $this->createForm(RegistrationFormType::class, $user);
+    $form->handleRequest($request);
+
+    if ($form->isSubmitted() && $form->isValid()) {
+        // Hash the password
+        $user->setPassword(
+            $passwordHasher->hashPassword(
+                $user,
+                $form->get('plainPassword')->getData()
+            )
+        );
+
+        $entityManager->persist($user);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('security_login');
+    }
+
+    return $this->render('security/register.html.twig', [
+        'registrationForm' => $form->createView(),
+    ]);
+}
+
 }
