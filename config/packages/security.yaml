@@ -20,6 +20,8 @@ security:
                 login_path: security_login
                 enable_csrf: true
                 default_target_path: blog_index
+                username_parameter: email
+                password_parameter: password
 
             remember_me:
                 secret: '%kernel.secret%'
