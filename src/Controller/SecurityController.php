@@ -80,9 +80,10 @@ public function register(
         return $this->redirectToRoute('security_login');
     }
 
-    return $this->render('security/register.html.twig', [
-        'registrationForm' => $form->createView(),
-    ]);
+    return $this->render('registration/register.html.twig', [
+    'registrationForm' => $form->createView(),
+]);
+
 }
 
 }
