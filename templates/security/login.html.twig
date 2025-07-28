@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block body_id 'login' %}
+{% block body_id %}login{% endblock %}
 
 {% block main %}
 <div class="container mt-5">
@@ -15,7 +15,7 @@
 
             <div class="card shadow-lg rounded-4 p-4" style="background: linear-gradient(to right, #f12711, #f5af19);">
                 <div class="card-header bg-primary text-white text-center rounded-4">
-                    <h4><twig:ux:icon name="tabler:lock" class="text-white"/> {{ 'title.login'|trans }}</h4>
+                    <h4><i class="fas fa-lock text-white"></i> {{ 'title.login'|trans }}</h4>
                 </div>
                 <div class="card-body">
                     <form action="{{ path('security_login') }}" method="post">
@@ -28,8 +28,8 @@
                             <label for="password" class="form-label text-white">{{ 'label.password'|trans }}</label>
                             <div class="input-group">
                                 <input type="password" id="password" name="_password" class="form-control rounded-4" required />
-                                <button class="btn btn-outline-secondary" type="button" data-bs-toggle="password" aria-label="Toggle password visibility">
-                                    <twig:ux:icon name="tabler:eye" class="text-white" aria-hidden="true"/>
+                                <button class="btn btn-outline-secondary" type="button" aria-label="Toggle password visibility">
+                                    <i class="fas fa-eye text-white"></i>
                                 </button>
                             </div>
                         </div>
@@ -43,7 +43,7 @@
                         <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}"/>
 
                         <button type="submit" class="btn btn-lg btn-light w-100 py-2 rounded-4">
-                            <twig:ux:icon name="tabler:login" class="text-dark"/> {{ 'action.sign_in'|trans }}
+                            <i class="fas fa-sign-in-alt text-dark"></i> {{ 'action.sign_in'|trans }}
                         </button>
                     </form>
                 </div>
@@ -54,10 +54,9 @@
         <div class="col-lg-6 mt-4 mt-lg-0">
             <div class="card shadow-sm p-4 rounded-4">
                 <div class="card-header bg-secondary text-white">
-                    <h5><twig:ux:icon name="tabler:info-circle" class="text-white"/> {{ 'help.login_users'|trans }}</h5>
+                    <h5><i class="fas fa-info-circle text-white"></i> {{ 'help.login_users'|trans }}</h5>
                 </div>
                 <div class="card-body">
-                    <!-- Accordion for help content -->
                     <div class="accordion" id="helpAccordion">
                         <div class="accordion-item">
                             <h2 class="accordion-header" id="headingOne">
@@ -101,12 +100,12 @@
 
                     <div class="mt-4">
                         <div class="alert alert-info">
-                            <strong><twig:ux:icon name="tabler:bulb" class="text-dark"/> {{ 'note'|trans }}:</strong> {{ 'help.reload_fixtures'|trans }}
+                            <strong><i class="fas fa-lightbulb text-dark"></i> {{ 'note'|trans }}:</strong> {{ 'help.reload_fixtures'|trans }}
                             <code class="console d-block mt-2">$ php bin/console doctrine:fixtures:load</code>
                         </div>
 
                         <div class="alert alert-warning">
-                            <strong><twig:ux:icon name="tabler:tool" class="text-dark"/> {{ 'tip'|trans }}:</strong> {{ 'help.add_user'|trans }}
+                            <strong><i class="fas fa-tools text-dark"></i> {{ 'tip'|trans }}:</strong> {{ 'help.add_user'|trans }}
                             <code class="console d-block mt-2">$ php bin/console app:add-user</code>
                         </div>
                     </div>
