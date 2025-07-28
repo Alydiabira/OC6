@@ -21,15 +21,19 @@ security:
                 login_path: security_login
                 check_path: security_login
                 enable_csrf: true
-                default_target_path: blog_index
-                username_parameter: email
-                password_parameter: password
+                csrf_token_id: authenticate              # ✅ Option correcte
+                default_target_path: blog_index          # ✅ Redirection après connexion
+                username_parameter: email                # ✅ Correspond au name="email" du formulaire
+                password_parameter: password             # ✅ Correspond au name="password" du formulaire
 
             remember_me:
                 secret: '%kernel.secret%'
                 lifetime: 604800
+                path: /
+                always_remember_me: false
 
             logout:
+                path: /logout
                 target: homepage
                 enable_csrf: true
 
@@ -40,15 +44,15 @@ security:
             provider: database_users
             lazy: true
 
-            # 🔒 Pas de form_login ici, car /login est géré par le firewall "main"
             logout:
+                path: /admin/logout
                 target: homepage
                 enable_csrf: true
 
-            # ❌ Supprimé : entry_point: form_login
-
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/register, roles: PUBLIC_ACCESS }
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER
