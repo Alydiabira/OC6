@@ -1,16 +1,38 @@
+:root {
+    --primary-color: #3490dc;
+    --success-color: #28a745;
+    --danger-color: #dc3545;
+    --light-bg: #f9f9f9;
+    --card-bg: #fff;
+    --text-color: #333;
+}
+
 body {
     font-family: Arial, sans-serif;
-    background-color: #f9f9f9;
+    background-color: var(--light-bg);
+    color: var(--text-color);
     margin: 0;
     padding: 0;
+}
+
+.book-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
 }
 
 .book-card {
     border: 1px solid #ddd;
     padding: 1rem;
     margin: 1rem;
-    background-color: #fff;
+    background-color: var(--card-bg);
     border-radius: 8px;
+    transition: box-shadow 0.3s ease;
+}
+
+.book-card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
 .book-card img {
@@ -19,18 +41,45 @@ body {
     border-radius: 4px;
 }
 
+.book-info {
+    margin-top: 1rem;
+}
+
 .book-info h3 {
     margin-top: 0.5rem;
-    color: #333;
+    color: var(--text-color);
+}
+
+.book-info p {
+    margin: 0.3rem 0;
+    color: #555;
 }
 
 .badge {
-    background-color: #28a745;
+    background-color: var(--success-color);
     color: white;
     padding: 0.3rem 0.6rem;
     border-radius: 4px;
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-top: 0.5rem;
 }
 
 .badge.unavailable {
-    background-color: #dc3545;
+    background-color: var(--danger-color);
+}
+
+@media (max-width: 768px) {
+    .header-container,
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .main-nav ul {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
 }
