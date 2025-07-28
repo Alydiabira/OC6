@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e8d902a35c769169cca824e2230ba804",
+    "content-hash": "f100d6b60ee43361aa202fcfe10c1f29",
     "packages": [
         {
             "name": "cocur/slugify",
@@ -8163,16 +8163,16 @@
         },
         {
             "name": "symfony/ux-icons",
-            "version": "v2.22.1",
+            "version": "v2.27.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-icons.git",
-                "reference": "3a6fd4293fc200530b09960c41941a71354bc5fc"
+                "reference": "af6d09779e786717c6e3b5a8a004e8c18ce3ef00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/3a6fd4293fc200530b09960c41941a71354bc5fc",
-                "reference": "3a6fd4293fc200530b09960c41941a71354bc5fc",
+                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/af6d09779e786717c6e3b5a8a004e8c18ce3ef00",
+                "reference": "af6d09779e786717c6e3b5a8a004e8c18ce3ef00",
                 "shasum": ""
             },
             "require": {
@@ -8232,7 +8232,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-icons/tree/v2.22.1"
+                "source": "https://github.com/symfony/ux-icons/tree/v2.27.0"
             },
             "funding": [
                 {
@@ -8248,7 +8248,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2024-12-04T11:34:13+00:00"
+            "time": "2025-06-17T06:15:15+00:00"
         },
         {
             "name": "symfony/ux-live-component",
