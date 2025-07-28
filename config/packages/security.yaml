@@ -4,7 +4,7 @@ security:
 
     providers:
         database_users:
-            entity: { class: App\Entity\User, property: username }
+            entity: { class: App\Entity\User, property: email }
 
     firewalls:
         dev:
@@ -52,7 +52,7 @@ security:
     # Access control
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }  # Only admins can access the /admin paths
-        - { path: ^/admin, roles: ROLE_USER }   # Adjust for users who should have access to other routes
+        # - { path: ^/admin, roles: ROLE_USER }   # Adjust for users who should have access to other routes
 
     role_hierarchy:
         ROLE_ADMIN: ROLE_USER  # Ensures that ROLE_ADMIN inherits ROLE_USER permissions
