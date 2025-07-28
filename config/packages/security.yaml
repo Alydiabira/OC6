@@ -18,8 +18,8 @@ security:
             provider: database_users
 
             form_login:
-                login_path: security_login
-                check_path: security_login
+                login_path: app_login         # route d'affichage du formulaire
+                check_path: /login            # ✅ chemin intercepté par Symfony
                 enable_csrf: true
                 csrf_token_id: authenticate              # ✅ Option correcte
                 default_target_path: blog_index          # ✅ Redirection après connexion
