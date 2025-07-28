@@ -16,6 +16,7 @@ use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpClient\ScopingHttpClient;
 use Symfony\Contracts\Cache\CacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\UX\Icons\Exception\HttpClientNotInstalledException;
 use Symfony\UX\Icons\Exception\IconNotFoundException;
 
 /**
@@ -26,6 +27,7 @@ use Symfony\UX\Icons\Exception\IconNotFoundException;
 final class Iconify
 {
     public const API_ENDPOINT = 'https://api.iconify.design';
+    private const ATTR_XMLNS_URL = 'https://www.w3.org/2000/svg';
 
     // URL must be 500 chars max (iconify limit)
     // -39 chars: https://api.iconify.design/XXX.json?icons=
@@ -38,15 +40,10 @@ final class Iconify
 
     public function __construct(
         private CacheInterface $cache,
-        string $endpoint = self::API_ENDPOINT,
-        ?HttpClientInterface $http = null,
+        private string $endpoint = self::API_ENDPOINT,
+        private ?HttpClientInterface $httpClient = null,
         ?int $maxIconsQueryLength = null,
     ) {
-        if (!class_exists(HttpClient::class)) {
-            throw new \LogicException('You must install "symfony/http-client" to use Iconify. Try running "composer require symfony/http-client".');
-        }
-
-        $this->http = ScopingHttpClient::forBaseUri($http ?? HttpClient::create(), $endpoint);
         $this->maxIconsQueryLength = min(self::MAX_ICONS_QUERY_LENGTH, $maxIconsQueryLength ?? self::MAX_ICONS_QUERY_LENGTH);
     }
 
@@ -61,7 +58,7 @@ final class Iconify
             throw new IconNotFoundException(\sprintf('The icon "%s:%s" does not exist on iconify.design.', $prefix, $name));
         }
 
-        $response = $this->http->request('GET', \sprintf('/%s.json?icons=%s', $prefix, $name));
+        $response = $this->http()->request('GET', \sprintf('/%s.json?icons=%s', $prefix, $name));
 
         if (200 !== $response->getStatusCode()) {
             throw new IconNotFoundException(\sprintf('The icon "%s:%s" does not exist on iconify.design.', $prefix, $name));
@@ -89,6 +86,7 @@ final class Iconify
         }
 
         return new Icon($data['icons'][$name]['body'], [
+            'xmlns' => self::ATTR_XMLNS_URL,
             'viewBox' => \sprintf('0 0 %s %s', $width ?? $height, $height ?? $width),
         ]);
     }
@@ -110,7 +108,7 @@ final class Iconify
             throw new \InvalidArgumentException('The query string is too long.');
         }
 
-        $response = $this->http->request('GET', \sprintf('/%s.json', $prefix), [
+        $response = $this->http()->request('GET', \sprintf('/%s.json', $prefix), [
             'headers' => [
                 'Accept' => 'application/json',
             ],
@@ -126,11 +124,17 @@ final class Iconify
         $data = $response->toArray();
 
         $icons = [];
-        foreach ($data['icons'] as $iconName => $iconData) {
+        foreach ($names as $iconName) {
+            $iconData = $data['icons'][$data['aliases'][$iconName]['parent'] ?? $iconName] ?? null;
+            if (!$iconData) {
+                continue;
+            }
+
             $height = $iconData['height'] ?? $data['height'] ??= $this->sets()[$prefix]['height'] ?? null;
             $width = $iconData['width'] ?? $data['width'] ??= $this->sets()[$prefix]['width'] ?? null;
 
             $icons[$iconName] = new Icon($iconData['body'], [
+                'xmlns' => self::ATTR_XMLNS_URL,
                 'viewBox' => \sprintf('0 0 %d %d', $width ?? $height, $height ?? $width),
             ]);
         }
@@ -150,7 +154,7 @@ final class Iconify
 
     public function searchIcons(string $prefix, string $query)
     {
-        $response = $this->http->request('GET', '/search', [
+        $response = $this->http()->request('GET', '/search', [
             'query' => [
                 'query' => $query,
                 'prefix' => $prefix,
@@ -197,9 +201,22 @@ final class Iconify
     private function sets(): \ArrayObject
     {
         return $this->sets ??= $this->cache->get('iconify-sets', function () {
-            $response = $this->http->request('GET', '/collections');
+            $response = $this->http()->request('GET', '/collections');
 
             return new \ArrayObject($response->toArray());
         });
+    }
+
+    private function http(): HttpClientInterface
+    {
+        if (isset($this->http)) {
+            return $this->http;
+        }
+
+        if (!class_exists(HttpClient::class)) {
+            throw new HttpClientNotInstalledException('You must install "symfony/http-client" to use icons from ux.symfony.com/icons. Try running "composer require symfony/http-client".');
+        }
+
+        return $this->http = ScopingHttpClient::forBaseUri($this->httpClient ?? HttpClient::create(), $this->endpoint);
     }
 }
