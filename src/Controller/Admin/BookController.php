@@ -15,12 +15,11 @@ use Symfony\Component\String\Slugger\SluggerInterface;
 #[IsGranted('ROLE_ADMIN')]
 class BookController extends AbstractController
 {
-    // Création d’un livre
     #[Route('/admin/book/new', name: 'admin_book_create', methods: ['GET', 'POST'])]
     public function create(
-        SluggerInterface $slugger,
         Request $request,
-        EntityManagerInterface $entityManager
+        EntityManagerInterface $entityManager,
+        SluggerInterface $slugger
     ): Response {
         $book = new Book();
         $form = $this->createForm(BookType::class, $book);
@@ -42,7 +41,6 @@ class BookController extends AbstractController
         ]);
     }
 
-    // Édition d’un livre
     #[Route('/admin/book/{id}/edit', name: 'admin_book_edit', methods: ['GET', 'POST'])]
     public function edit(
         Book $book,
@@ -54,13 +52,12 @@ class BookController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            // Regénérer le slug si le titre a changé
             $slug = $slugger->slug($book->getTitle())->lower();
             $book->setSlug($slug);
 
             $entityManager->flush();
-            $this->addFlash('success', 'Livre modifié avec succès.');
 
+            $this->addFlash('success', 'Livre modifié avec succès.');
             return $this->redirectToRoute('admin_profile');
         }
 
@@ -70,21 +67,23 @@ class BookController extends AbstractController
         ]);
     }
 
-    // Suppression d’un livre
     #[Route('/admin/book/{id}/delete', name: 'admin_book_delete', methods: ['POST'])]
     public function delete(
         Book $book,
         Request $request,
         EntityManagerInterface $entityManager
     ): Response {
-        if (!$this->isCsrfTokenValid('delete_book_' . $book->getId(), $request->get('token'))) {
+        $submittedToken = $request->get('token');
+
+        if (!$this->isCsrfTokenValid('delete_book_' . $book->getId(), $submittedToken)) {
+            $this->addFlash('error', 'Token CSRF invalide.');
             return $this->redirectToRoute('admin_profile');
         }
 
         $entityManager->remove($book);
         $entityManager->flush();
-        $this->addFlash('success', 'Livre supprimé avec succès.');
 
+        $this->addFlash('success', 'Livre supprimé avec succès.');
         return $this->redirectToRoute('admin_profile');
     }
 }
