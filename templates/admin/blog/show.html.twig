@@ -1,75 +1,81 @@
 {% extends 'admin/book/layout.html.twig' %}
 
-{% block body_id 'admin_post_show' %}
+{% block body_id %}admin_post_show{% endblock %}
 
 {% block main %}
-    <div class="container mt-5">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <h1 class="text-center mb-4">{{ post.title }}</h1>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <h1 class="text-center mb-4">{{ post.title }}</h1>
 
-                <p class="post-metadata text-center text-muted mb-4">
-                    <span class="metadata me-3">
-                        <twig:ux:icon name="tabler:calendar-month"/> 
-                        {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}
-                    </span>
-                    <span class="metadata">
-                        <twig:ux:icon name="tabler:user"/> {{ post.author.fullName }}
-                    </span>
-                </p>
+            <p class="post-metadata text-center text-muted mb-4">
+                <span class="metadata me-3">
+                    <twig:ux:icon name="tabler:calendar-month"/>
+                    {{ post.publishedAt|format_datetime('long', 'medium', '', 'UTC') }}
+                </span>
+                <span class="metadata">
+                    <twig:ux:icon name="tabler:user"/>
+                    {{ post.author ? post.author.fullName : 'Auteur inconnu' }}
+                </span>
+            </p>
 
-                {% if post.image %}
-                    <div class="text-center my-4">
-                        <img src="{{ vich_uploader_asset(post, 'imageFile') }}" 
-                            alt="Image de {{ post.title }}" 
-                            class="img-fluid rounded shadow-lg">
-                    </div>
-                {% endif %}
+            {% if post.image %}
+                <div class="text-center my-4">
+                    <img src="{{ vich_uploader_asset(post, 'imageFile') }}"
+                         alt="Image de {{ post.title }}"
+                         class="img-fluid rounded shadow-lg">
+                </div>
+            {% endif %}
 
+            {% if post.summary %}
                 <div class="card shadow-sm border-0 my-4">
                     <div class="card-body bg-light py-3 px-4">
-                        <p class="mb-0"><strong>{{ 'label.summary'|trans }}</strong>: {{ post.summary }}</p>
+                        <p class="mb-0">
+                            <strong>{{ 'label.summary'|trans }}</strong> :
+                            {{ post.summary }}
+                        </p>
                     </div>
                 </div>
+            {% endif %}
 
-                <div class="post-content pb-4">
-                    {{ post.content|markdown_to_html|sanitize_html }}
-                </div>
-
-                {{ include('blog/_post_tags.html.twig') }}
+            <div class="post-content pb-4">
+                {{ post.content|markdown_to_html|sanitize_html }}
             </div>
+
+            {{ include('blog/_post_tags.html.twig') }}
         </div>
     </div>
+</div>
 {% endblock %}
 
 {% block sidebar %}
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-lg-8">
-                <div class="card shadow-sm border-0">
-                    <div class="card-body text-center py-4">
-                        <h4 class="mb-3">{{ 'action.manage_post'|trans }}</h4>
-                        
-                        <div class="d-grid gap-3">
-                            <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-outline-success">
-                                <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit_contents'|trans }}
-                            </a>
-                            
-                            <div>
-                                {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
-                            </div>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card shadow-sm border-0">
+                <div class="card-body text-center py-4">
+                    <h4 class="mb-3">{{ 'action.manage_post'|trans }}</h4>
+
+                    <div class="d-grid gap-3">
+                        <a href="{{ path('admin_post_edit', {id: post.id}) }}" class="btn btn-outline-success">
+                            <twig:ux:icon name="tabler:pencil"/> {{ 'action.edit_contents'|trans }}
+                        </a>
+
+                        <div>
+                            {{ include('admin/blog/_delete_form.html.twig', {post: post}, with_context = false) }}
                         </div>
                     </div>
                 </div>
+            </div>
 
-                <div class="mt-4">
-                    {{ parent() }}
-                </div>
+            <div class="mt-4">
+                {{ parent() }}
+            </div>
 
-                <div class="text-center mt-3">
-                    {{ show_source_code(_self) }}
-                </div>
+            <div class="text-center mt-3">
+                {{ show_source_code(_self) }}
             </div>
         </div>
     </div>
+</div>
 {% endblock %}
