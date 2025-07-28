@@ -28,7 +28,9 @@ final class BlogController extends AbstractController
     {
         $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
 
-        return $this->render('admin/blog/index.html.twig', ['posts' => $authorPosts]);
+        return $this->render('admin/blog/index.html.twig', [
+            'posts' => $authorPosts,
+        ]);
     }
 
     #[Route('/{_locale}/admin/post/new', name: 'admin_post_new', requirements: ['_locale' => 'fr|en'], methods: ['GET', 'POST'])]
@@ -51,9 +53,9 @@ final class BlogController extends AbstractController
             $entityManager->persist($post);
             $entityManager->flush();
 
-            $this->addFlash('success', 'post.created_successfully');
+            $this->addFlash('success', 'Le post a été créé avec succès.');
 
-            return $this->redirectToRoute('admin_post_index', [], Response::HTTP_SEE_OTHER);
+            return $this->redirectToRoute('admin_post_index');
         }
 
         return $this->render('admin/blog/new.html.twig', [
@@ -67,7 +69,9 @@ final class BlogController extends AbstractController
     {
         $this->denyAccessUnlessGranted(PostVoter::SHOW, $post);
 
-        return $this->render('admin/blog/show.html.twig', ['post' => $post]);
+        return $this->render('admin/blog/show.html.twig', [
+            'post' => $post,
+        ]);
     }
 
     #[Route('/{_locale}/admin/post/{id}/edit', name: 'admin_post_edit', requirements: ['_locale' => 'fr|en', 'id' => Requirement::POSITIVE_INT], methods: ['GET', 'POST'])]
@@ -84,12 +88,15 @@ final class BlogController extends AbstractController
             }
 
             $entityManager->flush();
-            $this->addFlash('success', 'post.updated_successfully');
+            $this->addFlash('success', 'Le post a été mis à jour.');
 
             return $this->redirectToRoute('admin_post_show', ['id' => $post->getId()]);
         }
 
-        return $this->render('admin/blog/edit.html.twig', ['post' => $post, 'form' => $form]);
+        return $this->render('admin/blog/edit.html.twig', [
+            'post' => $post,
+            'form' => $form,
+        ]);
     }
 
     #[Route('/{_locale}/admin/post/{id}/delete', name: 'admin_post_delete', requirements: ['_locale' => 'fr|en', 'id' => Requirement::POSITIVE_INT], methods: ['POST'])]
@@ -97,6 +104,7 @@ final class BlogController extends AbstractController
     public function delete(Request $request, Post $post, EntityManagerInterface $entityManager): Response
     {
         if (!$this->isCsrfTokenValid('delete_post_' . $post->getId(), $request->get('token'))) {
+            $this->addFlash('error', 'Jeton CSRF invalide.');
             return $this->redirectToRoute('admin_post_index');
         }
 
@@ -104,31 +112,30 @@ final class BlogController extends AbstractController
         $entityManager->remove($post);
         $entityManager->flush();
 
-        $this->addFlash('success', 'post.deleted_successfully');
+        $this->addFlash('success', 'Le post a été supprimé.');
 
         return $this->redirectToRoute('admin_post_index');
     }
 
     #[Route('/{_locale}/admin/post/comment/{commentId}/delete', name: 'admin_comment_delete', requirements: ['_locale' => 'fr|en', 'commentId' => Requirement::POSITIVE_INT], methods: ['POST'])]
-    #[IsGranted('ROLE_ADMIN')]
     public function commentDelete(
         #[MapEntity(mapping: ['commentId' => 'id'])] Comment $comment,
         EntityManagerInterface $entityManager,
         Request $request
     ): Response {
         if (!$this->isCsrfTokenValid('delete_comment_' . $comment->getId(), $request->get('token'))) {
+            $this->addFlash('error', 'Jeton CSRF invalide.');
             return $this->redirectToRoute('admin_post_index');
         }
 
         $entityManager->remove($comment);
         $entityManager->flush();
-        $this->addFlash('success', 'comment.deleted_successfully');
+        $this->addFlash('success', 'Commentaire supprimé.');
 
         return $this->redirectToRoute('admin_post_show', ['id' => $comment->getPost()->getId()]);
     }
 
-    #[Route('/{_locale}/admin/post/profile', name: 'admin_profile', requirements: ['_locale' => 'fr|en'], methods: ['GET', 'POST'])]
-    #[IsGranted('ROLE_ADMIN')]
+    #[Route('/{_locale}/admin/profile', name: 'admin_profile', requirements: ['_locale' => 'fr|en'], methods: ['GET', 'POST'])]
     public function profile(#[CurrentUser] User $user, Request $request, EntityManagerInterface $entityManager): Response
     {
         $form = $this->createForm(UserType::class, $user);
