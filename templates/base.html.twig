@@ -47,20 +47,7 @@
     <main class="container main-content">
         {{ include('default/_flash_messages.html.twig') }}
         {% block body %}
-            <section class="book-grid">
-                {% for book in books %}
-                    <div class="book-card">
-                        <img src="{{ asset(book.coverImage) }}" alt="{{ book.title }}">
-                        <div class="book-info">
-                            <h3>{{ book.title }}</h3>
-                            <p>{{ book.author }}</p>
-                            <span class="badge {{ book.available ? '' : 'unavailable' }}">
-                                {{ book.available ? 'Disponible' : 'Indisponible' }}
-                            </span>
-                        </div>
-                    </div>
-                {% endfor %}
-            </section>
+            
         {% endblock %}
     </main>
 
