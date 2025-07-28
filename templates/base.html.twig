@@ -10,10 +10,7 @@
     <link rel="alternate" type="application/rss+xml" title="{{ 'rss.title'|trans }}" href="{{ path('blog_rss') }}" />
 
     {% block stylesheets %}
-        <link rel="stylesheet" href="{{ asset('styles/app.css') }}">
-        <link rel="stylesheet" href="{{ asset('styles/admin.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/style.css') }}">
-
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     {% endblock %}
 
@@ -30,7 +27,7 @@
             <div class="container header-container">
                 <a href="{{ path('homepage') }}" class="logo">TomTroc</a>
                 <nav class="main-nav">
-                    <ul>
+                    <ul class="nav-list">
                         <li><a href="{{ path('homepage', { _locale: app.request.locale }) }}" class="{{ app.request.get('_route') == 'homepage' ? 'active' : '' }}">Accueil</a></li>
                         <li><a href="{{ path('book_index') }}">Nos livres à l'échange</a></li>
                         <li><a href="{{ path('app_message') }}">Messagerie</a></li>
@@ -49,7 +46,22 @@
 
     <main class="container main-content">
         {{ include('default/_flash_messages.html.twig') }}
-        {% block body %}{% endblock %}
+        {% block body %}
+            <section class="book-grid">
+                {% for book in books %}
+                    <div class="book-card">
+                        <img src="{{ asset(book.coverImage) }}" alt="{{ book.title }}">
+                        <div class="book-info">
+                            <h3>{{ book.title }}</h3>
+                            <p>{{ book.author }}</p>
+                            <span class="badge {{ book.available ? '' : 'unavailable' }}">
+                                {{ book.available ? 'Disponible' : 'Indisponible' }}
+                            </span>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+        {% endblock %}
     </main>
 
     {% block footer %}
