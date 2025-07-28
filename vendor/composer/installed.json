@@ -10911,17 +10911,17 @@
         },
         {
             "name": "symfony/ux-icons",
-            "version": "v2.22.1",
-            "version_normalized": "2.22.1.0",
+            "version": "v2.27.0",
+            "version_normalized": "2.27.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/ux-icons.git",
-                "reference": "3a6fd4293fc200530b09960c41941a71354bc5fc"
+                "reference": "af6d09779e786717c6e3b5a8a004e8c18ce3ef00"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/3a6fd4293fc200530b09960c41941a71354bc5fc",
-                "reference": "3a6fd4293fc200530b09960c41941a71354bc5fc",
+                "url": "https://api.github.com/repos/symfony/ux-icons/zipball/af6d09779e786717c6e3b5a8a004e8c18ce3ef00",
+                "reference": "af6d09779e786717c6e3b5a8a004e8c18ce3ef00",
                 "shasum": ""
             },
             "require": {
@@ -10942,7 +10942,7 @@
                 "symfony/ux-twig-component": "^2.14",
                 "zenstruck/console-test": "^1.5"
             },
-            "time": "2024-12-04T11:34:13+00:00",
+            "time": "2025-06-17T06:15:15+00:00",
             "type": "symfony-bundle",
             "extra": {
                 "thanks": {
@@ -10983,7 +10983,7 @@
                 "twig"
             ],
             "support": {
-                "source": "https://github.com/symfony/ux-icons/tree/v2.22.1"
+                "source": "https://github.com/symfony/ux-icons/tree/v2.27.0"
             },
             "funding": [
                 {
