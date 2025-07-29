@@ -1,7 +1,7 @@
-# Étape 1 : base PHP avec extensions nécessaires
+# Étape 1 : Utiliser une image PHP avec les extensions nécessaires
 FROM php:8.2-cli
 
-# Étape 2 : installation des dépendances système
+# Étape 2 : Installer les dépendances système
 RUN apt-get update && apt-get install -y \
     git \
     unzip \
@@ -12,21 +12,20 @@ RUN apt-get update && apt-get install -y \
     curl \
     && docker-php-ext-install intl pdo pdo_mysql zip
 
-# Étape 3 : installation de Composer
+# Étape 3 : Installer Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Étape 4 : création du dossier de l'app
+# Étape 4 : Définir le dossier de travail
 WORKDIR /app
 
-# Étape 5 : copie du code
+# Étape 5 : Copier le code source
 COPY . /app
 
-# Étape 6 : installation des dépendances PHP sans scripts
+# Étape 6 : Installer les dépendances PHP sans scripts
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Étape 7 : port exposé (à adapter si tu utilises Symfony server)
+# Étape 7 : Exposer le port utilisé par le serveur PHP
 EXPOSE 8000
 
-# Étape 8 : commande de démarrage (à adapter selon ton app)
+# Étape 8 : Démarrer le serveur Symfony (adapté à ton projet)
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
-
