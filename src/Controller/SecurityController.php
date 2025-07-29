@@ -22,9 +22,13 @@ final class SecurityController extends AbstractController
         Request $request,
         AuthenticationUtils $helper
     ): Response {
-        if ($this->getUser()) {
-            return $this->redirectToRoute('blog_index');
-        }
+    if ($this->getUser()) {
+    if ($this->isGranted('ROLE_ADMIN')) {
+        return $this->redirectToRoute('admin_post_index');
+    }
+
+    return $this->redirectToRoute('blog_index');
+}
 
         return $this->render('security/login.html.twig', [
             'last_username' => $helper->getLastUsername(),
