@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -y \
     git \
     unzip \
     libicu-dev \
-    libpq-dev \
+    libgd-dev \
     libzip-dev \
     zip \
     curl \
@@ -24,8 +24,8 @@ COPY . /app
 # Étape 6 : Installer les dépendances PHP sans scripts
 RUN composer install --no-dev --optimize-autoloader --no-scripts
 
-# Étape 7 : Exposer le port utilisé par le serveur PHP
+# Étape 7 : Exposer le port
 EXPOSE 8000
 
-# Étape 8 : Démarrer le serveur Symfony (adapté à ton projet)
+# Étape 8 : Démarrer le serveur PHP
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
