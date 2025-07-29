@@ -42,6 +42,14 @@ services:
 
     # Register the UserRepository service (if it isn't registered automatically)
     App\Repository\UserRepository: ~
+        # Register the UserRepository service (if it isn't registered automatically)
+    App\Repository\UserRepository: ~
+
+    # Register the LoginSuccessHandler for dynamic redirection after login
+    App\Security\LoginSuccessHandler:
+        arguments:
+            $urlGenerator: '@router'
+
 
     # You don't need to explicitly define PasswordHasherInterface
     # Symfony automatically handles the autowiring of this interface via the `security.password_hasher` service.
