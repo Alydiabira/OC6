@@ -17,7 +17,6 @@ final class SecurityController extends AbstractController
 {
     use TargetPathTrait;
 
-    // ✅ Route d'affichage du formulaire de connexion
     #[Route('/login', name: 'app_login')]
     public function login(
         Request $request,
@@ -33,7 +32,6 @@ final class SecurityController extends AbstractController
         ]);
     }
 
-    // ✅ Route interceptée par Symfony pour le traitement du formulaire
     #[Route('/login_check', name: 'app_login_check')]
     public function loginCheck(): void
     {
@@ -51,18 +49,21 @@ final class SecurityController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setPassword(
-                $passwordHasher->hashPassword(
-                    $user,
-                    $user->getPlainPassword()
-                )
-            );
+            // ✅ Récupération du mot de passe depuis le formulaire
+            $plainPassword = $form->get('plainPassword')->getData();
 
-            $user->setRoles([User::ROLE_USER]);
+            // ✅ Hash du mot de passe
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
 
+            // ✅ Définition du rôle
+            $user->setRoles(['ROLE_USER']);
+
+            // ✅ Enregistrement en base
             $entityManager->persist($user);
             $entityManager->flush();
 
+            // ✅ Redirection vers la page de connexion
             return $this->redirectToRoute('app_login');
         }
 
