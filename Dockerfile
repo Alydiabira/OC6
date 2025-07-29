@@ -1,5 +1,5 @@
 # Étape 1 : Utiliser une image PHP avec les extensions nécessaires
-FROM php:8.2-cli
+FROM php:8.4-cli
 
 # Étape 2 : Installer les dépendances système
 RUN apt-get update && apt-get install -y \
