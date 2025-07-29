@@ -32,8 +32,15 @@
                         <li><a href="{{ path('book_index') }}">Nos livres à l'échange</a></li>
                         <li><a href="{{ path('app_message') }}">Messagerie</a></li>
                         {% if app.user %}
-                            <li><a href="{{ path('user_edit') }}">Mon compte</a></li>
-                            <li><a href="{{ logout_path() }}" class="text-danger">Déconnexion</a></li>
+                        {% if is_granted('ROLE_ADMIN') %}
+                            <li>
+                                <a href="{{ path('admin_post_index', { _locale: app.request.locale }) }}" class="admin-link">
+                                    <i class="fas fa-tools"></i> Espace admin
+                                </a>
+                            </li>
+                        {% endif %}
+                        <li><a href="{{ path('user_edit') }}">Mon compte</a></li>
+                        <li><a href="{{ logout_path() }}" class="text-danger">Déconnexion</a></li>
                         {% else %}
                             <li><a href="{{ path('app_login') }}">Connexion</a></li>
                         {% endif %}
