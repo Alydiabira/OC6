@@ -27,12 +27,17 @@ final class SecurityController extends AbstractController
             return $this->redirectToRoute('blog_index');
         }
 
-        $this->saveTargetPath($request->getSession(), 'main', $this->generateUrl('admin_post_index'));
-
         return $this->render('security/login.html.twig', [
             'last_username' => $helper->getLastUsername(),
             'error' => $helper->getLastAuthenticationError(),
         ]);
+    }
+
+    // ✅ Route interceptée par Symfony pour le traitement du formulaire
+    #[Route('/login_check', name: 'app_login_check')]
+    public function loginCheck(): void
+    {
+        // Symfony gère cette route automatiquement
     }
 
     #[Route('/register', name: 'app_register')]
