@@ -11,24 +11,14 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use App\Entity\Book;
+use App\Entity\Message;
 
-/**
- * Defines the properties of the User entity to represent the application users.
- * See https://symfony.com/doc/current/doctrine.html#creating-an-entity-class.
- *
- * Tip: if you have an existing database, you can generate these entity class automatically.
- * See https://symfony.com/doc/current/doctrine/reverse_engineering.html
- *
- * @author Ryan Weaver <weaverryan@gmail.com>
- * @author Javier Eguiluz <javier.eguiluz@gmail.com>
- */
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: 'user')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
-    // Définir les constantes de rôle
-    public const ROLE_USER = 'ROLE_USER'; // Rôle utilisateur
-    public const ROLE_ADMIN = 'ROLE_ADMIN'; // Rôle administrateur
+    public const ROLE_USER = 'ROLE_USER';
+    public const ROLE_ADMIN = 'ROLE_ADMIN';
 
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -45,6 +35,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?string $username = null;
 
     #[ORM\Column(type: Types::STRING, unique: true)]
+    #[Assert\NotBlank]
     #[Assert\Email]
     private ?string $email = null;
 
@@ -54,21 +45,31 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: Types::JSON)]
     private array $roles = [];
 
-    // Ajout de champs pour le formulaire et les messages
     #[ORM\Column(type: Types::STRING, nullable: true)]
     private ?string $phoneNumber = null;
 
     #[ORM\Column(type: Types::TEXT, nullable: true)]
     private ?string $message = null;
 
+    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Book::class, orphanRemoval: true)]
+    private Collection $books;
+
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
+    private Collection $messagesSent;
+
+    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
+    private Collection $messages;
+
+    public function __construct()
+    {
+        $this->books = new ArrayCollection();
+        $this->messagesSent = new ArrayCollection();
+        $this->messages = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function setFullName(string $fullName): void
-    {
-        $this->fullName = $fullName;
     }
 
     public function getFullName(): ?string
@@ -76,19 +77,24 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this->fullName;
     }
 
-    public function getUserIdentifier(): string
+    public function setFullName(string $fullName): void
     {
-        return (string) $this->email;
+        $this->fullName = $fullName;
     }
 
     public function getUsername(): string
     {
-        return $this->getUserIdentifier();
+        return $this->username ?? '';
     }
 
     public function setUsername(string $username): void
     {
         $this->username = $username;
+    }
+
+    public function getUserIdentifier(): string
+    {
+        return $this->email ?? '';
     }
 
     public function getEmail(): ?string
@@ -111,6 +117,22 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+
+        if (empty($roles)) {
+            $roles[] = self::ROLE_USER;
+        }
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): void
+    {
+        $this->roles = $roles;
+    }
+
     public function getPhoneNumber(): ?string
     {
         return $this->phoneNumber;
@@ -131,81 +153,26 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->message = $message;
     }
 
-    /**
-     * Returns the roles or permissions granted to the user for security.
-     */
-    public function getRoles(): array
-    {
-        $roles = $this->roles;
-
-        // Garantie que l'utilisateur a au moins un rôle pour la sécurité
-        if (empty($roles)) {
-            $roles[] = self::ROLE_USER;
-        }
-
-        return array_unique($roles);
-    }
-
-    /**
-     * @param string[] $roles
-     */
-    public function setRoles(array $roles): void
-    {
-        $this->roles = $roles;
-    }
-
-    /**
-     * Removes sensitive data from the user.
-     *
-     * {@inheritdoc}
-     */
     public function eraseCredentials(): void
     {
-        // Si tu avais une propriété plainPassword, tu la nullifierais ici
-        // $this->plainPassword = null;
+        // Si tu ajoutes plainPassword, tu peux le nullifier ici
     }
 
-    /**
-     * @return array{int|null, string|null, string|null}
-     */
     public function __serialize(): array
     {
         return [$this->id, $this->username, $this->password];
     }
 
-    /**
-     * @param array{int|null, string, string} $data
-     */
     public function __unserialize(array $data): void
     {
         [$this->id, $this->username, $this->password] = $data;
     }
 
-    #[ORM\OneToMany(mappedBy: 'owner', targetEntity: Book::class, orphanRemoval: true)]
-    private Collection $books;
-
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'sender')]
-    private Collection $messagesSent;
-
-    /**
-     * @var Collection<int, Message>
-     */
-    #[ORM\OneToMany(targetEntity: Message::class, mappedBy: 'recipient')]
-    private Collection $messages;
-
-    public function __construct()
+    public function __toString(): string
     {
-        $this->books = new ArrayCollection();
-        $this->messagesSent = new ArrayCollection();
-        $this->messages = new ArrayCollection();
+        return $this->username ?? '';
     }
 
-    /**
-     * @return Collection<int, Book>
-     */
     public function getBooks(): Collection
     {
         return $this->books;
@@ -232,9 +199,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Message>
-     */
     public function getMessagesSent(): Collection
     {
         return $this->messagesSent;
@@ -253,7 +217,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeMessagesSent(Message $messagesSent): static
     {
         if ($this->messagesSent->removeElement($messagesSent)) {
-            // set the owning side to null (unless already changed)
             if ($messagesSent->getSender() === $this) {
                 $messagesSent->setSender(null);
             }
@@ -262,9 +225,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    /**
-     * @return Collection<int, Message>
-     */
     public function getMessages(): Collection
     {
         return $this->messages;
@@ -283,7 +243,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeMessage(Message $message): static
     {
         if ($this->messages->removeElement($message)) {
-            // set the owning side to null (unless already changed)
             if ($message->getRecipient() === $this) {
                 $message->setRecipient(null);
             }
@@ -291,10 +250,4 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
         return $this;
     }
-
-    public function __toString(): string
-    {
-        return $this->username ?? '';
-    }
-
 }
