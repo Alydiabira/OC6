@@ -29,3 +29,4 @@ EXPOSE 8000
 
 # Étape 8 : commande de démarrage (à adapter selon ton app)
 CMD ["php", "-S", "0.0.0.0:8000", "-t", "public"]
+
