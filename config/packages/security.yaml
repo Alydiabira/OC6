@@ -18,18 +18,17 @@ security:
             provider: database_users
 
             form_login:
-                login_path: app_login         # route d'affichage du formulaire
-                check_path: /login_check            # ✅ chemin intercepté par Symfony
+                login_path: app_login                 # Route d'affichage du formulaire
+                check_path: /login_check              # Symfony intercepte cette route
                 enable_csrf: true
                 csrf_token_id: authenticate
-                success_handler: App\Security\LoginSuccessHandler              # ✅ Option correcte
-                default_target_path: blog_index          # ✅ Redirection après connexion
-                username_parameter: email                # ✅ Correspond au name="email" du formulaire
-                password_parameter: password             # ✅ Correspond au name="password" du formulaire
+                success_handler: App\Security\LoginSuccessHandler  # Redirection personnalisée
+                username_parameter: email             # Correspond au name="email" du formulaire
+                password_parameter: password          # Correspond au name="password" du formulaire
 
             remember_me:
                 secret: '%kernel.secret%'
-                lifetime: 604800
+                lifetime: 604800                      # 7 jours
                 path: /
                 always_remember_me: false
 
@@ -39,16 +38,6 @@ security:
                 enable_csrf: true
 
             entry_point: form_login
-
-        admin:
-            pattern: ^/admin
-            provider: database_users
-            lazy: true
-
-            logout:
-                path: /admin/logout
-                target: homepage
-                enable_csrf: true
 
     access_control:
         - { path: ^/admin, roles: ROLE_ADMIN }
