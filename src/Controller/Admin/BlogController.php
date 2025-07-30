@@ -19,18 +19,22 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use Symfony\Component\Security\Http\Attribute\CurrentUser;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
-use Symfony\Bridge\Doctrine\Attribute\MapEntity;
+use Symfony\Bridge\Doctrine\Attribute\MapEntity;use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 
 #[IsGranted(User::ROLE_ADMIN)]
 final class BlogController extends AbstractController
 {
-    #[Route('/{_locale}/admin/post/', name: 'admin_post_index', requirements: ['_locale' => 'fr|en'], methods: ['GET'])]
+    #[Route('/{_locale}/admin/post/', name: 'admin_post_index', requirements: ['_locale' => 'fr|en'], methods: ['GET', 'POST'])]
     public function index(
-        #[CurrentUser] User $user,
-        Request $request,
-        PostRepository $posts,
-        PaginatorInterface $paginator
-    ): Response {
+    #[CurrentUser] User $user,
+    Request $request,
+    PostRepository $posts,
+    PaginatorInterface $paginator,
+    EntityManagerInterface $entityManager,
+    UserPasswordHasherInterface $passwordHasher // ✅ Ajouté ici
+): Response {
+        // ✅ Vérification des permissions
         $query = $posts->createQueryBuilder('p')
             ->where('p.author = :author')
             ->setParameter('author', $user)
@@ -39,13 +43,32 @@ final class BlogController extends AbstractController
         $pagination = $paginator->paginate(
             $query,
             $request->query->getInt('page', 1),
-            10 // Nombre d’articles par page
+            10
         );
+
+        // ✅ Ajout du formulaire
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+        $plainPassword = $form->get('plainPassword')->getData();
+        if ($plainPassword) {
+            $hashedPassword = $passwordHasher->hashPassword($user, $plainPassword);
+            $user->setPassword($hashedPassword);
+        }
+
+        $entityManager->flush();
+        $this->addFlash('success', 'Profil mis à jour avec succès.');
+        return $this->redirectToRoute('admin_post_index');
+    }
+
 
         return $this->render('admin/blog/index.html.twig', [
             'pagination' => $pagination,
+            'form' => $form->createView(), // ✅ Ajouté ici
         ]);
     }
+
 
     #[Route('/{_locale}/admin/post/new', name: 'admin_post_new', requirements: ['_locale' => 'fr|en'], methods: ['GET', 'POST'])]
     public function new(#[CurrentUser] User $user, Request $request, EntityManagerInterface $entityManager): Response
