@@ -10,6 +10,7 @@ use App\Form\UserType;
 use App\Repository\PostRepository;
 use App\Security\PostVoter;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
@@ -24,12 +25,25 @@ use Symfony\Bridge\Doctrine\Attribute\MapEntity;
 final class BlogController extends AbstractController
 {
     #[Route('/{_locale}/admin/post/', name: 'admin_post_index', requirements: ['_locale' => 'fr|en'], methods: ['GET'])]
-    public function index(#[CurrentUser] User $user, PostRepository $posts): Response
-    {
-        $authorPosts = $posts->findBy(['author' => $user], ['publishedAt' => 'DESC']);
+    public function index(
+        #[CurrentUser] User $user,
+        Request $request,
+        PostRepository $posts,
+        PaginatorInterface $paginator
+    ): Response {
+        $query = $posts->createQueryBuilder('p')
+            ->where('p.author = :author')
+            ->setParameter('author', $user)
+            ->orderBy('p.publishedAt', 'DESC');
+
+        $pagination = $paginator->paginate(
+            $query,
+            $request->query->getInt('page', 1),
+            10 // Nombre d’articles par page
+        );
 
         return $this->render('admin/blog/index.html.twig', [
-            'posts' => $authorPosts,
+            'pagination' => $pagination,
         ]);
     }
 
