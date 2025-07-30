@@ -117,6 +117,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         $this->password = $password;
     }
 
+    public function getSalt(): ?string
+    {
+        // Pas nécessaire avec bcrypt ou sodium
+        return null;
+    }
+
     public function getRoles(): array
     {
         $roles = $this->roles;
@@ -156,16 +162,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function eraseCredentials(): void
     {
         // Si tu ajoutes plainPassword, tu peux le nullifier ici
-    }
-
-    public function __serialize(): array
-    {
-        return [$this->id, $this->username, $this->password];
-    }
-
-    public function __unserialize(array $data): void
-    {
-        [$this->id, $this->username, $this->password] = $data;
     }
 
     public function __toString(): string
