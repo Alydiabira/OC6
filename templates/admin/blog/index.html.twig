@@ -3,8 +3,68 @@
 {% block body_id %}admin_post_index{% endblock %}
 
 {% block body %}
+
+
 <div class="container py-5">
     <h1 class="text-center fw-bold mb-5">{{ 'title.post_list'|trans }}</h1>
+
+    <div class="row mb-5">
+    {# Bloc gauche : Profil utilisateur #}
+    <div class="col-md-4">
+        <div class="card border-0 shadow-sm rounded-4 text-center py-4">
+            <div class="position-relative">
+                <img src="{{ asset(app.user.profileImage ?? 'images/default-avatar.png') }}"
+                     alt="Photo de profil"
+                     class="rounded-circle mb-3"
+                     style="width: 120px; height: 120px; object-fit: cover;">
+                <a href="{{ path('user_edit_photo') }}" class="btn btn-sm btn-outline-primary position-absolute top-0 end-0 me-3 mt-2">
+                    Modifier
+                </a>
+            </div>
+            <h4 class="fw-bold">{{ app.user.username }}</h4>
+            <p class="text-muted">Membre depuis {{ app.user.createdAt|date('Y') }}</p>
+            <p class="mb-0">
+                <span class="badge bg-info text-dark">{{ app.user.books|length }} livres</span>
+            </p>
+        </div>
+    </div>
+
+    {# Bloc droit : Formulaire d’édition des infos personnelles #}
+    <div class="col-md-8">
+        <div class="card border-0 shadow-sm rounded-4">
+            <div class="card-body px-4 py-4">
+                <h5 class="mb-4">Vos informations personnelles</h5>
+
+                {{ form_start(form) }}
+                    <div class="mb-3">
+                        {{ form_label(form.email) }}
+                        {{ form_widget(form.email, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.email) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.plainPassword) }}
+                        {{ form_widget(form.plainPassword, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.plainPassword) }}
+                    </div>
+
+                    <div class="mb-3">
+                        {{ form_label(form.username) }}
+                        {{ form_widget(form.username, {'attr': {'class': 'form-control'}}) }}
+                        {{ form_errors(form.username) }}
+                    </div>
+
+                    <div class="text-end">
+                        <button type="submit" class="btn btn-success">
+                            <i class="fas fa-save me-2"></i> Enregistrer
+                        </button>
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+</div>
+
 
     <div class="card border-0 shadow-sm rounded-4">
         <div class="card-body px-4 py-4">
